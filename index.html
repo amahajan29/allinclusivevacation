@@ -109,7 +109,20 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination6"> To </label>
-                              <input type="text" placeholder="City, region, district or specific airport" id="destination6" name="destination" />
+                              <!-- <input type="text" placeholder="" id="destination6" name="destination" /> -->
+         <select class="state" id="destination6" name="destination" >
+            <option value="">City, region, district or specific airport, Packages</option>
+             <optgroup label="Portugal">
+                 <option value="FAO" selected=""> FAO - Faro</option>
+                <option value="FNC">FNC - Funchal </option>
+             </optgroup>
+             <optgroup label="Spain">
+                 <option value="TFS">TFS - Tenerife South </option>
+             </optgroup>
+             <optgroup label="England">
+                 <option value="LON">LON - London </option>
+             </optgroup>
+         </select>
                            </div>
                         </div>
                      </div>
@@ -529,7 +542,8 @@
                               </div>
                            </article>
                            <!--//deal-->
-                           <article class="text-centre but-section">
+                           <article class="text-centre but-section" ng-if="data.length>4">
+
                               <a ng-show="packagebtn" ng-click="ViewAllPackages();" title="More info" class="gradient-button">View All Packages</a>
                               <a ng-hide="packagebtn" ng-click="PaginatePackages('prev');" title="Previous" class="gradient-button"><<</a>
                               <a ng-hide="packagebtn" ng-click="PaginatePackages('next');" title="More info" class="gradient-button">>></a>
@@ -760,7 +774,9 @@
       <script type="text/javascript" src="js/slick.min.js"></script>
 
       <script type="text/javascript" src="js/angular.min.js"></script>
-      <script type="text/javascript" src="js/app.js"></script>
+      <script type="text/javascript" src="js/app/homeController.js"></script>
+      <script type="text/javascript" src="js/select2.min.js"></script>
+
       <script type="text/javascript">
          $(document).on('ready', function() {
               $(".regular").slick({
