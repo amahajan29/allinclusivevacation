@@ -1,0 +1,295 @@
+   <!--header-->
+   <header class="header inside-header">
+      <div class="wrap">
+         <!--logo-->
+         <div class="logo inside-logo"><a href="index.html" title=""><img src="assets/images/txt/logo.png" alt="Book Your Travel" /></a></div>
+         <!--//logo-->
+         
+         <!--ribbon-->
+         <div class="header-nav-buts inside_top-nav">
+            <nav>
+               <a href="my_account.html" title="My Account">My Account</a>
+               <a href="#0" title="Login" id="btnlogin">Login</a>
+               <a href="my_account.html" title="Settings">Settings</a>
+               </ul>
+            </nav>
+         </div>
+         <!--//ribbon-->
+      </div>
+   </header>
+   <!--//header-->
+ <!--main-->
+      <main class="main">
+         <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+               <!--crumbs-->
+               <ul>
+                  <li>Search results</li>
+               </ul>
+               <!--//crumbs-->
+               <!--top right navigation-->
+               <ul class="top-right-nav">
+                  <li><a href="#" title="Back to results">Back to results</a></li>
+                  <li><a href="#" title="Change search">Change search</a></li>
+               </ul>
+               <!--//top right navigation-->
+            </nav>
+            <!--//breadcrumbs-->
+            <!-- progress step -->
+            <div class="process-steps">
+               <ul class="book-step-intigator">
+                  <li class="active-intigator">
+                     <a href="search_results_flights.html"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
+                     <p>Book Your Flight</p>
+                  </li>
+                  <li>
+                     <a href="search_results-hotel.html"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
+                     <p>Choose Your Hotel</p>
+                  </li>
+                  <li>
+                     <a href="add_extras.html"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
+                     <p>Choose Youe Extras</p>
+                  </li>
+                  <li>
+                     <a href="booking-step1.html"><b><i class="fa fa-ticket" aria-hidden="true"></i></b></a>
+                     <p>Complete Your Booking</p>
+                  </li>
+               </ul>
+            </div>
+            <!-- progress step end -->
+            <div class="row">
+               <!--sidebar-->
+               <aside class="one-fourth left-sidebar">
+                  <article class="widget refine-search-results">
+                     <h4>Refine search results</h4>
+                     <dl>
+                        <!--Departure times-->
+                        <dt>Departure times</dt>
+                        <dd>
+                           <div class="checkbox" ng-repeat="departureTime in departureTimes">
+                              <input type="checkbox" checklist-model="search.departureTimes" checklist-value="departureTime" id="ch1" name="departure" />
+                              <label for="ch1">{{departureTime}}</label>
+                           </div>
+                        </dd>
+                        <!--//Departure times-->
+                        <!--Stops-->
+                        <dt>Stops</dt>
+                        <dd>
+                           <div class="checkbox" ng-repeat="stop in stops">
+                              <input type="checkbox" checklist-model="search.stops" checklist-value="stop.key" id="ch6" name="stop" ng-click="filter()" />
+                              <label for="ch6">{{stop.value}}</label>
+                           </div>
+                        </dd>
+                        <!--//Stops-->
+                        <!--Airlines-->
+                        <dt>Airlines</dt>
+                        <dd>
+                           <div class="checkbox" ng-repeat="airline in airlines">
+                              <input type="checkbox" checklist-model="search.airlines" checklist-value="airline" id="ch32" name="airlines" />
+                              <label for="ch32">{{airline}}</label>
+                           </div>
+                        </dd>
+                        <!--//Airlines-->
+                        <!--Alliances-->
+                        <dt>Alliances</dt>
+                        <dd>
+                           <div class="checkbox" ng-repeat="alliance in alliances">
+                              <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="alliance" name="alliances" />
+                              <label for="ch38">{{alliance}}</label>
+                           </div>
+                        </dd>
+                        <!--//Alliances-->
+                        <!--Price range-->
+                        <dt>Price range</dt>
+                        <dd>
+                           <div class="checkbox" ng-repeat="pr in priceRange">
+                              <input type="checkbox" checklist-model="search.priceRange" checklist-value="pr" id="ch21" name="price" />
+                              <label for="ch21">{{pr}}</label>
+                           </div>
+                        </dd>
+                        <!--//Price range-->
+                        <!--Class-->
+                        <dt>Class</dt>
+                        <dd>
+                           <div class="checkbox" ng-repeat="cls in class">
+                              <input type="checkbox" checklist-model="search.class" checklist-value="cls" id="ch26" name="class" />
+                              <label for="ch26">{{cls}}</label>
+                           </div>
+                        </dd>
+                        <!--//Class-->
+                     </dl>
+                  </article>
+               </aside>
+               <!--//sidebar-->
+               <!--three-fourth content-->
+               <div class="one-half">
+                  <div class="deals flights row results">
+                     <!--deal-->
+                     <article class="full-width slice">
+                        <!-- single flight load -->
+                        <div class="lazy loaded" id="box-1" ng-repeat="flight in flightList">
+                           <div class="details new-design" style="position:relative;"> 
+                              <div class="depart-wrap"> 
+                                 <h3>Easyjet - <span> Friday, 5 April </span> </h3> 
+                                 <div class="table-flight first frid"> 
+                                    <div class="f-wrap design"> 
+                                       <div class="flight-info">
+                                          <strong>Franz Josef Strauss</strong> (MUC)<br/> 22:00 
+                                       </div>
+                                    </div>
+                                    <div class="f-wrap design"> 
+                                       <div class="flight-info">
+                                          <strong>Luton International</strong> (LTN)<br/>23:00 Friday,5 April 
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <h3>Easyjet - <span> Friday, 5 April </span> </h3> 
+                                 <div class="table-flight"> 
+                                    <div class="f-wrap design"> 
+                                       <div class="flight-info">
+                                          <strong>Franz Josef Strauss</strong> (MUC)<br/> 22:00 
+                                       </div>
+                                    </div>
+                                    <div class="f-wrap design"> 
+                                       <div class="flight-info">
+                                          <strong>Luton International</strong> (LTN)<br/>23:00 Friday,5 April 
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="depart-button"> 
+                                 <div class="arive-stop"> 
+                                    <p><strong>13h 5 / 1 Stop</strong><br/>EY 12 / 9W 589</p>
+                                 </div>
+                                 <a href="search_results-hotel.html" title="Book now" class="gradient-button book"> &euro; 53.22</a> 
+                                 <div class="return-stop"> 
+                                    <p><strong>13h 5 / 1 Stop</strong><br/>EY 12 / 9W 589</p>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="lazy" id="box-2" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-3" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-4" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-5" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-6" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-7" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-8" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-9" data-loader="examplePlugin">not loaded</div>
+                        <div class="lazy" id="box-0" data-loader="examplePlugin">not loaded</div> -->
+                        
+                        <!-- single flight load -->
+                     </article>
+                     <!--//deal-->
+                     
+                  </div>
+               </div>
+               <!--//three-fourth content-->
+               <!--  <article class="widget"> -->
+               <!-- </article> -->
+               <!--sidebar-->
+               <aside class="one-fourth right-sidebar">
+                  <!--hotel details-->
+                  <article class="hotel-details">
+                     <h1>Best ipsum hotel 
+                        <span class="stars">
+                        <i class="material-icons">&#xE838;</i>
+                        <i class="material-icons">&#xE838;</i>
+                        <i class="material-icons">&#xE838;</i>
+                        </span>
+                     </h1>
+                     <span class="address">Marylebone, London</span>
+                     <span class="rating"> 8 /10</span>
+                     <div class="description">
+                        <p>The Best Ipsum hotel  features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art. </p>
+                     </div>
+                  </article>
+                  <!--//hotel details-->
+                  <!--hotel details-->
+                  <article class="hotel-details scrap-but-sec">
+                     <a href="#0" class="scrap-but">save to scrapbook</a>
+                     <a href="#0" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                     <a href="#0" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                     <a href="#0" class="social"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                     <p>Share with friends</p>
+                  </article>
+                  <!--//hotel details-->
+                  <!--Need Help Booking?-->
+                  <article class="widget">
+                     <h1>Best Packages </h1>
+                     <div class="inner-hot pack">
+                        <div class="hovereffect">
+                           <img class="img-responsive" src="images/offers/offer-img-1.png" alt="">
+                           <div class="overlay">
+                              <a href="#0">
+                                 <h1>Best ipsum hotel 
+                                    <span class="stars">
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    </span>
+                                 </h1>
+                              </a>
+                              <span class="address">Marylebone, London</span>
+                              <span class="rating"> 8 /10</span>
+                              <p><span class="address">7 Nights / Dec 2016</span>
+                                 <a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="inner-hot pack">
+                        <div class="hovereffect">
+                           <img class="img-responsive" src="images/offers/offer-img-3.png" alt="">
+                           <div class="overlay">
+                              <a href="#0">
+                                 <h1>Best ipsum hotel 
+                                    <span class="stars">
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    </span>
+                                 </h1>
+                              </a>
+                              <span class="address">Marylebone, London</span>
+                              <span class="rating"> 8 /10</span>
+                              <p><span class="address">7 Nights / Dec 2016</span>
+                                 <a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="inner-hot pack">
+                        <div class="hovereffect">
+                           <img class="img-responsive" src="images/offers/offer-img-4.png" alt="">
+                           <div class="overlay">
+                              <a href="#0">
+                                 <h1>Best ipsum hotel 
+                                    <span class="stars">
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    </span>
+                                 </h1>
+                              </a>
+                              <span class="address">Marylebone, London</span>
+                              <span class="rating"> 8 /10</span>
+                              <p><span class="address">7 Nights / Dec 2016</span>
+                                 <a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- <h4>Need Help Booking?</h4>
+                        <p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
+                        <p class="number">(+44) 845 468 0164</p> -->
+                  </article>
+                  <!-- </article> -->
+               </aside>
+               <!--//sidebar-->
+            </div>
+            <!--//main content-->
+         </div>
+      </main>
+      <!--//main-->

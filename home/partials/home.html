@@ -1,4 +1,33 @@
-     
+        <!--header-->
+      <header class="header">
+         <div class="wrap">
+            <!--logo-->
+            <div class="logo"><a href="index.html" title=""><img src="assets/images/txt/logo-white.png" alt="Book Your Travel" /></a></div>
+            <!--//logo-->
+            <!--ribbon-->
+            <div class="header-nav-buts">
+               <nav>
+                  <a href="my_account.html" title="My Account">My Account</a>
+                  <a href="#0" title="Login" id="btnlogin">Login</a>
+                  <a href="my_account.html" title="Settings">Settings</a>
+                  </ul>
+               </nav>
+            </div>
+            <!--//ribbon-->
+         </div>
+      </header>
+      <!--//header-->
+      <!--slider-->
+       <div class="slider">
+         <ul id="hero-gallery" class="cS-hidden">
+            <li data-thumb="assets/images/banner-img/parellex-banner-3-bg.png"> 
+               <img src="assets/images/banner-img/parellex-banner-3-bg.png" alt="" />
+            </li>
+            <li data-thumb="assets/images/uploads/slider2.jpg"> 
+               <img src="assets/images/uploads/slider2.jpg" alt="" />
+            </li>
+         </ul>
+      </div>     
       <!--//slider-->
       <!--search-->
       <div class="main-search">
@@ -20,19 +49,19 @@
                            <div class="f-item full-width">
                               <label for="destination6"> To </label>
                               <!-- <input type="text" placeholder="" id="destination6" name="destination" /> -->
-         <select class="state" id="destination6" name="destination" >
-            <option value="">City, region, district or specific airport, Packages</option>
-             <optgroup label="Portugal">
-                 <option value="FAO" selected=""> FAO - Faro</option>
-                <option value="FNC">FNC - Funchal </option>
-             </optgroup>
-             <optgroup label="Spain">
-                 <option value="TFS">TFS - Tenerife South </option>
-             </optgroup>
-             <optgroup label="England">
-                 <option value="LON">LON - London </option>
-             </optgroup>
-         </select>
+                              <select class="state" id="destination6" name="destination" >
+                                 <option value="">City, region, district or specific airport, Packages</option>
+                                  <optgroup label="Portugal">
+                                      <option value="FAO" selected=""> FAO - Faro</option>
+                                     <option value="FNC">FNC - Funchal </option>
+                                  </optgroup>
+                                  <optgroup label="Spain">
+                                      <option value="TFS">TFS - Tenerife South </option>
+                                  </optgroup>
+                                  <optgroup label="England">
+                                      <option value="LON">LON - London </option>
+                                  </optgroup>
+                              </select>
                            </div>
                         </div>
                      </div>
@@ -219,7 +248,7 @@
                </form>
             </div>
             <div class="form-index" id="3">
-               <form>
+               <form name="frmHotalSearch" ng-submit="flightSubmit()">
                   <!--form flight-->
                   <div class="form-new row">
                      <!--column--><!-- <h5 class="hotels">  Flight </h5> -->
@@ -229,11 +258,11 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination3"> From</label>
-                              <input type="text" placeholder="City, region, district or specific airport" id="destination3" name="destination" />
+                              <input type="text" placeholder="City, region, district or specific airport" id="destination3" name="destination" ng-model="flight.FlightFrom" />
                            </div>
                            <div class="f-item full-width">
                               <label for="destination4"> To</label>
-                              <input type="text" placeholder="City, region, district or specific airport" id="destination4" name="destination" />
+                              <input type="text" placeholder="City, region, district or specific airport" id="destination4" name="destination" ng-model="flight.FlightTo" />
                            </div>
                         </div>
                      </div>
@@ -246,7 +275,7 @@
                               <label for="datepicker6">Depart</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker6" name="datepicker6" /></div>
+                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="flight.StartDate"/></div>
                                  </div>
                                  <div class="f-item one-half">
                                     <select>
@@ -264,7 +293,7 @@
                               <label for="datepicker7">Return</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker7" name="datepicker7" /></div>
+                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker7" name="datepicker7" ng-model="flight.ReturnDate" /></div>
                                  </div>
                                  <div class="f-item one-half">
                                     <select>
@@ -290,7 +319,7 @@
                               <!-- <input type="text" placeholder="" id="spinner6" name="spinner6" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Adults"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -301,7 +330,7 @@
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
 
-                                    <input id="qty1" type="text" value="1" class="qty"/>
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Children"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -311,7 +340,7 @@
                               <!-- <input type="text" placeholder="" id="spinner8" name="spinner8" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Infants"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -321,11 +350,11 @@
                      <!--//column-->
                   </div>
                   <!--//form flight-->
-                  <input type="submit" value="Proceed to results" class="gradient-button search-submit" id="search-submit">
+                  <input type="submit" value="Proceed to results" class="gradient-button">
                </form>
             </div>
             <div class="form-index" id="4">
-               <form>
+               <form ng-submit="hotalSubmit()">
                   <!--form hotel-->
                   <div class="form-new row">
                      <!--column--><!-- <h5 class="hotels"> Hotel </h5> -->
@@ -335,7 +364,7 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination1">Your destination</label>
-                              <input type="text" placeholder="City, region, district or specific hotel" id="destination1" name="destination" />
+                              <input type="text" ng-model="hotal.Location" placeholder="City, region, district or specific hotel" id="destination1" name="destination" />
                            </div>
                         </div>
                      </div>
@@ -346,11 +375,11 @@
                         <div class="row">
                            <div class="f-item one-half datepicker">
                               <label for="datepicker1">Check-in</label>
-                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker1" name="datepicker1" /></div>
+                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker1" name="datepicker1" ng-model="hotal.sFrom" /></div>
                            </div>
                            <div class="f-item one-half datepicker">
                               <label for="datepicker2">Check-out</label>
-                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker2" name="datepicker2" /></div>
+                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker2" name="datepicker2" ng-model="hotal.sTo" /></div>
                            </div>
                         </div>
                      </div>
@@ -364,7 +393,7 @@
                               <!-- <input type="text" placeholder="" id="spinner1" name="spinner1" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
+                                    <input id="qty1" ng-model="hotal.Location" type="text" value="1" class="qty"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -374,7 +403,7 @@
                               <!-- <input type="text" placeholder="" id="spinner2" name="spinner1" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
+                                    <input id="qty1" ng-model="hotal.NoOfAdults" type="text" value="1" class="qty"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -384,7 +413,7 @@
                               <!-- <input type="text" placeholder="" id="spinner3" name="spinner1" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
+                                    <input id="qty1" ng-model="hotal.NoOfChildren" type="text" value="1" class="qty"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -555,4 +584,62 @@
          </section>
       </main>
       <!--//main-->
-   
+   <script type="text/javascript">
+       $(document).on('ready', function() {
+              $(".regular").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+            autoplay: true,
+                autoplaySpeed: 1500,
+            arrows: false,
+            dots: false,
+            responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: false
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+              }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+          ]
+              });
+           });  
+            (function( $ ) {
+                $(document).ready(function(){
+                    $('.form').hide();
+                    $('#form4').show();
+                    $('.f-item:nth-child(1)').addClass('active');
+                    $('.f-item:nth-child(1) span').addClass('checked');     
+         
+                    $('#hero-gallery').lightSlider({
+                        gallery:true,
+                        item:1,
+                        pager:false,
+                        gallery:false,
+                        slideMargin: 0,
+                        speed:2000,
+                        pause:6000,
+                        mode: 'fade',
+                        auto:true,
+                        loop:true,
+                        onSliderLoad: function() {
+                            $('#hero-gallery').removeClass('cS-hidden');
+                        }  
+                    });         
+                });
+            })(jQuery);
+   </script>

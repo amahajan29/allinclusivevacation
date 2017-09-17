@@ -1,0 +1,25 @@
+.overs{position:relative;}
+.overs > input {padding:0px 10px;}
+.qty{padding-left:50px!important;}
+.add{
+   position: absolute;
+   right: 8px;
+   top: 6px;
+   padding: 0px 10px;
+   text-align: center;
+   color: #B8ACA4;
+   font-weight:bold;
+   font-size: 17px;
+   cursor: pointer;
+}
+.minus{
+   position: absolute;
+   left: 10px;
+   top: 6px;
+   padding: 0px 10px;
+   text-align: center;
+   color: #B8ACA4;
+   font-weight:bold;
+   font-size: 17px;
+   cursor: pointer;
+}

@@ -1,0 +1,709 @@
+	<!--header-->
+	<header class="header inside-header">
+		<div class="wrap">
+			<!--logo-->
+			<div class="logo inside-logo"><a href="index.html" title=""><img src="assets/images/txt/logo.png" alt="Book Your Travel" /></a></div>
+			<!--//logo-->
+			
+			<!--ribbon-->
+			<div class="header-nav-buts inside_top-nav">
+				<nav>
+					<a href="my_account.html" title="My Account">My Account</a>
+					<a href="#0" title="Login" id="btnlogin">Login</a>
+					<a href="my_account.html" title="Settings">Settings</a>
+					</ul>
+				</nav>
+			</div>
+			<!--//ribbon-->
+		</div>
+	</header>
+	<!--//header-->
+	<!--main-->
+	<main class="main">		
+		<div class="wrap">
+			<!--breadcrumbs-->
+			<nav class="breadcrumbs">
+				<!--crumbs-->
+				<ul> 
+					<li>Search results</li>                                       
+				</ul>
+				<!--//crumbs-->
+				
+				<!--top right navigation-->
+				<ul class="top-right-nav">
+					<li><a href="#" title="Back to results">Back to results</a></li>
+					<li><a href="#" title="Change search">Change search</a></li>
+				</ul>
+				<!--//top right navigation-->
+			</nav>
+			<!--//breadcrumbs-->
+            <!-- progress step -->
+			<div class="process-steps">
+                <ul class="book-step-intigator">
+                    <li class="active-intigator">
+                        <a href="search_results_flights.html"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
+                        <p>Book Your Flight</p>
+                    </li>
+                    <li class="active-intigator">
+                        <a href="search_results-hotel.html"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
+                        <p>Choose Your Hotel</p>
+                    </li>
+                    <li>
+                        <a href="add_extras.html"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
+                        <p>Choose Youe Extras</p>
+                    </li>
+                    <li>
+                        <a href="booking-step1.html"><b><i class="fa fa-ticket" aria-hidden="true"></i></b></a>
+                        <p>Complete Your Booking</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- progress step end -->
+			
+			<div class="row">
+				<!--sidebar-->
+				<aside class="one-fourth left-sidebar">
+					<article class="widget refine-search-results">
+						<h4>Refine search results</h4>
+						<dl>
+							<!--Price (per night)-->
+							<dt>Price (per night)</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch1" name="price" />
+									<label for="ch1">0 - 49 &euro;</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch2" name="price" />
+									<label for="ch2">50 - 99 &euro;</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch3" name="price" />
+									<label for="ch3">100 -149 &euro;</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch4" name="price" />
+									<label for="ch4">150 - 199 &euro;</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch5" name="price" />
+									<label for="ch5">200 &euro; +</label>
+								</div>
+							</dd>
+							<!--//Price (per night)-->
+							
+							<!--Accommodation type-->
+							<dt>Accommodation type</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch6" name="accommodation" />
+									<label for="ch6">Hotel</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch7" name="accommodation" />
+									<label for="ch7">Hostel</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch8" name="accommodation" />
+									<label for="ch8">Apart Hotel</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch9" name="accommodation" />
+									<label for="ch9">Guest House</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch30" name="accommodation" />
+									<label for="ch30">Apartment</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch31" name="accommodation" />
+									<label for="ch31">Bed &amp; Breakfast</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch32" name="accommodation" />
+									<label for="ch32">Residence</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch33" name="accommodation" />
+									<label for="ch33">Farm stay</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch34" name="accommodation" />
+									<label for="ch34">All-inclusive resort</label>
+								</div>
+							</dd>
+							<!--//Accommodation type-->
+							
+							<!--Star rating-->
+							<dt>Star rating</dt>
+							<dd>
+								<span class="stars-info">3 or more</span>
+								<div id="star" data-rating="3"></div>
+							</dd>
+							<!--//Star rating-->
+							
+							<!--User rating-->
+							<dt>User rating</dt>
+							<dd>
+								<div id="slider"></div>
+								<span class="min">0</span><span class="max">10</span>
+							</dd>
+							<!--//User rating-->
+							
+							<!--Hotel facilities-->
+							<dt>Hotel facilities</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch35" name="facilities" />
+									<label for="ch35">Wi-Fi</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch36" name="facilities" />
+									<label for="ch36">Parking</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch37" name="facilities" />
+									<label for="ch37">Airport Shuttle</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch38" name="facilities" />
+									<label for="ch38">Meeting / Banquet Facilities</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch39" name="facilities" />
+									<label for="ch39">Swimming pool</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch40" name="facilities" />
+									<label for="ch40">Restaurant</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch41" name="facilities" />
+									<label for="ch41">Fitness Centre</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch42" name="facilities" />
+									<label for="ch42">SPA &amp; Wellness Centre</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch43" name="facilities" />
+									<label for="ch43">Pets allowed</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch44" name="facilities" />
+									<label for="ch44">Lift</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch45" name="facilities" />
+									<label for="ch45">Air condition</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch46" name="facilities" />
+									<label for="ch46">Family rooms</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch47" name="facilities" />
+									<label for="ch47">Non - smoking rooms</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch48" name="facilities" />
+									<label for="ch48">Rooms/facilities for disabled guests</label>
+								</div>
+							</dd>
+							<!--//Hotel facilities-->
+							
+							<!--Room facilites-->
+							<dt>Room facilites</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch49" name="room-facilities" />
+									<label for="ch49">Bathroom</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch50" name="room-facilities" />
+									<label for="ch50">Cable TV</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch51" name="room-facilities" />
+									<label for="ch51">Air conditioning</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch52" name="room-facilities" />
+									<label for="ch52">Mini bar</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch53" name="room-facilities" />
+									<label for="ch53">Wi - Fi</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch54" name="room-facilities" />
+									<label for="ch54">Wheelchair - friendly room</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch55" name="room-facilities" />
+									<label for="ch55">Pay TV</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch56" name="room-facilities" />
+									<label for="ch56">Desk</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch57" name="room-facilities" />
+									<label for="ch57">Room safe</label>
+								</div>
+							</dd>
+							<!--//Room facilites-->
+							
+							<!--Meal Board-->
+							<dt>Meal Board</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch58" name="meal" />
+									<label for="ch58">No meal</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch59" name="meal" />
+									<label for="ch59">Bed &amp; Breakfast</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch60" name="meal" />
+									<label for="ch60">Half board</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch61" name="meal" />
+									<label for="ch61">Full board</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch62" name="meal" />
+									<label for="ch62">All - inclusive</label>
+								</div>
+							</dd>
+							<!--//Meal Board-->
+							
+							<!--Accessibility options-->
+							<dt>Accessibility options</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch63" name="accessibility" />
+									<label for="ch63">Accessible bathroom</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch64" name="accessibility" />
+									<label for="ch64">Accessible path of travel</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch65" name="accessibility" />
+									<label for="ch65">Handicapped parking</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch66" name="accessibility" />
+									<label for="ch66">In-room accessibility</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch67" name="accessibility" />
+									<label for="ch67">Roll-in shower</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch68" name="accessibility" />
+									<label for="ch68">Accessibility equipment for the deaf</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch69" name="accessibility" />
+									<label for="ch69">Braille or raised signage</label>
+								</div>
+							</dd>
+							<!--//Accessibility options-->
+							
+							<!--Hotel theme-->
+							<dt>Hotel theme</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch70" name="theme" />
+									<label for="ch70">Family Fun</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch71" name="theme" />
+									<label for="ch71">Adventure</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch72" name="theme" />
+									<label for="ch72">Beach &amp; Sun</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch73" name="theme" />
+									<label for="ch73">Casinos</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch74" name="theme" />
+									<label for="ch74">History &amp; Culture</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch75" name="theme" />
+									<label for="ch75">Clubbing</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch76" name="theme" />
+									<label for="ch76">Romance</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch77" name="theme" />
+									<label for="ch77">Shopping</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch78" name="theme" />
+									<label for="ch78">Skiing</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch79" name="theme" />
+									<label for="ch79">Wellness</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch80" name="theme" />
+									<label for="ch80">Eco &amp; Nature</label>
+								</div>
+							</dd>
+							<!--//Hotel theme-->
+							
+							<!--Hotel chain-->
+							<dt>Hotel chain</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch81" name="theme" />
+									<label for="ch81">Accor</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch82" name="theme" />
+									<label for="ch82">Hilton</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch83" name="theme" />
+									<label for="ch83">Lindner</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch84" name="theme" />
+									<label for="ch84">Marriott</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch85" name="theme" />
+									<label for="ch85">Tui</label>
+								</div>
+							</dd>
+							<!--//Hotel chain-->
+							
+							<!--Payment options-->
+							<dt>Payment options</dt>
+							<dd>
+								<div class="checkbox">
+									<input type="checkbox" id="ch86" name="theme" />
+									<label for="ch86">American Express</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch87" name="theme" />
+									<label for="ch87">Visa</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch88" name="theme" />
+									<label for="ch88">Euro/Mastercard</label>
+								</div>
+								<div class="checkbox">
+									<input type="checkbox" id="ch89" name="theme" />
+									<label for="ch89">Diners Club</label>
+								</div>
+							</dd>
+							<!--//Payment options-->
+						</dl>
+					</article>
+				</aside>
+				<!--//sidebar-->
+			
+				<!--three-fourth content-->
+				
+				<section class="one-half" style="background:#fff;" >
+					<div ng-repeat="hotal in hotalList">
+					<h2>{{hotal.Description}} <br/> <span> (Lara, Antalya, Turkey) </span></h2>
+					<!--gallery-->
+					<div class="gallery">
+						<ul id="image-gallery" class="cS-hidden">
+							<li data-thumb="assets/images/uploads/hotel4.jpg"> 
+								<img src="assets/images/uploads/hotel4.jpg" alt="" />
+							</li>
+							<li data-thumb="assets/images/uploads/hotel1.jpg"> 
+								<img src="images/uploads/hotel1.jpg" alt="" />
+							</li>
+							<li data-thumb="assets/images/uploads/hotel2.jpg"> 
+								<img src="assets/images/uploads/hotel2.jpg" alt="" />
+							</li>
+							<li data-thumb="assets/images/uploads/hotel5.jpg"> 
+								<img src="assets/images/uploads/hotel5.jpg" alt="" />
+							</li>
+							<li data-thumb="assets/images/uploads/hotel3.jpg"> 
+								<img src="assets/images/uploads/hotel3.jpg" alt="" />
+							</li>
+							<li data-thumb="assets/images/uploads/hotel6.jpg"> 
+								<img src="assets/images/uploads/hotel6.jpg" alt="" />
+							</li>
+						</ul>
+					</div>
+					<!--//gallery-->
+                    <!-- hot deals for you -->
+                    <section class="offers_section inner">								
+						<div id="" class="tab-content new-hotel">
+							<article>
+								<h2>Overview</h2>
+								<div class="text-wrap change">
+									<p> 
+										{{hotal.LongDesc}}
+									</p>
+									<a id="seeMore" onclick="toggleSeeMore()" href="javascript:void(0);" style="color:#B1A398;">See More</a>
+									
+									<!-- <p>Available rooms from <span class="date">Thurs 29 Nov 2016</span> to <span class="date">Fri 30 Nov 2016</span>.</p> -->
+								</div>
+								<h2>Availability</h2>
+								<div class="text-wrap change">
+									<a href="#" class="gradient-button right" title="Change dates">Change dates</a>
+									<p>Available rooms from <span class="date">Thurs 29 Nov 2016</span> to <span class="date">Fri 30 Nov 2016</span>.</p>
+								</div>
+								<div class="text-wrap change">
+								<!-- 
+								 <p><input type="checkbox"> </p> -->
+								<div class="some-ter">
+									<h2 class="rooms"> Room types </h2>
+									<div class="rights">
+										<p> Hotel Price Per Person </p>
+										<div class="containers" id="containere" onclick="onContainereClick(this)" style="display:inline-block;">
+											
+											  <div class="switch" id="switch">
+											  </div>
+											  <div class="label left">  </div>
+											  <div class="label right"> </div>
+											
+										</div> 
+										<p> Total Hotel Price</p>
+									</div>
+								</div>		
+									
+									
+								</div>
+						 
+								<ul class="room-types">
+								<!--room-->
+								<li>
+									<figure class="left" id="gallery1">
+										<a href="assets/images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
+											<img src="assets/images/uploads/room1.jpg" alt="" />
+											<span class="image-overlay"></span>
+										</a>
+									</figure>
+									<div class="meta full-board">
+										<h3>Superior Double Room</h3>
+										<h5>Full Board <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
+									</div>
+									<div class="room-information">
+										<div class="row">
+											<p><strong>Bed Size(s):</strong> 1 Double </p>
+										</div>
+										<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
+									</div>
+									<div class="more-information">
+                                    	<p>Prices are per room20 % VAT Included in price</p>
+										<p>Non-refundableFull English breakfast &euro; 24.80 </p>
+										<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
+										<p><strong>Room Facilities:</strong> Safety Deposit Box, Air Conditioning, Desk, Ironing Facilities, Seating Area, Heating, Shower, Bath, Hairdryer, Toilet, Bathroom, Pay-per-view Channels, TV, Telephone</p>
+                                        <p><strong>Room Size:</strong>  16 square metres</p>
+									</div>
+								</li>
+								<!--//room-->
+								
+								<!--room-->
+								<li>
+									<figure class="left" id="gallery1">
+										<a href="assets/images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
+											<img src="assets/images/uploads/room1.jpg" alt="" />
+											<span class="image-overlay"></span>
+										</a>
+									</figure>
+									<div class="meta full-board">
+										<h3>Superior Double Room</h3>
+										<h5>Half Board <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
+									</div>
+									<div class="room-information">
+										<div class="row">
+											<p><strong>Bed Size(s):</strong> 1 Double </p>
+										</div>
+										<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
+									</div>
+									<div class="more-information">
+                                    	<p>Prices are per room20 % VAT Included in price</p>
+										<p>Non-refundableFull English breakfast &euro; 24.80 </p>
+										<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
+										<p><strong>Room Facilities:</strong> Safety Deposit Box, Air Conditioning, Desk, Ironing Facilities, Seating Area, Heating, Shower, Bath, Hairdryer, Toilet, Bathroom, Pay-per-view Channels, TV, Telephone</p>
+                                        <p><strong>Room Size:</strong>  16 square metres</p>
+									</div>
+								</li>
+								<!--//room-->
+								
+								<!--room-->
+								<li>
+									<figure class="left" id="gallery1">
+										<a href="assets/images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
+											<img src="assets/images/uploads/room1.jpg" alt="" />
+											<span class="image-overlay"></span>
+										</a>
+									</figure>
+									<div class="meta full-board">
+										<h3>Superior Double Room</h3>
+										<h5>All Inclusive <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
+									</div>
+									<div class="room-information">
+										<div class="row">
+											<p><strong>Bed Size(s):</strong> 1 Double </p>
+										</div>
+										<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
+									</div>
+									<div class="more-information">
+                                    	<p>Prices are per room20 % VAT Included in price</p>
+										<p>Non-refundableFull English breakfast &euro; 24.80 </p>
+										<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
+										<p><strong>Room Facilities:</strong> Safety Deposit Box, Air Conditioning, Desk, Ironing Facilities, Seating Area, Heating, Shower, Bath, Hairdryer, Toilet, Bathroom, Pay-per-view Channels, TV, Telephone</p>
+                                        <p><strong>Room Size:</strong>  16 square metres</p>
+									</div>
+								</li>
+								<!--//room-->
+								
+								<!--room-->
+								<li>
+									<figure class="left" id="gallery1">
+										<a href="assets/images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
+											<img src="assets/images/uploads/room1.jpg" alt="" />
+											<span class="image-overlay"></span>
+										</a>
+									</figure>
+									<div class="meta full-board">
+										<h3>Superior Double Room</h3>
+										<h5>Full Board <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
+									</div>
+									<div class="room-information">
+										<div class="row">
+											<p><strong>Bed Size(s):</strong> 1 Double </p>
+										</div>
+										<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
+									</div>
+									<div class="more-information">
+                                    	<p>Prices are per room20 % VAT Included in price</p>
+										<p>Non-refundableFull English breakfast &euro; 24.80 </p>
+										<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
+										<p><strong>Room Facilities:</strong> Safety Deposit Box, Air Conditioning, Desk, Ironing Facilities, Seating Area, Heating, Shower, Bath, Hairdryer, Toilet, Bathroom, Pay-per-view Channels, TV, Telephone</p>
+                                        <p><strong>Room Size:</strong>  16 square metres</p>
+									</div>
+								</li>
+								<!--//room-->
+							</ul>
+							</article>
+						</div>
+					</section>
+					<!--//things to do-->
+					</div>
+				</section>
+						
+				<!--//three-fourth content-->
+			</div>
+			
+			<!--//main content-->
+		</div>
+		<aside class="one-fourth right-sidebar">
+        	<div class="custom-fix">
+					<!--hotel details-->
+					<article class="hotel-details">
+						<h1>Best ipsum hotel 
+							<span class="stars">
+								<i class="material-icons">&#xE838;</i>
+								<i class="material-icons">&#xE838;</i>
+								<i class="material-icons">&#xE838;</i>
+							</span>
+						</h1>
+						<span class="address">Marylebone, London</span>
+						<span class="rating"> 8 /10</span>
+						<div class="description">
+							<p>The Best Ipsum hotel  features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art. </p>
+						</div>
+					</article>
+					<!--//hotel details-->
+					<!--hotel details-->
+					<article class="hotel-details scrap-but-sec">
+						<a href="#0" class="scrap-but">save to scrapbook</a>
+						<a href="#0" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+						<a href="#0" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+						<a href="#0" class="social"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+						<p>Share with friends</p>
+					</article>
+					<!--//hotel details-->
+					</div>
+					<!--Need Help Booking?-->
+					<article class="widget">
+						<h1>Best Packages </h1>
+						<div class="inner-hot pack">
+							<div class="hovereffect">
+								<img class="img-responsive" src="assets/images/offers/offer-img-1.png" alt="">
+									<div class="overlay">
+										<a href="#0"><h1>Best ipsum hotel 
+											<span class="stars">
+												<i class="material-icons">&#xE838;</i>
+												<i class="material-icons">&#xE838;</i>
+												<i class="material-icons">&#xE838;</i>
+								 			</span>
+										</h1></a>
+										<span class="address">Marylebone, London</span>
+										<span class="rating"> 8 /10</span>
+									<p><span class="address">7 Nights / Dec 2016</span>
+									<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
+								</div>
+							</div>
+						</div>
+						<div class="inner-hot pack">
+									<div class="hovereffect">
+										<img class="img-responsive" src="assets/images/offers/offer-img-3.png" alt="">
+										<div class="overlay">
+										<a href="#0"><h1>Best ipsum hotel 
+										<span class="stars">
+											<i class="material-icons">&#xE838;</i>
+											<i class="material-icons">&#xE838;</i>
+											<i class="material-icons">&#xE838;</i>
+										</span>
+										</h1></a>
+										<span class="address">Marylebone, London</span>
+										<span class="rating"> 8 /10</span>
+										<p><span class="address">7 Nights / Dec 2016</span>
+										<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
+									</div>
+								</div>
+						</div>
+						
+							<div class="inner-hot pack end-aside">
+													<div class="hovereffect">
+														<img class="img-responsive" src="assets/images/offers/offer-img-4.png" alt="">
+															<div class="overlay">
+																<a href="#0"><h1>Best ipsum hotel 
+																<span class="stars">
+																	<i class="material-icons">&#xE838;</i>
+																	<i class="material-icons">&#xE838;</i>
+																	<i class="material-icons">&#xE838;</i>
+																</span>
+																</h1></a>
+																<span class="address">Marylebone, London</span>
+																<span class="rating"> 8 /10</span>
+																<p><span class="address">7 Nights / Dec 2016</span>
+																<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
+															</div>
+													</div>
+								</div>
+						<!-- <h4>Need Help Booking?</h4>
+						<p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
+						<p class="number">(+44) 845 468 0164</p> -->
+					</article>
+					
+						
+					<!-- </article> -->
+				</aside>
+				
+	</main>
+	<!--//main-->
