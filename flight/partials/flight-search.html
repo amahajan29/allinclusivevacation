@@ -128,43 +128,44 @@
                      <!--deal-->
                      <article class="full-width slice">
                         <!-- single flight load -->
+                        <div ng-if="notFound">No record found.</div>
                         <div class="lazy loaded" id="box-1" ng-repeat="flight in flightList">
                            <div class="details new-design" style="position:relative;"> 
                               <div class="depart-wrap"> 
-                                 <h3>Easyjet - <span> Friday, 5 April </span> </h3> 
+                                 <h3>Easyjet - <span> {{flight.DepartDatetime | date : 'EEEE,d MMMM'}} </span> </h3> 
                                  <div class="table-flight first frid"> 
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Franz Josef Strauss</strong> (MUC)<br/> 22:00 
+                                          <strong>Franz Josef Strauss</strong> ({{flight.DepartAirportLocationCode}})<br/> {{flight.DepartDatetime | date : 'HH:mm'}} 
                                        </div>
                                     </div>
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Luton International</strong> (LTN)<br/>23:00 Friday,5 April 
+                                          <strong>Luton International</strong> ({{flight.ArrivalAirportLocationCode}})<br/>  {{flight.ArrivalDatetime | date : 'HH:mm EEEE,d MMMM'}}
                                        </div>
                                     </div>
                                  </div>
-                                 <h3>Easyjet - <span> Friday, 5 April </span> </h3> 
+                                 <h3>Easyjet - <span> {{flight.DepartDatetime_RET | date : 'EEEE,d MMMM'}} </span> </h3> 
                                  <div class="table-flight"> 
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Franz Josef Strauss</strong> (MUC)<br/> 22:00 
+                                          <strong>Franz Josef Strauss</strong> ({{flight.DepartAirportLocationCode_RET}})<br/> {{flight.DepartDatetime_RET | date : 'HH:mm'}}  
                                        </div>
                                     </div>
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Luton International</strong> (LTN)<br/>23:00 Friday,5 April 
+                                          <strong>Luton International</strong> ({{flight.ArrivalAirportLocationCode_RET}})<br/>{{flight.ArrivalDatetime_RET | date : 'HH:mm EEEE,d MMMM'}}
                                        </div>
                                     </div>
                                  </div>
                               </div>
                               <div class="depart-button"> 
                                  <div class="arive-stop"> 
-                                    <p><strong>13h 5 / 1 Stop</strong><br/>EY 12 / 9W 589</p>
+                                    <p><strong>{{flight.JourneyDuration}} / {{flight.NumberofStops}} Stop</strong><br/>EY 12 / 9W 589</p>
                                  </div>
-                                 <a href="search_results-hotel.html" title="Book now" class="gradient-button book"> &euro; 53.22</a> 
+                                 <a href="search_results-hotel.html" title="Book now" class="gradient-button book"> &euro; {{flight.TotalFareAmount}}</a> 
                                  <div class="return-stop"> 
-                                    <p><strong>13h 5 / 1 Stop</strong><br/>EY 12 / 9W 589</p>
+                                    <p><strong>{{flight.JourneyDuration_RET}} / {{flight.NumberofStops_RET}} Stop</strong><br/>EY 12 / 9W 589</p>
                                  </div>
                               </div>
                            </div>

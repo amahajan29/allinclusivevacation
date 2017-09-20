@@ -25,14 +25,20 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
   
   $scope.flightList = null;
+  $scope.notFound = false;
 
   var flightList = null;
 
   flightSearch.flightSearch($state.params.obj).then(function(response){
-    $scope.flightList = response;
-    flightList = $scope.flightList;
+    console.log(response)    
+    if(response == ''){
+      $scope.notFound = true;
+    }else{
+      $scope.flightList = response;
+      flightList = $scope.flightList;
+    }
   }).catch(function(response) {
-    alert("Sorry, there is a problem. Please, contact support.");
+    console.log("Sorry, there is a problem. Please, contact support.");
   });
 
   $scope.filter = function() {

@@ -258,11 +258,47 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination3"> From</label>
-                              <input type="text" placeholder="City, region, district or specific airport" id="destination3" name="destination" ng-model="flight.FlightFrom" />
+                              <select id="destinationto" ng-model="flight.FlightFrom" required="required" class="form-control inputbox">
+                                 <optgroup label="Portugal">
+                                    <option value="FAO"> FAO - Faro</option>
+                                    <option value="FNC">FNC - Funchal </option>
+                                 </optgroup>
+                                 <optgroup label="Spain">
+                                    <option value="TFS">TFS - Tenerife South </option>
+                                 </optgroup>
+                                 <optgroup label="England">
+                                    <option value="LON">LON - London </option>
+                                 </optgroup>
+                                 <optgroup label="Scotland">
+                                    <option value="GLA">GLA - Glasgow</option>
+                                 </optgroup>
+                                 <optgroup label="Cuba">
+                                    <option value="MUCC">MUCC - Jardines del Rey</option>
+                                 </optgroup>
+                              </select>
+                              <!-- <input type="text"  id="destination3" name="destination"   /> -->
                            </div>
                            <div class="f-item full-width">
                               <label for="destination4"> To</label>
-                              <input type="text" placeholder="City, region, district or specific airport" id="destination4" name="destination" ng-model="flight.FlightTo" />
+                              <select id="destinationto" ng-model="flight.FlightTo" required="required" class="form-control inputbox">
+                                 <optgroup label="Portugal">
+                                   <option selected="" value="FAO"> FAO - Faro</option>
+                                  <option value="FNC">FNC - Funchal </option>
+                                 </optgroup>
+                                 <optgroup label="Spain">
+                                   <option value="TFS">TFS - Tenerife South </option>
+                                 </optgroup>
+                                 <optgroup label="England">
+                                   <option value="LON">LON - London </option>
+                                 </optgroup>
+                                 <optgroup label="Scotland">
+                                    <option value="GLA">GLA - Glasgow</option>
+                                 </optgroup>
+                                 <optgroup label="Cuba">
+                                    <option value="MUCC">MUCC - Jardines del Rey</option>
+                                 </optgroup>
+                              </select>
+                              <!-- <input type="text" placeholder="City, region, district or specific airport" id="destination4" name="destination" ng-model="flight.FlightTo" required="required" /> -->
                            </div>
                         </div>
                      </div>
@@ -275,10 +311,10 @@
                               <label for="datepicker6">Depart</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="flight.StartDate"/></div>
+                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="flight.StartDate" required="required"/></div>
                                  </div>
                                  <div class="f-item one-half">
-                                    <select>
+                                    <select >
                                        <option>Select time</option>
                                        <option>Lowest fare</option>
                                        <option>Morning</option>
@@ -293,7 +329,7 @@
                               <label for="datepicker7">Return</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker7" name="datepicker7" ng-model="flight.ReturnDate" /></div>
+                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker7" name="datepicker7" ng-model="flight.ReturnDate" required="required" /></div>
                                  </div>
                                  <div class="f-item one-half">
                                     <select>
@@ -319,7 +355,7 @@
                               <!-- <input type="text" placeholder="" id="spinner6" name="spinner6" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Adults"/>
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Adults" required="required"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -330,7 +366,7 @@
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
 
-                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Children"/>
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Children" required="required"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -340,7 +376,7 @@
                               <!-- <input type="text" placeholder="" id="spinner8" name="spinner8" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Infants"/>
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Infants" required="required"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -364,7 +400,7 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination1">Your destination</label>
-                              <input type="text" ng-model="hotal.Location" placeholder="City, region, district or specific hotel" id="destination1" name="destination" />
+                              <input type="text" ng-model="hotal.Location" placeholder="City, region, district or specific hotel" id="destination1" name="destination" required="required" />
                            </div>
                         </div>
                      </div>
@@ -375,11 +411,11 @@
                         <div class="row">
                            <div class="f-item one-half datepicker">
                               <label for="datepicker1">Check-in</label>
-                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker1" name="datepicker1" ng-model="hotal.sFrom" /></div>
+                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker1" name="datepicker1" ng-model="hotal.sFrom" required="required" /></div>
                            </div>
                            <div class="f-item one-half datepicker">
                               <label for="datepicker2">Check-out</label>
-                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker2" name="datepicker2" ng-model="hotal.sTo" /></div>
+                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker2" name="datepicker2" ng-model="hotal.sTo"  required="required"/></div>
                            </div>
                         </div>
                      </div>
@@ -393,7 +429,7 @@
                               <!-- <input type="text" placeholder="" id="spinner1" name="spinner1" /> -->
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" ng-model="hotal.Location" type="text" value="1" class="qty"/>
+                                    <input id="qty1" type="text" value="1"  class="qty"/>
                                     <span class="add" id="add1"> + </span>
                                  </p>
                               </div>
@@ -402,9 +438,9 @@
                               <label for="spinner2">Adults</label>
                               <!-- <input type="text" placeholder="" id="spinner2" name="spinner1" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" ng-model="hotal.NoOfAdults" type="text" value="1" class="qty"/>
-                                    <span class="add" id="add1"> + </span>
+                                 <p><span class="minus" ng-click="hotal.NoOfAdults = hotal.NoOfAdults - 1"> - </span>
+                                    <input id="qty1" ng-model="hotal.NoOfAdults" type="number" de class="qty" required="required" min="0"/>
+                                    <span class="add" ng-click="hotal.NoOfAdults = hotal.NoOfAdults + 1"> + </span>
                                  </p>
                               </div>
                            </div>
@@ -412,9 +448,9 @@
                               <label for="spinner3">Children</label>
                               <!-- <input type="text" placeholder="" id="spinner3" name="spinner1" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" ng-model="hotal.NoOfChildren" type="text" value="1" class="qty"/>
-                                    <span class="add" id="add1"> + </span>
+                                 <p><span class="minus" ng-click="hotal.NoOfChildren = hotal.NoOfChildren - 1"> - </span>
+                                    <input id="qty1" ng-model="hotal.NoOfChildren" type="number" class="qty" required="required"/>
+                                    <span class="add" ng-click="hotal.NoOfChildren = hotal.NoOfChildren + 1"> + </span>
                                  </p>
                               </div>
                            </div>

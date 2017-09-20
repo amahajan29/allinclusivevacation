@@ -1,18 +1,19 @@
 var app = angular.module('home',['ui.router']);
-app.controller('homeController', function homeController($scope, $http, $templateCache, $state, $rootScope) {
+app.controller('homeController', function homeController($scope, $http, $templateCache, $state, $rootScope, $filter) {
 
   $rootScope.isHome = true;
   $scope.limit = 4;
   $scope.begin = 0;
   $scope.packagebtn = true;
+  var today = $filter('date')(new Date(), 'MM/dd/yyyy');
   $scope.flight = {
-    FlightFrom : "",
-    FlightTo : "",
-    StartDate :null,
+    FlightFrom : "FAO",
+    FlightTo : "FAO",
+    StartDate :today,
     //depart: "",
-    ReturnDate : null,
+    ReturnDate : today,
     //return : "",
-    Adults : 0,
+    Adults : 1,
     Children : 0,
     Infants : 0
   };
@@ -25,6 +26,11 @@ app.controller('homeController', function homeController($scope, $http, $templat
     NoOfChildren : 0
   }
   $scope.flightSubmit = function(){
+    $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
+    $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
+    $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
+    $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
+    //console.log($scope.flight)
     $state.go('flight-search',{obj: $scope.flight});
   }
 
