@@ -5,13 +5,14 @@ app.controller('homeController', function homeController($scope, $http, $templat
   $scope.limit = 4;
   $scope.begin = 0;
   $scope.packagebtn = true;
-  var today = $filter('date')(new Date(), 'MM/dd/yyyy');
+  date = new Date();
+  var today = $filter('date')(date, 'yyyy/MM/dd');
   $scope.flight = {
-    FlightFrom : "FAO",
+    FlightFrom : "LON",
     FlightTo : "FAO",
     StartDate :today,
     //depart: "",
-    ReturnDate : today,
+    ReturnDate : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
     //return : "",
     Adults : 1,
     Children : 0,
@@ -70,6 +71,12 @@ app.controller('homeController', function homeController($scope, $http, $templat
         }
     }
   };
+
+  function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
 
   $("#destination6").on("change", function(){
     var selected_country = $(this).val();
