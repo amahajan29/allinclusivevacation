@@ -18,7 +18,7 @@ app.config(function($stateProvider, $urlRouterProvider){
     })
 
     .state('flight-search',{
-        url:'/flight-search',
+        url:'/flight-search/:FlightFrom/:FlightTo/:StartDate/:ReturnDate/:Adults/:Children/:Infants',
         data: {
             pageTitle:'All Inclusive Vacation'
         },

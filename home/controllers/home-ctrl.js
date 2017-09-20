@@ -32,7 +32,15 @@ app.controller('homeController', function homeController($scope, $http, $templat
     $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
     $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
     //console.log($scope.flight)
-    $state.go('flight-search',{obj: $scope.flight});
+    $state.go('flight-search',{
+        FlightFrom: $scope.flight.FlightFrom,
+        FlightTo: $scope.flight.FlightTo,
+        StartDate: $scope.flight.StartDate,
+        ReturnDate: $scope.flight.ReturnDate,
+        Adults: $scope.flight.Adults,
+        Children: $scope.flight.Children,
+        Infants:$scope.flight.Infants
+      });
   }
 
   $scope.hotalSubmit = function(){

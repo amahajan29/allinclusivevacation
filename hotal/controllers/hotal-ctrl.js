@@ -1,9 +1,9 @@
 var app = angular.module('hotal',['ui.router','checklist-model','commonServices']);
-app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, hotalSearch) {
+app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
 
   $scope.hotalList = null;
   var hotalList = null;
-  hotalSearch.hotalSearch($state.params.obj).then(function(response){
+  apis.hotalSearch($state.params.obj).then(function(response){
     $scope.hotalList = response;
     hotalList = $scope.hotalList;
   }).catch(function(response) {

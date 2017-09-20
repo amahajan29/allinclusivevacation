@@ -1,5 +1,5 @@
 var app = angular.module('flight',['ui.router','checklist-model','commonServices']);
-app.controller('flightSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, flightSearch) {
+app.controller('flightSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
 
   $scope.departureTimes = ["Lowest fare","Morning","Midday","Afternoon ","Evening"];
   $scope.stops = [
@@ -29,8 +29,17 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.loading = true;
 
   var flightList = null;
-
-  flightSearch.flightSearch($state.params.obj).then(function(response){
+  var obj = {
+        FlightFrom: $stateParams.FlightFrom,
+        FlightTo: $stateParams.FlightTo,
+        StartDate: $stateParams.StartDate,
+        ReturnDate: $stateParams.ReturnDate,
+        Adults: $stateParams.Adults,
+        Children: $stateParams.Children,
+        Infants:$stateParams.Infants
+      };
+      
+  apis.flightSearch(obj).then(function(response){
     $scope.loading = false;    
     if(response == ''){
       $scope.notFound = true;

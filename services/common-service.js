@@ -1,6 +1,6 @@
 var app = angular.module('commonServices', ['ui.router']);
 
-app.service('flightSearch', ['$http','$q', function ($http, $q) {
+app.service('apis', ['$http','$q', function ($http, $q) {
 
     var flightSearch = function(object) {
         var defer = $q.defer();
@@ -18,14 +18,7 @@ app.service('flightSearch', ['$http','$q', function ($http, $q) {
 
             return defer.promise;
         });
-    }
-
-    return {
-        flightSearch: flightSearch
     };
-}]);
-
-app.service('hotalSearch', ['$http','$q', function ($http, $q) {
 
     var hotalSearch = function(object) {
         var defer = $q.defer();
@@ -43,9 +36,44 @@ app.service('hotalSearch', ['$http','$q', function ($http, $q) {
 
             return defer.promise;
         });
-    }
+    };
+
+    var airlines = function() {
+        var defer = $q.defer();
+
+        return $http.get('https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/DataSearch/?sType=Airlines').then(function(response){
+            // Access granted
+            if (response.status == 200 || response.status == 304) {
+                defer.resolve(response.data);
+            } else {
+                // Access not granted
+                defer.reject(false);
+            }
+
+            return defer.promise;
+        });
+    };
+
+    var airports = function() {
+        var defer = $q.defer();
+
+        return $http.get('https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/DataSearch/?sType=Airports').then(function(response){
+            // Access granted
+            if (response.status == 200 || response.status == 304) {
+                defer.resolve(response.data);
+            } else {
+                // Access not granted
+                defer.reject(false);
+            }
+
+            return defer.promise;
+        });
+    };
 
     return {
-        hotalSearch: hotalSearch
+        flightSearch: flightSearch,
+        hotalSearch: hotalSearch,
+        airlines: airlines,
+        airports: airports
     };
 }]);
