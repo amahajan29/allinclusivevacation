@@ -26,11 +26,12 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   
   $scope.flightList = null;
   $scope.notFound = false;
+  $scope.loading = true;
 
   var flightList = null;
 
   flightSearch.flightSearch($state.params.obj).then(function(response){
-    console.log(response)    
+    $scope.loading = false;    
     if(response == ''){
       $scope.notFound = true;
     }else{
@@ -38,6 +39,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       flightList = $scope.flightList;
     }
   }).catch(function(response) {
+    $scope.loading = false;
     console.log("Sorry, there is a problem. Please, contact support.");
   });
 
@@ -99,8 +101,9 @@ function initializeScript(flightList) {
       
       $('.datepicker-wrap input').datepicker({
         showOn: 'button',
-        buttonImage: 'images/ico/calendar.png',
-        buttonImageOnly: true
+        buttonImage: 'assets/images/ico/calendar.png',
+        buttonImageOnly: true,
+        dateFormat: "yyyy/mm/dd"
       });
       
       $( '#slider' ).slider({

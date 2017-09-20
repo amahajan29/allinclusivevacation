@@ -142,8 +142,9 @@ function initializeScript() {
       
       $('.datepicker-wrap input').datepicker({
         showOn: 'button',
-        buttonImage: 'images/ico/calendar.png',
-        buttonImageOnly: true
+        buttonImage: 'assets/images/ico/calendar.png',
+        buttonImageOnly: true,
+        dateFormat: "yy/mm/dd"
       });
       
       $( '#slider' ).slider({

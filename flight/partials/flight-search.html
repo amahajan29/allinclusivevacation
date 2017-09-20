@@ -128,7 +128,10 @@
                      <!--deal-->
                      <article class="full-width slice">
                         <!-- single flight load -->
-                        <div ng-if="notFound">No record found.</div>
+                        <div class="ball" ng-if="loading"></div>
+                        <div ng-if="notFound">
+                           No record found.
+                        </div>
                         <div class="lazy loaded" id="box-1" ng-repeat="flight in flightList">
                            <div class="details new-design" style="position:relative;"> 
                               <div class="depart-wrap"> 
@@ -161,7 +164,7 @@
                               </div>
                               <div class="depart-button"> 
                                  <div class="arive-stop"> 
-                                    <p><strong>{{flight.JourneyDuration}} / {{flight.NumberofStops}} Stop</strong><br/>EY 12 / 9W 589</p>
+                                    <p><strong>{{flight.JourneyDuration/60 | number : 0}}h {{flight.JourneyDuration%60}} / {{flight.NumberofStops}} Stop</strong><br/>EY 12 / 9W 589</p>
                                  </div>
                                  <a href="search_results-hotel.html" title="Book now" class="gradient-button book"> &euro; {{flight.TotalFareAmount}}</a> 
                                  <div class="return-stop"> 
