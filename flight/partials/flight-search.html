@@ -85,7 +85,7 @@
                         <!--Airlines-->
                         <dt>Airlines</dt>
                         <dd>
-                           <div class="checkbox" ng-repeat="airline in airlines">
+                           <div class="checkbox" ng-repeat="airline in airlineses">
                               <input type="checkbox" checklist-model="search.airlines" checklist-value="airline" id="ch32" name="airlines" />
                               <label for="ch32">{{airline}}</label>
                            </div>
@@ -104,8 +104,8 @@
                         <dt>Price range</dt>
                         <dd>
                            <div class="checkbox" ng-repeat="pr in priceRange">
-                              <input type="checkbox" checklist-model="search.priceRange" checklist-value="pr" id="ch21" name="price" />
-                              <label for="ch21">{{pr}}</label>
+                              <input type="checkbox" checklist-model="search.priceRange" checklist-value="pr.key" id="ch21" name="price" ng-click="filter()" />
+                              <label for="ch21">{{pr.value}}</label>
                            </div>
                         </dd>
                         <!--//Price range-->
@@ -135,29 +135,29 @@
                         <div class="lazy loaded" id="box-1" ng-repeat="flight in flightList">
                            <div class="details new-design" style="position:relative;"> 
                               <div class="depart-wrap"> 
-                                 <h3>Easyjet - <span> {{flight.DepartDatetime | date : 'EEEE,d MMMM'}} </span> </h3> 
+                                 <h3>{{airlines[flight.ValidatingAirlineCode][0].AirlineName}} - <span> {{flight.DepartDatetime | date : 'EEEE,d MMMM'}} </span> </h3> 
                                  <div class="table-flight first frid"> 
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Franz Josef Strauss</strong> ({{flight.DepartAirportLocationCode}})<br/> {{flight.DepartDatetime | date : 'HH:mm'}} 
+                                          <strong>{{airports[flight.DepartAirportLocationCode][0].LocationName}}</strong><br/> {{flight.DepartDatetime | date : 'HH:mm'}} 
                                        </div>
                                     </div>
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Luton International</strong> ({{flight.ArrivalAirportLocationCode}})<br/>  {{flight.ArrivalDatetime | date : 'HH:mm EEEE,d MMMM'}}
+                                          <strong>{{airports[flight.ArrivalAirportLocationCode][0].LocationName}}</strong><br/>  {{flight.ArrivalDatetime | date : 'HH:mm EEEE,d MMMM'}}
                                        </div>
                                     </div>
                                  </div>
-                                 <h3>Easyjet - <span> {{flight.DepartDatetime_RET | date : 'EEEE,d MMMM'}} </span> </h3> 
+                                 <h3>{{airlines[flight.ValidatingAirlineCode][0].AirlineName}} - <span> {{flight.DepartDatetime_RET | date : 'EEEE,d MMMM'}} </span> </h3> 
                                  <div class="table-flight"> 
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Franz Josef Strauss</strong> ({{flight.DepartAirportLocationCode_RET}})<br/> {{flight.DepartDatetime_RET | date : 'HH:mm'}}  
+                                          <strong>{{airports[flight.DepartAirportLocationCode_RET][0].LocationName}}</strong><br/> {{flight.DepartDatetime_RET | date : 'HH:mm'}}  
                                        </div>
                                     </div>
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>Luton International</strong> ({{flight.ArrivalAirportLocationCode_RET}})<br/>{{flight.ArrivalDatetime_RET | date : 'HH:mm EEEE,d MMMM'}}
+                                          <strong>{{airports[flight.ArrivalAirportLocationCode_RET][0].LocationName}}</strong><br/>{{flight.ArrivalDatetime_RET | date : 'HH:mm EEEE,d MMMM'}}
                                        </div>
                                     </div>
                                  </div>

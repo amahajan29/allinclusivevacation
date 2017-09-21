@@ -10,9 +10,15 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     {key : 4, value: "4 stops"},
     {key : 5, value: "I don't mind"}
   ];
-  $scope.airlines = ["British Airways","airberlin","Lufthansa","SAS","Brussels Airlines","Include Low Cost", ];
+  $scope.airlineses = ["British Airways","airberlin","Lufthansa","SAS","Brussels Airlines","Include Low Cost", ];
   $scope.alliances = ["One World", "Sky Team", "Star Alliance"];
-  $scope.priceRange = ["0 - 99 €", "100 - 299 €", "300 - 499 €", "500 - 699 €", "700 € +"];
+  $scope.priceRange = [
+    {key : "0-99", value: "0 - 99 €"},
+    {key : "100-299", value: "100 - 299 €"}, 
+    {key : "300-499", value: "300 - 499 €"},
+    {key : "500-699", value:  "500 - 699 €"},
+    {key : "700", value:  "700 € +"}
+  ];
   $scope.class = ["Economy","Business","First"];
 
   $scope.search= {
@@ -25,6 +31,8 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
   
   $scope.flightList = null;
+  $scope.airports = [];
+  $scope.airlines = [];
   $scope.notFound = false;
   $scope.loading = true;
 
@@ -38,6 +46,22 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
         Children: $stateParams.Children,
         Infants:$stateParams.Infants
       };
+  
+  apis.airports().then(function(response){
+    if(response != ''){
+      $scope.airports = response;
+    }
+  }).catch(function(response) {
+    console.log("Sorry, there is a problem. Please, contact support.");
+  });
+
+  apis.airlines().then(function(response){
+    if(response != ''){
+      $scope.airlines = response;
+    }
+  }).catch(function(response) {
+    console.log("Sorry, there is a problem. Please, contact support.");
+  });
       
   apis.flightSearch(obj).then(function(response){
     $scope.loading = false;    
@@ -48,11 +72,13 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       flightList = $scope.flightList;
     }
   }).catch(function(response) {
+    $scope.notFound = true;
     $scope.loading = false;
     console.log("Sorry, there is a problem. Please, contact support.");
   });
 
-  $scope.filter = function() {
+
+  $scope.filterStops = function() {
     $scope.newList = [];
     if($scope.search.stops.length > 0){
       for (var i = 0; i < $scope.search.stops.length; i++) {
@@ -66,12 +92,30 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
 
   setTimeout(function(){  
-   initializeScript($scope.flightList);
+   initializeScript();
   },2000)
 });
 
-function initializeScript(flightList) {
-//console.log(flightList);
+// if($scope.search.priceRange.length > 0){
+//       for (var i = 0; i < $scope.search.priceRange.length; i++) {
+//         var arr = $scope.search.priceRange.split('-');
+//         for (var i = 0; i < $scope.newList.length; i++) {
+//           if(arr[0] == 0 && arr[1] == 99){
+//             console.log("1");
+//           }else if(arr[0] == 100 && arr[1] == 299){
+//             console.log("2");
+//           }else if(arr[0] == 300 && arr[1] == 499){
+//             console.log("3");
+//           }else if(arr[0] == 500 && arr[1] == 699){
+//             console.log("4");
+//           }else{
+//             console.log("4");
+//           }
+//         };
+//       };
+//     }
+
+function initializeScript() {
       
       //MAIN SEARCH 
       $('.main-search input[name=radio]').change(function() {
