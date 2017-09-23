@@ -88,6 +88,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
         var l = $filter('filter')(flightList, { NumberofStops: $scope.search.stops[i] });
         list = list.concat(l);
       };
+      flag = 0;
       newList = list;
     }else{
       newList = flightList;
@@ -97,10 +98,49 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       var list = [];
       for (var i = 0; i < $scope.search.airlines.length; i++) {
         var l = $filter('filter')(newList, { ValidatingAirlineCode : $scope.search.airlines[i] });
-        console.log(l);
         list = list.concat(l);
       };
+      flag = 0;
       newList = list;
+    }else if(flag){
+      newList = flightList; 
+    }
+
+    if($scope.search.priceRange.length > 0){
+      var list = [];
+      for (var i = 0; i < $scope.search.priceRange.length; i++) {
+        var arr = $scope.search.priceRange[i].split('-');
+        if(arr[0] == 0 && arr[1] == 99){
+          var l = $filter('filter')(newList, function (item) {
+            return parseFloat(item.TotalFareAmount) > 0 && parseFloat(item.TotalFareAmount) <= 99;
+          });
+          list = list.concat(l);
+        }else if(arr[0] == 100 && arr[1] == 299){
+          var l = $filter('filter')(newList, function (item) {
+            return parseFloat(item.TotalFareAmount) >= 100 && parseFloat(item.TotalFareAmount) <= 299;
+          });
+          list = list.concat(l);
+        }else if(arr[0] == 300 && arr[1] == 499){
+          var l = $filter('filter')(newList, function (item) {
+            return parseFloat(item.TotalFareAmount) > 300 && parseFloat(item.TotalFareAmount) <= 499;
+          });
+          list = list.concat(l);
+        }else if(arr[0] == 500 && arr[1] == 699){
+          var l = $filter('filter')(newList, function (item) {
+            return parseFloat(item.TotalFareAmount) >= 500 && parseFloat(item.TotalFareAmount) <= 699;
+          });
+          list = list.concat(l);
+        }else{
+          var l = $filter('filter')(newList, function (item) {
+            return parseFloat(item.TotalFareAmount) > 700;
+          });
+          list = list.concat(l);
+        }
+      }
+      flag = 0;
+      newList = list;
+    }else if(flag){
+      newList = flightList; 
     }
 
     $scope.flightList = newList;
@@ -112,24 +152,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   },2000)
 });
 
-// if($scope.search.priceRange.length > 0){
-//       for (var i = 0; i < $scope.search.priceRange.length; i++) {
-//         var arr = $scope.search.priceRange.split('-');
-//         for (var i = 0; i < $scope.newList.length; i++) {
-//           if(arr[0] == 0 && arr[1] == 99){
-//             console.log("1");
-//           }else if(arr[0] == 100 && arr[1] == 299){
-//             console.log("2");
-//           }else if(arr[0] == 300 && arr[1] == 499){
-//             console.log("3");
-//           }else if(arr[0] == 500 && arr[1] == 699){
-//             console.log("4");
-//           }else{
-//             console.log("4");
-//           }
-//         };
-//       };
-//     }
+
 
 function initializeScript() {
       

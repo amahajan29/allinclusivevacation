@@ -104,7 +104,7 @@
                         <dt>Price range</dt>
                         <dd>
                            <div class="checkbox" ng-repeat="pr in priceRange">
-                              <input type="checkbox" checklist-model="search.priceRange" checklist-value="pr.key" id="ch21" name="price" />
+                              <input type="checkbox" checklist-model="search.priceRange" checklist-value="pr.key" id="ch21" name="price" ng-click="filter()" />
                               <label for="ch21">{{pr.value}}</label>
                            </div>
                         </dd>
