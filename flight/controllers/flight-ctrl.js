@@ -57,7 +57,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
 
   apis.airlines().then(function(response){
     if(response != ''){
-      $scope.airlines = response;
+      $scope.airlineses = response;
     }
   }).catch(function(response) {
     console.log("Sorry, there is a problem. Please, contact support.");
@@ -78,17 +78,33 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   });
 
 
-  $scope.filterStops = function() {
-    $scope.newList = [];
+  $scope.filter = function() {
+    var newList = [];
+    var flag = 1;
+
     if($scope.search.stops.length > 0){
+      var list = [];
       for (var i = 0; i < $scope.search.stops.length; i++) {
         var l = $filter('filter')(flightList, { NumberofStops: $scope.search.stops[i] });
-        $scope.newList = $scope.newList.concat(l);
+        list = list.concat(l);
       };
-      $scope.flightList = $scope.newList;
+      newList = list;
     }else{
-      $scope.flightList = flightList;
+      newList = flightList;
     }
+
+    if($scope.search.airlines.length > 0){
+      var list = [];
+      for (var i = 0; i < $scope.search.airlines.length; i++) {
+        var l = $filter('filter')(newList, { ValidatingAirlineCode : $scope.search.airlines[i] });
+        console.log(l);
+        list = list.concat(l);
+      };
+      newList = list;
+    }
+
+    $scope.flightList = newList;
+
   }
 
   setTimeout(function(){  
