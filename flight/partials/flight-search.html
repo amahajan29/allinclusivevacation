@@ -94,9 +94,9 @@
                         <!--Alliances-->
                         <dt>Alliances</dt>
                         <dd>
-                           <div class="checkbox" ng-repeat="alliance in alliances">
-                              <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="alliance" name="alliances" />
-                              <label for="ch38">{{alliance}}</label>
+                           <div class="checkbox" ng-repeat="(key, alliance) in alliances">
+                              <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="key" name="alliances" ng-click="filter()" />
+                              <label for="ch38">{{alliance[0].LocationName}}</label>
                            </div>
                         </dd>
                         <!--//Alliances-->
@@ -139,12 +139,12 @@
                                  <div class="table-flight first frid"> 
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>{{airports[flight.DepartAirportLocationCode][0].LocationName}}</strong><br/> {{flight.DepartDatetime | date : 'HH:mm'}} 
+                                          <strong>{{alliances[flight.DepartAirportLocationCode][0].LocationName}}</strong><br/> {{flight.DepartDatetime | date : 'HH:mm'}} 
                                        </div>
                                     </div>
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>{{airports[flight.ArrivalAirportLocationCode][0].LocationName}}</strong><br/>  {{flight.ArrivalDatetime | date : 'HH:mm EEEE,d MMMM'}}
+                                          <strong>{{alliances[flight.ArrivalAirportLocationCode][0].LocationName}}</strong><br/>  {{flight.ArrivalDatetime | date : 'HH:mm EEEE,d MMMM'}}
                                        </div>
                                     </div>
                                  </div>
@@ -152,12 +152,12 @@
                                  <div class="table-flight"> 
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>{{airports[flight.DepartAirportLocationCode_RET][0].LocationName}}</strong><br/> {{flight.DepartDatetime_RET | date : 'HH:mm'}}  
+                                          <strong>{{alliances[flight.DepartAirportLocationCode_RET][0].LocationName}}</strong><br/> {{flight.DepartDatetime_RET | date : 'HH:mm'}}  
                                        </div>
                                     </div>
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
-                                          <strong>{{airports[flight.ArrivalAirportLocationCode_RET][0].LocationName}}</strong><br/>{{flight.ArrivalDatetime_RET | date : 'HH:mm EEEE,d MMMM'}}
+                                          <strong>{{alliances[flight.ArrivalAirportLocationCode_RET][0].LocationName}}</strong><br/>{{flight.ArrivalDatetime_RET | date : 'HH:mm EEEE,d MMMM'}}
                                        </div>
                                     </div>
                                  </div>
@@ -173,16 +173,6 @@
                               </div>
                            </div>
                         </div>
-                        <!-- <div class="lazy" id="box-2" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-3" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-4" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-5" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-6" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-7" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-8" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-9" data-loader="examplePlugin">not loaded</div>
-                        <div class="lazy" id="box-0" data-loader="examplePlugin">not loaded</div> -->
-                        
                         <!-- single flight load -->
                      </article>
                      <!--//deal-->

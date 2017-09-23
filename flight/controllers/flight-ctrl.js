@@ -10,8 +10,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     {key : 4, value: "4 stops"},
     {key : 5, value: "I don't mind"}
   ];
-  $scope.airlineses = ["British Airways","airberlin","Lufthansa","SAS","Brussels Airlines","Include Low Cost", ];
-  $scope.alliances = ["One World", "Sky Team", "Star Alliance"];
+
   $scope.priceRange = [
     {key : "0-99", value: "0 - 99 €"},
     {key : "100-299", value: "100 - 299 €"}, 
@@ -49,7 +48,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   
   apis.airports().then(function(response){
     if(response != ''){
-      $scope.airports = response;
+      $scope.alliances = response;
     }
   }).catch(function(response) {
     console.log("Sorry, there is a problem. Please, contact support.");
@@ -106,6 +105,18 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       newList = flightList; 
     }
 
+    if($scope.search.alliances.length > 0){
+      var list = [];
+      for (var i = 0; i < $scope.search.alliances.length; i++) {
+        var l = $filter('filter')(newList, { ArrivalAirportLocationCode : $scope.search.alliances[i] });
+        list = list.concat(l);
+      };
+      flag = 0;
+      newList = list;
+    }else if(flag){
+      newList = flightList; 
+    }
+
     if($scope.search.priceRange.length > 0){
       var list = [];
       for (var i = 0; i < $scope.search.priceRange.length; i++) {
@@ -142,7 +153,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     }else if(flag){
       newList = flightList; 
     }
-
+    
     $scope.flightList = newList;
 
   }
