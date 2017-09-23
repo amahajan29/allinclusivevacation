@@ -20,9 +20,9 @@ app.controller('homeController', function homeController($scope, $http, $templat
   };
 
   $scope.hotal = {
-    Location : "",
-    sFrom : "",
-    sTo : "",
+    Location : "LON",
+    sFrom : today,
+    sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
     NoOfAdults : 0,
     NoOfChildren : 0
   }
@@ -44,8 +44,19 @@ app.controller('homeController', function homeController($scope, $http, $templat
   }
 
   $scope.hotalSubmit = function(){
-    $state.go('hotal-search',{obj: $scope.hotal});
+    $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
+    $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
+    $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
+    $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
+    $state.go('hotal-search',{
+        sFrom: $scope.hotal.sFrom,
+        sTo: $scope.hotal.sTo,
+        Location: $scope.hotal.Location,
+        NoOfChildren: $scope.hotal.NoOfChildren,
+        NoOfAdults: $scope.hotal.NoOfAdults,
+      });
   }
+
 
   // $scope.url = 'data.json';
   $scope.makeApiCall = function(countryCode) {
@@ -304,19 +315,19 @@ function initializeScript() {
         }
       });
 
-        $('.add').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal)) {
-                $qty.val(currentVal + 1);
-            }
-        });
-        $('.minus').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal) && currentVal > 0) {
-                $qty.val(currentVal - 1);
-            }
-        });
+        // $('.add').on('click',function(){
+        //     var $qty=$(this).closest('p').find('.qty');
+        //     var currentVal = parseInt($qty.val());
+        //     if (!isNaN(currentVal)) {
+        //         $qty.val(currentVal + 1);
+        //     }
+        // });
+        // $('.minus').on('click',function(){
+        //     var $qty=$(this).closest('p').find('.qty');
+        //     var currentVal = parseInt($qty.val());
+        //     if (!isNaN(currentVal) && currentVal > 0) {
+        //         $qty.val(currentVal - 1);
+        //     }
+        // });
          
 }

@@ -419,33 +419,4 @@ function initializeScript() {
           custom_fix.removeClass('mak-fix');
         }
       });
-
-        $('.add').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal)) {
-                $qty.val(currentVal + 1);
-            }
-        });
-        $('.minus').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal) && currentVal > 0) {
-                $qty.val(currentVal - 1);
-            }
-        });
-         
-         $(function() {
-          $('.lazy').lazy();
-      });
-      //   (function($) {
-      //     $.Lazy('examplePlugin', function(element, response) {
-      //         // just for demonstration, write some text inside element
-      //         element.html('<div class="details new-design" style="position:relative;"> <div class="depart-wrap"> <h3>Easyjet - <span> Friday, 5 April </span> </h3> <div class="table-flight first frid"> <div class="f-wrap design"> <div class="flight-info"><strong>Franz Josef Strauss</strong> (MUC)<br/> 22:00 </div></div><div class="f-wrap design"> <div class="flight-info"><strong>Luton International</strong> (LTN)<br/>23:00 Friday,5 April </div></div></div><h3>Easyjet - <span> Friday, 5 April </span> </h3> <div class="table-flight"> <div class="f-wrap design"> <div class="flight-info"><strong>Franz Josef Strauss</strong> (MUC)<br/> 22:00 </div></div><div class="f-wrap design"> <div class="flight-info"><strong>Luton International</strong> (LTN)<br/>23:00 Friday,5 April </div></div></div></div><div class="depart-button"> <div class="arive-stop"> <p><strong>13h 5 / 1 Stop</strong><br/>EY 12 / 9W 589</p></div><a href="search_results-hotel.html" title="Book now" class="gradient-button book"> &euro; 53.22</a> <div class="return-stop"> <p><strong>13h 5 / 1 Stop</strong><br/>EY 12 / 9W 589</p></div></div></div>')
-      //                .addClass("loaded");
-
-      //         // return loaded state to Lazy
-      //         response(true);
-      //     });
-      // })(window.jQuery || window.Zepto);
 }

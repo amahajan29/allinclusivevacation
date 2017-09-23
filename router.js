@@ -22,9 +22,6 @@ app.config(function($stateProvider, $urlRouterProvider){
         data: {
             pageTitle:'All Inclusive Vacation'
         },
-        params: {
-            obj : null
-        },
         views: {
             'flight-search': {
                 templateUrl: 'flight/partials/flight-search.html',
@@ -34,12 +31,9 @@ app.config(function($stateProvider, $urlRouterProvider){
     })
 
     .state('hotal-search',{
-        url:'/hotal-search',
+        url:'/hotal-search/:Location/:sFrom/:sTo/:NoOfAdults/:NoOfChildren',
         data: {
             pageTitle:'All Inclusive Vacation'
-        },
-        params: {
-            obj : null
         },
         views: {
             'hotal-search': {

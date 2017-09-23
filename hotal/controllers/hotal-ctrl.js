@@ -1,9 +1,17 @@
 var app = angular.module('hotal',['ui.router','checklist-model','commonServices']);
 app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
 
+  var obj = {
+    Location: $stateParams.Location,
+    sFrom: $stateParams.sFrom,
+    sTo: $stateParams.sTo,
+    NoOfAdults: $stateParams.NoOfAdults,
+    NoOfChildren: $stateParams.NoOfChildren,
+  };
+
   $scope.hotalList = null;
   var hotalList = null;
-  apis.hotalSearch($state.params.obj).then(function(response){
+  apis.hotalSearch(obj).then(function(response){
     $scope.hotalList = response;
     hotalList = $scope.hotalList;
   }).catch(function(response) {
@@ -17,7 +25,6 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
 });
 
 function initializeScript() {
-//console.log(flightList);
       
       //MAIN SEARCH 
       $('.main-search input[name=radio]').change(function() {
@@ -210,20 +217,20 @@ function initializeScript() {
         }
       });
 
-        $('.add').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal)) {
-                $qty.val(currentVal + 1);
-            }
-        });
-        $('.minus').on('click',function(){
-            var $qty=$(this).closest('p').find('.qty');
-            var currentVal = parseInt($qty.val());
-            if (!isNaN(currentVal) && currentVal > 0) {
-                $qty.val(currentVal - 1);
-            }
-        });
+        // $('.add').on('click',function(){
+        //     var $qty=$(this).closest('p').find('.qty');
+        //     var currentVal = parseInt($qty.val());
+        //     if (!isNaN(currentVal)) {
+        //         $qty.val(currentVal + 1);
+        //     }
+        // });
+        // $('.minus').on('click',function(){
+        //     var $qty=$(this).closest('p').find('.qty');
+        //     var currentVal = parseInt($qty.val());
+        //     if (!isNaN(currentVal) && currentVal > 0) {
+        //         $qty.val(currentVal - 1);
+        //     }
+        // });
          
        $(document).ready(function() {
             $('#image-gallery, #image-gallerys').lightSlider({

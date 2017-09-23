@@ -352,11 +352,10 @@
                         <div class="row">
                            <div class="f-item one-third spinner">
                               <label for="spinner6">Adults</label>
-                              <!-- <input type="text" placeholder="" id="spinner6" name="spinner6" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Adults" required="required"/>
-                                    <span class="add" id="add1"> + </span>
+                                 <p><span class="minus" ng-click="(flight.Adults > 0)?flight.Adults = flight.Adults - 1:flight.Adults = 0"> - </span>
+                                    <input id="qty1" type="number" readonly="readonly" class="qty" ng-model="flight.Adults" required="required"/>
+                                    <span class="add" ng-click="flight.Adults = flight.Adults + 1"> + </span>
                                  </p>
                               </div>
                            </div>
@@ -364,10 +363,10 @@
                               <label for="spinner7">Children</label>
                               <!-- <input type="text" placeholder="" id="spinner7" name="spinner7" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
+                                 <p><span class="minus" ng-click="(flight.Children > 0)?flight.Children = flight.Children - 1:flight.Children = 0"> - </span>
 
                                     <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Children" required="required"/>
-                                    <span class="add" id="add1"> + </span>
+                                    <span class="add" ng-click="flight.Children = flight.Children + 1"> + </span>
                                  </p>
                               </div>
                            </div>
@@ -375,9 +374,9 @@
                               <label for="spinner8">Babies</label>
                               <!-- <input type="text" placeholder="" id="spinner8" name="spinner8" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
+                                 <p><span class="minus" ng-click="(flight.Infants > 0)?flight.Infants = flight.Infants - 1:flight.Infants = 0"> - </span>
                                     <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Infants" required="required"/>
-                                    <span class="add" id="add1"> + </span>
+                                    <span class="add" ng-click="flight.Infants = flight.Infants + 1"> + </span>
                                  </p>
                               </div>
                            </div>
@@ -400,7 +399,24 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination1">Your destination</label>
-                              <input type="text" ng-model="hotal.Location" placeholder="City, region, district or specific hotel" id="destination1" name="destination" required="required" />
+                              <select  ng-model="hotal.Location" required="required" class="form-control inputbox">
+                                 <optgroup label="Portugal">
+                                    <option value="FAO"> FAO - Faro</option>
+                                    <option value="FNC">FNC - Funchal </option>
+                                 </optgroup>
+                                 <optgroup label="Spain">
+                                    <option value="TFS">TFS - Tenerife South </option>
+                                 </optgroup>
+                                 <optgroup label="England">
+                                    <option value="LON">LON - London </option>
+                                 </optgroup>
+                                 <optgroup label="Scotland">
+                                    <option value="GLA">GLA - Glasgow</option>
+                                 </optgroup>
+                                 <optgroup label="Cuba">
+                                    <option value="MUCC">MUCC - Jardines del Rey</option>
+                                 </optgroup>
+                              </select>
                            </div>
                         </div>
                      </div>
@@ -430,7 +446,7 @@
                               <div class="overs">
                                  <p><span class="minus" id="minus1"> - </span>
                                     <input id="qty1" type="text" value="1"  class="qty"/>
-                                    <span class="add" id="add1"> + </span>
+                                    <span class="add" > + </span>
                                  </p>
                               </div>
                            </div>
@@ -438,8 +454,8 @@
                               <label for="spinner2">Adults</label>
                               <!-- <input type="text" placeholder="" id="spinner2" name="spinner1" /> -->
                               <div class="overs">
-                                 <p><span class="minus" ng-click="hotal.NoOfAdults = hotal.NoOfAdults - 1"> - </span>
-                                    <input id="qty1" ng-model="hotal.NoOfAdults" type="number" de class="qty" required="required" min="0"/>
+                                 <p><span class="minus" ng-click="(hotal.NoOfAdults > 0)?hotal.NoOfAdults = hotal.NoOfAdults - 1:hotal.NoOfAdults = 0"> - </span>
+                                    <input id="qty1" readonly="readonly" ng-model="hotal.NoOfAdults" type="number" de class="qty" required="required" />
                                     <span class="add" ng-click="hotal.NoOfAdults = hotal.NoOfAdults + 1"> + </span>
                                  </p>
                               </div>
@@ -448,8 +464,8 @@
                               <label for="spinner3">Children</label>
                               <!-- <input type="text" placeholder="" id="spinner3" name="spinner1" /> -->
                               <div class="overs">
-                                 <p><span class="minus" ng-click="hotal.NoOfChildren = hotal.NoOfChildren - 1"> - </span>
-                                    <input id="qty1" ng-model="hotal.NoOfChildren" type="number" class="qty" required="required"/>
+                                 <p><span class="minus" ng-click="(hotal.NoOfChildren > 0)?hotal.NoOfChildren = hotal.NoOfChildren - 1:hotal.NoOfChildren = 0"> - </span>
+                                    <input id="qty1" readonly="readonly" ng-model="hotal.NoOfChildren" type="number" class="qty" required="required"/>
                                     <span class="add" ng-click="hotal.NoOfChildren = hotal.NoOfChildren + 1"> + </span>
                                  </p>
                               </div>
