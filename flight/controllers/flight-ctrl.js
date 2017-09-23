@@ -1,7 +1,13 @@
 var app = angular.module('flight',['ui.router','checklist-model','commonServices']);
 app.controller('flightSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
 
-  $scope.departureTimes = ["Lowest fare","Morning","Midday","Afternoon ","Evening"];
+  $scope.departureTimes = [
+    {key :"4-6", value:"Lowest fare (04:00 - 06:00)"},
+    {key :"6-10", value:"Morning (06:00 - 10:00)"},
+    {key :"10-13", value:"Midday (10:00 - 13:00)"},
+    {key :"13-17", value:"Afternoon (13:00 - 17:00)"},
+    {key :"17-24", value: "Evening (17:00 - 24:00)"}
+  ];
   $scope.stops = [
     {key : 0, value: "Direct flights only"},
     {key : 1, value: "1 stop"},
@@ -34,6 +40,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.airlines = [];
   $scope.notFound = false;
   $scope.loading = true;
+  $scope.showList = false;
 
   var flightList = null;
   var obj = {
@@ -69,6 +76,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     }else{
       $scope.flightList = response;
       flightList = $scope.flightList;
+      $scope.showList = true;
     }
   }).catch(function(response) {
     $scope.notFound = true;
@@ -80,12 +88,56 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.filter = function() {
     var newList = [];
     var flag = 1;
+    $scope.notFound = false;
+    $scope.loading = true;
+    $scope.showList = false;
 
     if($scope.search.stops.length > 0){
       var list = [];
       for (var i = 0; i < $scope.search.stops.length; i++) {
         var l = $filter('filter')(flightList, { NumberofStops: $scope.search.stops[i] });
         list = list.concat(l);
+      };
+      flag = 0;
+      newList = list;
+    }else{
+      newList = flightList;
+    }
+
+    if($scope.search.departureTimes.length > 0){
+      var list = [];
+      for (var i = 0; i < $scope.search.departureTimes.length; i++) {
+        if($scope.search.departureTimes[i] == '4-6'){
+          var l = $filter('filter')(newList, function (item) {
+             var departDatetime = new Date(item.DepartDatetime);
+             return departDatetime.getHours() >= 4 && departDatetime.getHours() <= 6;
+          });
+          // list = list.concat(l);
+        }else if($scope.search.departureTimes[i] == '6-10'){
+          var l = $filter('filter')(newList, function (item) {
+            var departDatetime = new Date(item.DepartDatetime);
+            return departDatetime.getHours() > 6 && departDatetime.getHours() <= 10;
+          });
+          list = list.concat(l);
+        }else if($scope.search.departureTimes[i] == '10-13'){
+          var l = $filter('filter')(newList, function (item) {
+            var departDatetime = new Date(item.DepartDatetime);
+            return departDatetime.getHours() > 10 && departDatetime.getHours() <= 13;
+          });
+          list = list.concat(l);
+        }else if($scope.search.departureTimes[i] == '13-17'){
+          var l = $filter('filter')(newList, function (item) {
+            var departDatetime = new Date(item.DepartDatetime);
+            return departDatetime.getHours() > 13 && departDatetime.getHours() <= 17;
+          });
+          list = list.concat(l);
+        }else if($scope.search.departureTimes[i] == '17-24'){
+          var l = $filter('filter')(newList, function (item) {
+            var departDatetime = new Date(item.DepartDatetime);
+            return departDatetime.getHours() > 17 && departDatetime.getHours() <= 24;
+          });
+          list = list.concat(l);
+        }
       };
       flag = 0;
       newList = list;
@@ -108,7 +160,9 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     if($scope.search.alliances.length > 0){
       var list = [];
       for (var i = 0; i < $scope.search.alliances.length; i++) {
-        var l = $filter('filter')(newList, { ArrivalAirportLocationCode : $scope.search.alliances[i] });
+        var l = $filter('filter')(newList,  function(item) { 
+          return (item.ArrivalAirportLocationCode == $scope.search.alliances[i]) || (item.DepartAirportLocationCode == $scope.search.alliances[i]) || (item.ArrivalAirportLocationCode_RET == $scope.search.alliances[i]) || (item.DepartAirportLocationCode_RET == $scope.search.alliances[i]);
+        });
         list = list.concat(l);
       };
       flag = 0;
@@ -128,7 +182,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
           list = list.concat(l);
         }else if(arr[0] == 100 && arr[1] == 299){
           var l = $filter('filter')(newList, function (item) {
-            return parseFloat(item.TotalFareAmount) >= 100 && parseFloat(item.TotalFareAmount) <= 299;
+            return parseFloat(item.TotalFareAmount) > 100 && parseFloat(item.TotalFareAmount) <= 299;
           });
           list = list.concat(l);
         }else if(arr[0] == 300 && arr[1] == 499){
@@ -156,6 +210,14 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     
     $scope.flightList = newList;
 
+    setTimeout(function(){  
+      if($scope.flightList.length == 0){
+        $scope.notFound = true;
+      }
+      $scope.loading = false;
+      $scope.showList = true;
+      $scope.$apply();
+    },1000)
   }
 
   setTimeout(function(){  

@@ -68,8 +68,8 @@
                         <dt>Departure times</dt>
                         <dd>
                            <div class="checkbox" ng-repeat="departureTime in departureTimes">
-                              <input type="checkbox" checklist-model="search.departureTimes" checklist-value="departureTime" id="ch1" name="departure" />
-                              <label for="ch1">{{departureTime}}</label>
+                              <input type="checkbox" checklist-model="search.departureTimes" checklist-value="departureTime.key" id="ch1" name="departure" ng-click="filter()" />
+                              <label for="ch1">{{departureTime.value}}</label>
                            </div>
                         </dd>
                         <!--//Departure times-->
@@ -128,11 +128,11 @@
                      <!--deal-->
                      <article class="full-width slice">
                         <!-- single flight load -->
-                        <div class="ball" ng-if="loading"></div>
+                        <div class="ball" ng-show="loading"></div>
                         <div ng-if="notFound">
                            No record found.
                         </div>
-                        <div class="lazy loaded" id="box-1" ng-repeat="flight in flightList">
+                        <div class="lazy loaded" id="box-1" ng-if="showList" ng-repeat="flight in flightList">
                            <div class="details new-design" style="position:relative;"> 
                               <div class="depart-wrap"> 
                                  <h3>{{airlineses[flight.ValidatingAirlineCode][0].AirlineName}} - <span> {{flight.DepartDatetime | date : 'EEEE,d MMMM'}} </span> </h3> 
@@ -148,7 +148,7 @@
                                        </div>
                                     </div>
                                  </div>
-                                 <h3>{{airlines[flight.ValidatingAirlineCode][0].AirlineName}} - <span> {{flight.DepartDatetime_RET | date : 'EEEE,d MMMM'}} </span> </h3> 
+                                 <h3>{{airlineses[flight.ValidatingAirlineCode][0].AirlineName}} - <span> {{flight.DepartDatetime_RET | date : 'EEEE,d MMMM'}} </span> </h3> 
                                  <div class="table-flight"> 
                                     <div class="f-wrap design"> 
                                        <div class="flight-info">
