@@ -8,14 +8,8 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     {key :"13-17", value:"Afternoon (13:00 - 17:00)"},
     {key :"17-24", value: "Evening (17:00 - 24:00)"}
   ];
-  $scope.stops = [
-    {key : 0, value: "Direct flights only"},
-    {key : 1, value: "1 stop"},
-    {key : 2, value: "2 stops"},
-    {key : 3, value: "3 stops"},
-    {key : 4, value: "4 stops"},
-    {key : 5, value: "I don't mind"}
-  ];
+
+  $scope.stops = ["Direct flights only", "1 stop", "2 stops", "3 stops", "4 stops", "I don't mind"];
 
   $scope.priceRange = [
     {key : "0-99", value: "0 - 99 €"},
@@ -38,6 +32,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.flightList = null;
   $scope.airports = [];
   $scope.airlines = [];
+  $scope.noOfStops = [];
   $scope.notFound = false;
   $scope.loading = true;
   $scope.showList = false;
@@ -75,8 +70,26 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       $scope.notFound = true;
     }else{
       $scope.flightList = response;
+      for (var i = 0; i < $scope.flightList.length; i++) {
+        //console.log($scope.flightList[i]);
+        $scope.airports.push($scope.flightList[i].ArrivalAirportLocationCode);
+        $scope.airports.push($scope.flightList[i].DepartAirportLocationCode);
+        $scope.airports.push($scope.flightList[i].ArrivalAirportLocationCode_RET);
+        $scope.airports.push($scope.flightList[i].DepartAirportLocationCode_RET);
+        $scope.airports = $scope.airports.filter(function(v,i) { return $scope.airports.indexOf(v) == i; });
+
+        $scope.airlines.push($scope.flightList[i].ValidatingAirlineCode);
+        $scope.airlines = $scope.airlines.filter(function(v,i) { return $scope.airlines.indexOf(v) == i; });
+
+        $scope.noOfStops.push($scope.flightList[i].NumberofStops);
+        $scope.noOfStops = $scope.noOfStops.filter(function(v,i) { return $scope.noOfStops.indexOf(v) == i; });
+      };
+      
       flightList = $scope.flightList;
       $scope.showList = true;
+      setTimeout(function(){  
+       initializeScript();
+      },2000)
     }
   }).catch(function(response) {
     $scope.notFound = true;
@@ -219,10 +232,6 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       $scope.$apply();
     },1000)
   }
-
-  setTimeout(function(){  
-   initializeScript();
-  },2000)
 });
 
 

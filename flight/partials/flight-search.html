@@ -76,27 +76,27 @@
                         <!--Stops-->
                         <dt>Stops</dt>
                         <dd>
-                           <div class="checkbox" ng-repeat="stop in stops">
-                              <input type="checkbox" checklist-model="search.stops" checklist-value="stop.key" id="ch6" name="stop" ng-click="filter()" />
-                              <label for="ch6">{{stop.value}}</label>
+                           <div class="checkbox" ng-repeat="stop in noOfStops">
+                              <input type="checkbox" checklist-model="search.stops" checklist-value="stop" id="ch6" name="stop" ng-click="filter()" />
+                              <label for="ch6">{{stops[stop]}}</label>
                            </div>
                         </dd>
                         <!--//Stops-->
                         <!--Airlines-->
                         <dt>Airlines</dt>
                         <dd>
-                           <div class="checkbox" ng-repeat="airline in airlineses">
-                              <input type="checkbox" checklist-model="search.airlines" checklist-value="airline[0].IATACode" id="ch32" name="airlines" ng-click="filter()" />
-                              <label for="ch32">{{airline[0].AirlineName}}</label>
+                           <div class="checkbox" ng-repeat="airline in airlines">
+                              <input type="checkbox" checklist-model="search.airlines" checklist-value="airline" id="ch32" name="airlines" ng-click="filter()" />
+                              <label for="ch32">{{airlineses[airline][0].AirlineName}}</label>
                            </div>
                         </dd>
                         <!--//Airlines-->
                         <!--Alliances-->
                         <dt>Alliances</dt>
                         <dd>
-                           <div class="checkbox" ng-repeat="(key, alliance) in alliances">
-                              <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="key" name="alliances" ng-click="filter()" />
-                              <label for="ch38">{{alliance[0].LocationName}}</label>
+                           <div class="checkbox" ng-repeat="airport in airports">
+                              <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="airport" name="alliances" ng-click="filter()" />
+                              <label for="ch38">{{alliances[airport][0].LocationName}}</label>
                            </div>
                         </dd>
                         <!--//Alliances-->
