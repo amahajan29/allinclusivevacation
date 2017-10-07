@@ -2,6 +2,7 @@ var app = angular.module('package',['ui.router','checklist-model','commonService
 app.controller('packageController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$location,$stateParams) {
     $scope.packageDetails = {};
     $scope.roomDetails = {};
+    $scope.displaySectoin = "availability";
     var packageObj = {LocationCode:"FAO",PackageCode:$stateParams.PackageCode};
     //var packageObj = {LocationCode:$stateParams.LocationCode,PackageCode:$stateParams.PackageCode};
     apis.packageDetail(packageObj).then(function(response){
@@ -35,11 +36,19 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     $scope.spicy();
     */
     $scope.getArticle = function(article) {
-        $('html, body').animate({
+        $(".inner-nav ul li").removeClass('active');
+        $("."+article).addClass('active');
+        $scope.displaySectoin = article;
+        /*$('html, body').animate({
             scrollTop: $("#"+article).offset().top
-        }, 1000);
+        }, 1000);*/
         //$location.hash('availibility');// id of div 'availibility'
 
     };
     //
 });
+
+/*$(".inner-nav ul li").on("click",function(){
+    $(".inner-nav ul li").removeClass('active');
+    $(this).addClass('active');
+});*/

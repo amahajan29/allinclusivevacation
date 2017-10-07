@@ -1,3 +1,5 @@
+<script src="http://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false"></script>
+
 <main class="main">		
 		<div class="wrap">
 			<!--breadcrumbs-->
@@ -23,22 +25,22 @@
 					<div class="gallery">
 						<ul id="image-gallery" class="cS-hidden">
 							<li data-thumb="images/uploads/hotel4.jpg"> 
-								<img src="images/uploads/hotel4.jpg" alt="" />
+								<img src="/assets/images/uploads/hotel4.jpg" alt="" />
 							</li>
 							<li data-thumb="images/uploads/hotel1.jpg"> 
-								<img src="images/uploads/hotel1.jpg" alt="" />
+								<img src="/assets/images/uploads/hotel1.jpg" alt="" />
 							</li>
 							<li data-thumb="images/uploads/hotel2.jpg"> 
-								<img src="images/uploads/hotel2.jpg" alt="" />
+								<img src="/assets/images/uploads/hotel2.jpg" alt="" />
 							</li>
 							<li data-thumb="images/uploads/hotel5.jpg"> 
-								<img src="images/uploads/hotel5.jpg" alt="" />
+								<img src="/assets/images/uploads/hotel5.jpg" alt="" />
 							</li>
 							<li data-thumb="images/uploads/hotel3.jpg"> 
-								<img src="images/uploads/hotel3.jpg" alt="" />
+								<img src="/assets/images/uploads/hotel3.jpg" alt="" />
 							</li>
 							<li data-thumb="images/uploads/hotel6.jpg"> 
-								<img src="images/uploads/hotel6.jpg" alt="" />
+								<img src="/assets/images/uploads/hotel6.jpg" alt="" />
 							</li>
 						</ul>
 					</div>
@@ -57,7 +59,7 @@
 												<!--column-->
 												<div class="one-third inner-hot">
 													<div class="hovereffect">
-														<img class="img-responsive" src="images/offers/offer-img-1.png" alt="">
+														<img class="img-responsive" src="/assets/images/offers/offer-img-1.png" alt="">
 															<div class="overlay">
 																<a href="#0"><h1>Best ipsum hotel 
 																<span class="stars">
@@ -77,7 +79,7 @@
 												<!--column-->
 												<div class="one-third inner-hot">
 													<div class="hovereffect">
-														<img class="img-responsive" src="images/offers/offer-img-3.png" alt="">
+														<img class="img-responsive" src="/assets/images/offers/offer-img-3.png" alt="">
 															<div class="overlay">
 																<a href="#0"><h1>Best ipsum hotel 
 																<span class="stars">
@@ -97,7 +99,7 @@
 												<!--column-->
 												<div class="one-third inner-hot">
 													<div class="hovereffect">
-														<img class="img-responsive" src="images/offers/offer-img-4.png" alt="">
+														<img class="img-responsive" src="/assets/images/offers/offer-img-4.png" alt="">
 															<div class="overlay">
 																<a href="#0"><h1>Best ipsum hotel 
 																<span class="stars">
@@ -125,7 +127,7 @@
 					<!--inner navigation-->
 					<nav class="inner-nav">
 						<ul>
-							<li class="availability"><a ng-click="getArticle('availability')" href="javascript:void(0);" title="Availability">Availability</a></li>
+							<li class="availability active"><a ng-click="getArticle('availability')" href="javascript:void(0);" title="Availability">Availability</a></li>
 							<li class="description"><a ng-click="getArticle('description')" href="javascript:void(0);" title="Description">Description</a></li>
 							<li class="facilities"><a ng-click="getArticle('facilities')" href="javascript:void(0);" title="Facilities">Facilities</a></li>
 							<li class="location"><a ng-click="getArticle('location')" href="javascript:void(0);" title="Location">Location</a></li>
@@ -136,7 +138,7 @@
 					<!--//inner navigation-->
 					
 					<!--availability-->
-					<section id="availability" class="tab-content">
+					<section ng-if="displaySectoin=='availability'" id="availability" class="tab-content">
 						<article>
 							<h2>Overview</h2>
 							<div class="text-wrap">
@@ -180,7 +182,7 @@
 								<li>
 									<figure class="left" id="gallery1">
 										<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-											<img src="images/uploads/room1.jpg" alt="" />
+											<img src="/assets/images/uploads/room1.jpg" alt="" />
 											<span class="image-overlay"></span>
 										</a>
 									</figure>
@@ -208,7 +210,7 @@
 								<li>
 									<figure class="left" id="gallery1">
 										<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-											<img src="images/uploads/room1.jpg" alt="" />
+											<img src="/assets/images/uploads/room1.jpg" alt="" />
 											<span class="image-overlay"></span>
 										</a>
 									</figure>
@@ -236,7 +238,7 @@
 								<li>
 									<figure class="left" id="gallery1">
 										<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-											<img src="images/uploads/room1.jpg" alt="" />
+											<img src="/assets/images/uploads/room1.jpg" alt="" />
 											<span class="image-overlay"></span>
 										</a>
 									</figure>
@@ -264,7 +266,7 @@
 								<li>
 									<figure class="left" id="gallery1">
 										<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-											<img src="images/uploads/room1.jpg" alt="" />
+											<img src="/assets/images/uploads/room1.jpg" alt="" />
 											<span class="image-overlay"></span>
 										</a>
 									</figure>
@@ -293,7 +295,7 @@
 					<!--//availability-->
 					
 					<!--description-->
-					<section id="description" class="tab-content">
+					<section ng-if="displaySectoin=='description'" id="description" class="tab-content">
 						<article>
 							<h2>General</h2>
 							<div class="text-wrap">	
@@ -334,7 +336,7 @@
 					<!--//description-->
 					
 					<!--facilities-->
-					<section id="facilities" class="tab-content">
+					<section ng-if="displaySectoin=='facilities'" id="facilities" class="tab-content">
 						<article>
 							<h2>Facilities</h2>
 							<div class="text-wrap">	
@@ -363,17 +365,17 @@
 					<!--//facilities-->
 					
 					<!--location-->
-					<section id="location" class="tab-content">
+					<section ng-if="displaySectoin=='location'" id="location" class="tab-content">
 						<article>
 							<!--map-->
-								<div class="gmap" id="map_canvas"></div>
+								<div class="gmap" id="pageDetailMap"></div>
 							<!--//map-->
 						</article>
 					</section>
 					<!--//location-->
 					
 					<!--reviews-->
-					<section id="reviews" class="tab-content">
+					<section ng-if="displaySectoin=='reviews'" id="reviews" class="tab-content">
 						<article>
 							<h2>Hotel Score and Score Breakdown</h2>
 							<div class="score">
@@ -402,7 +404,7 @@
 					<!--//reviews-->
 					
 					<!--things to do-->
-					<section id="things-to-do" class="tab-content">
+					<section ng-if="displaySectoin=='things-to-do'" id="things-to-do" class="tab-content">
 						<h2>Things to do</h2>
 						<article>
 							{{roomDetails.ThingsTodo}}
@@ -462,7 +464,7 @@
 				<!-- 	<article class="widget"> -->
 						<article class="widget">
 							<h4>Near By Hotels</h4>
-								<figure><a href="hotel.html" title=""><img src="images/uploads/hotel1.jpg" alt=""></a></figure>
+								<figure><a href="hotel.html" title=""><img src="/assets/images/uploads/hotel1.jpg" alt=""></a></figure>
 								<div class="details">
 									<h3>Best ipsum hotel 
 										<span class="stars">
@@ -488,4 +490,44 @@
 			<!--//row-->
 		</div>
 	</main>
-	
+      <script type="text/javascript">
+      var secheltLoc = new google.maps.LatLng(49.47216, -123.76307);
+         
+         	var myMapOptions = {
+         		 zoom: 15
+         		,center: secheltLoc
+         		,mapTypeId: google.maps.MapTypeId.ROADMAP
+         	};
+         	var theMap = new google.maps.Map(document.getElementById("pageDetailMap"), myMapOptions);
+         
+         
+         	var marker = new google.maps.Marker({
+         		map: theMap,
+         		draggable: true,
+         		position: new google.maps.LatLng(49.47216, -123.76307),
+         		visible: true
+         	});
+         
+         	var boxText = document.createElement("div");
+         	boxText.innerHTML = "<strong>Best ipsum hotel</strong>1400 PennsylSUVia Ave,Washington DCwww.bestipsumhotel.com";
+         
+         	var myOptions = {
+         		 content: boxText
+         		,disableAutoPan: false
+         		,maxWidth: 0
+         		,pixelOffset: new google.maps.Size(-140, 0)
+         		,zIndex: null
+         		,closeBoxURL: ""
+         		,infoBoxClearance: new google.maps.Size(1, 1)
+         		,isHidden: false
+         		,pane: "floatPane"
+         		,enableEventPropagation: false
+         	};
+         
+         	google.maps.event.addListener(marker, "click", function (e) {
+         		ib.open(theMap, this);
+         	});
+         
+         	var ib = new InfoBox(myOptions);
+         	ib.open(theMap, marker);
+      </script>
