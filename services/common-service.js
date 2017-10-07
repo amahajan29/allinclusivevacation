@@ -68,10 +68,48 @@ app.service('apis', ['$http','$q', function ($http, $q) {
         });
     };
 
+    var packageDetail = function(object) {
+        var defer = $q.defer();
+        //?Location=FAO&sFrom=20171010&sTo=20171017&NoOfAdults=1&NoOfChildren=0
+        return $http.get('https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/packages',{
+            params : object
+        }).then(function(response){
+            // Access granted
+            if (response.status == 200 || response.status == 304) {
+                defer.resolve(response.data);
+            } else {
+                // Access not granted
+                defer.reject(false);
+            }
+
+            return defer.promise;
+        });
+    };
+
+    var roomDetail = function(object) {
+        var defer = $q.defer();
+        //?Location=FAO&sFrom=20171010&sTo=20171017&NoOfAdults=1&NoOfChildren=0
+        return $http.get('http://mgmpackages.azurewebsites.net/mgmpackages/API/roomdetails',{
+            params : object
+        }).then(function(response){
+            // Access granted
+            if (response.status == 200 || response.status == 304) {
+                defer.resolve(response.data);
+            } else {
+                // Access not granted
+                defer.reject(false);
+            }
+
+            return defer.promise;
+        });
+    };
+
     return {
         flightSearch: flightSearch,
         hotalSearch: hotalSearch,
         airlines: airlines,
-        airports: airports
+        airports: airports,
+        packageDetail:packageDetail,
+        roomDetail:roomDetail,
     };
 }]);

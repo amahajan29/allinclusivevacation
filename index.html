@@ -7,7 +7,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <title ng-bind="$state.current.data.pageTitle"></title>
-      <base href="http://allinclusivevacation.herokuapp.com/">
+      <base href="http://localhost/allinclusivevacation/">
       <link rel="stylesheet" href="assets/css/style.css" />
       <link rel="stylesheet" href="assets/css/theme-turqoise.css" id="template-color" />
       <link rel="stylesheet" href="assets/css/lightslider.min.css" />
@@ -38,6 +38,7 @@
      
    <div ui-view="home"></div>
    <div ui-view="flight-search"></div>      
+   <div ui-view="package-details"></div>
    <div ui-view="hotal-search"></div>      
       <!--footer-->
       <footer class="footer">
@@ -179,6 +180,7 @@
     <script type="text/javascript" src="home/controllers/home-ctrl.js"></script>
     <script type="text/javascript" src="flight/controllers/flight-ctrl.js"></script>
     <script type="text/javascript" src="hotal/controllers/hotal-ctrl.js"></script>
+    <script type="text/javascript" src="package/controllers/package-ctrl.js"></script>
     <script type="text/javascript" src="services/common-service.js"></script>
     <script type="text/javascript" src="router.js"></script>
     <script type="text/javascript" src="assets/js/select2.min.js"></script>

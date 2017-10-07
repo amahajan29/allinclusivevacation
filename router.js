@@ -1,4 +1,4 @@
-var app = angular.module('aivApp', ['ui.router','checklist-model','home','flight','hotal','commonServices']);
+var app = angular.module('aivApp', ['ui.router','checklist-model','home','flight','hotal','package','commonServices']);
 
 app.config(function($stateProvider, $urlRouterProvider){
     
@@ -42,13 +42,24 @@ app.config(function($stateProvider, $urlRouterProvider){
             },
         }
     })  
-
     .state('package-details',{
+        url:'/package-details/:LocationCode/:PackageCode',
+        data: {
+            pageTitle:'Package Details'
+        },
+        views: {
+            'package-details': {
+                templateUrl: 'package/partials/package-detail.html',
+                controller:'packageController',
+            },
+        }
+    })
+    /*.state('package-details',{
         url:'/package-details',
         templateUrl:'package_detail.html',
         controller:'detailsController',
         data: {pageTitle:'Hotel Details'}
-    });
+    });*/
 
     $urlRouterProvider.otherwise('/');
 });
