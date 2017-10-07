@@ -1,8 +1,9 @@
 var app = angular.module('package',['ui.router','checklist-model','commonServices']);
-app.controller('packageController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$location) {
+app.controller('packageController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$location,$stateParams) {
     $scope.packageDetails = {};
     $scope.roomDetails = {};
-    var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
+    var packageObj = {LocationCode:"FAO",PackageCode:$stateParams.PackageCode};
+    //var packageObj = {LocationCode:$stateParams.LocationCode,PackageCode:$stateParams.PackageCode};
     apis.packageDetail(packageObj).then(function(response){
         $scope.packageDetails = response;
         console.log("packageDetails", response);
@@ -38,8 +39,7 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
             scrollTop: $("#"+article).offset().top
         }, 1000);
         //$location.hash('availibility');// id of div 'availibility'
-        
+
     };
     //
 });
-    
