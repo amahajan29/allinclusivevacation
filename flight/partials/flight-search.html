@@ -1,3 +1,26 @@
+   
+<style type="text/css">
+.badge {
+    background-color: #777777;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    min-width: 10px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+</style>
    <!--header-->
    <header class="header inside-header">
       <div class="wrap">
@@ -83,7 +106,10 @@
                         </dd>
                         <!--//Stops-->
                         <!--Airlines-->
-                        <dt>Airlines</dt>
+                        <dt>
+                           Airlines
+                           <div style="margin-right:25px" class="pull-right badge">{{lowest}}</div>
+                        </dt>
                         <dd>
                            <div class="checkbox" ng-repeat="airline in airlines">
                               <input type="checkbox" checklist-model="search.airlines" checklist-value="airline" id="ch32" name="airlines" ng-click="filter()" />
@@ -92,7 +118,10 @@
                         </dd>
                         <!--//Airlines-->
                         <!--Alliances-->
-                        <dt>Alliances</dt>
+                        <dt>
+                           Alliances
+                           <div style="margin-right:25px" class="pull-right badge">{{lowest}}</div>
+                        </dt>
                         <dd>
                            <div class="checkbox" ng-repeat="airport in airports">
                               <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="airport" name="alliances" ng-click="filter()" />
@@ -103,9 +132,9 @@
                         <!--Price range-->
                         <dt>Price range</dt>
                         <dd>
-                           <div class="checkbox" ng-repeat="pr in priceRange">
-                              <input type="checkbox" checklist-model="search.priceRange" checklist-value="pr.key" id="ch21" name="price" ng-click="filter()" />
-                              <label for="ch21">{{pr.value}}</label>
+                           <div class="checkbox" ng-repeat="pr in price">
+                              <input type="checkbox" checklist-model="search.priceRange" checklist-value="pr" id="ch21" name="price" ng-click="filter()" />
+                              <label for="ch21">{{priceRange[pr]}}</label>
                            </div>
                         </dd>
                         <!--//Price range-->

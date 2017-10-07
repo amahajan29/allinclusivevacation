@@ -11,14 +11,8 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
 
   $scope.stops = ["Direct flights only", "1 stop", "2 stops", "3 stops", "4 stops", "I don't mind"];
 
-  $scope.priceRange = [
-    {key : "0-99", value: "0 - 99 €"},
-    {key : "100-299", value: "100 - 299 €"}, 
-    {key : "300-499", value: "300 - 499 €"},
-    {key : "500-699", value:  "500 - 699 €"},
-    {key : "700", value:  "700 € +"}
-  ];
-  $scope.class = ["Economy","Business","First"];
+  $scope.priceRange = {"0-99":"0 - 99 €", "100-299": "100 - 299 €", "300-499" : "300 - 499 €", "500-699":  "500 - 699 €", "700" :  "700 € +"};
+  $scope.class = ["Economy"];
 
   $scope.search= {
     "departureTimes" : [],
@@ -33,6 +27,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.airports = [];
   $scope.airlines = [];
   $scope.noOfStops = [];
+  $scope.price = [];
   $scope.notFound = false;
   $scope.loading = true;
   $scope.showList = false;
@@ -71,7 +66,6 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     }else{
       $scope.flightList = response;
       for (var i = 0; i < $scope.flightList.length; i++) {
-        //console.log($scope.flightList[i]);
         $scope.airports.push($scope.flightList[i].ArrivalAirportLocationCode);
         $scope.airports.push($scope.flightList[i].DepartAirportLocationCode);
         $scope.airports.push($scope.flightList[i].ArrivalAirportLocationCode_RET);
@@ -83,8 +77,29 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
 
         $scope.noOfStops.push($scope.flightList[i].NumberofStops);
         $scope.noOfStops = $scope.noOfStops.filter(function(v,i) { return $scope.noOfStops.indexOf(v) == i; });
+
+        if(parseFloat($scope.flightList[i].TotalFareAmount) > 0 && parseFloat($scope.flightList[i].TotalFareAmount) <= 99){
+            $scope.price.push("0-99");
+        }else if(parseFloat($scope.flightList[i].TotalFareAmount) > 100 && parseFloat($scope.flightList[i].TotalFareAmount) <= 299){
+            $scope.price.push("100-299");
+        }else if(parseFloat($scope.flightList[i].TotalFareAmount) > 300 && parseFloat($scope.flightList[i].TotalFareAmount) <= 499){
+            $scope.price.push("300-499");
+        }else if(parseFloat($scope.flightList[i].TotalFareAmount) > 300 && parseFloat($scope.flightList[i].TotalFareAmount) <= 499){
+            $scope.price.push("500-699");
+        }else{
+            $scope.price.push("700");
+        }
+
+        $scope.price = $scope.price.filter(function(v,i) { return $scope.price.indexOf(v) == i; });
       };
-      
+
+      $scope.lowest = Number.POSITIVE_INFINITY;
+      var tmp;
+      for (var i=$scope.flightList.length-1; i>=0; i--) {
+          tmp = $scope.flightList[i].TotalFareAmount;
+          if (tmp < $scope.lowest) $scope.lowest = tmp;
+      }      
+
       flightList = $scope.flightList;
       $scope.showList = true;
       setTimeout(function(){  
