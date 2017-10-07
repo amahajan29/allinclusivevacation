@@ -125,12 +125,12 @@
 					<!--inner navigation-->
 					<nav class="inner-nav">
 						<ul>
-							<li class="availability"><a href="#availability" title="Availability">Availability</a></li>
-							<li class="description"><a href="#description" title="Description">Description</a></li>
-							<li class="facilities"><a href="#facilities" title="Facilities">Facilities</a></li>
-							<li class="location"><a href="#location" title="Location">Location</a></li>
-							<li class="reviews"><a href="#reviews" title="Reviews">Reviews</a></li>
-							<li class="things-to-do"><a href="#things-to-do" title="Things to do">Things to do</a></li>
+							<li class="availability"><a ng-click="getArticle('availability')" href="javascript:void(0);" title="Availability">Availability</a></li>
+							<li class="description"><a ng-click="getArticle('description')" href="javascript:void(0);" title="Description">Description</a></li>
+							<li class="facilities"><a ng-click="getArticle('facilities')" href="javascript:void(0);" title="Facilities">Facilities</a></li>
+							<li class="location"><a ng-click="getArticle('location')" href="javascript:void(0);" title="Location">Location</a></li>
+							<li class="reviews"><a ng-click="getArticle('reviews')" href="javascript:void(0);" title="Reviews">Reviews</a></li>
+							<li class="things-to-do"><a ng-click="getArticle('things-to-do')" href="javascript:void(0);" title="Things to do">Things to do</a></li>
 						</ul>
 					</nav>
 					<!--//inner navigation-->
@@ -403,28 +403,9 @@
 					
 					<!--things to do-->
 					<section id="things-to-do" class="tab-content">
+						<h2>Things to do</h2>
 						<article>
-							<h2>London</h2>
-							<figure><img src="images/uploads/london1.jpg" alt="Things to do - London general" /></figure>
-							<p><strong>London is a diverse and exciting city with some of the best sights and attractions in the world. </strong></p>
-							<p>See London from above on the London Eye; meet a celebrity at Madame Tussauds; examine some of the world’s most precious treasures at the British Museum or come face-to-face with the dinosaurs at the Natural History Museum.</p>
-							
-							<h2>Sports and nature</h2>
-							<figure><img src="images/uploads/london2.jpg" alt="Things to do - London Sports and nature" /></figure>
-							<p><strong>London is one of the greenest capitals in the world, with plenty of green and open spaces. There are more than 3000 open spaces.</strong></p>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci. </p>
-							
-							<h2>Nightlife</h2>
-							<figure><img src="images/uploads/london3.jpg" alt="Things to do - London Nightlife" /></figure>
-							<p><strong>Looking for nightclubs in London? Take a look at our guide to London clubs. Browse for club ideas, regular club nights and one-off events. </strong></p>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci. </p>
-							
-							<h2>Culture and history</h2>
-							<figure><img src="images/uploads/london4.jpg" alt="Things to do - London general" /></figure>
-							<p><strong>For a display of British pomp and ceremony, watch the Changing the Guard ceremony outside Buckingham Palace.</strong></p>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci. </p>
-							<hr />
-							<a href="#" class="gradient-button right" title="Read more">Read more</a>
+							{{roomDetails.ThingsTodo}}
 						</article>
 					</section>
 					<!--//things to do-->

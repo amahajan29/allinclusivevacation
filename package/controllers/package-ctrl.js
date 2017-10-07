@@ -1,5 +1,5 @@
 var app = angular.module('package',['ui.router','checklist-model','commonServices']);
-app.controller('packageController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
+app.controller('packageController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$location) {
     $scope.packageDetails = {};
     $scope.roomDetails = {};
     var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
@@ -32,13 +32,14 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
         });
     };
     $scope.spicy();
-    $scope.getArticle = function(menu) {
-        if(menu==2){
-            $location.hash('availibility');// id of div 'availibility'
-        }else{
-            console.log(menu);
-        }
-    };*/
+    */
+    $scope.getArticle = function(article) {
+        $('html, body').animate({
+            scrollTop: $("#"+article).offset().top
+        }, 1000);
+        //$location.hash('availibility');// id of div 'availibility'
+        
+    };
     //
 });
     
