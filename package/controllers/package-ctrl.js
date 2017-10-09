@@ -3,7 +3,7 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     $scope.packageDetails = {};
     $scope.roomDetails = {};
     $scope.loading = true;
-    $scope.displaySectoin = "availability";
+    $scope.displaySectoin = "description";
     var packageObj = {LocationCode:"FAO",PackageCode:$stateParams.PackageCode};
     //var packageObj = {LocationCode:$stateParams.LocationCode,PackageCode:$stateParams.PackageCode};
     apis.packageDetail(packageObj).then(function(response){
@@ -44,7 +44,22 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     };
     $scope.spicy();
     */
+    $scope.getDate = function (datetime){
+        var dateObj = new Date(datetime);
+        var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dateObj.getDay()];
+        var date = dateObj.getDate();
+        var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][dateObj.getMonth()];
+        var year = dateObj.getFullYear();
+        return day+" "+date+" "+month+" "+year;
+    }
+    $scope.getTime = function (datetime){
+        var dateObj = new Date(datetime);
+        var hours = dateObj.getHours();
+        var minutes = dateObj.getMinutes();
+        return hours+":"+minutes;
+    }
     $scope.getArticle = function(article) {
+        console.log(article);
         $(".inner-nav ul li").removeClass('active');
         $("."+article).addClass('active');
         $scope.displaySectoin = article;

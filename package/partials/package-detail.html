@@ -1,351 +1,200 @@
-<div ng-if="loading" class="loading">
-     <div class="ball"></div>
-     <div class="ball1"></div>
-  </div>
-<main class="main">		
-	<div class="wrap">
-		<!--breadcrumbs-->
-		<nav class="breadcrumbs">
-			<!--crumbs-->
-			<ul> 
-				<li>Search results</li>                                       
-			</ul>
-			<!--//crumbs-->
-			
-			<!--top right navigation-->
-			<ul class="top-right-nav">
-				<li><a href="search_results.html" title="Back to results">Back to results</a></li>
-				<li><a href="#" title="Change search">Change search</a></li>
-			</ul>
-			<!--//top right navigation-->
-		</nav>
-		<!--//breadcrumbs-->
-		<div class="row">
-			<!--hotel three-fourth content-->
-			<section class="three-fourth">
-				<!--gallery-->
-				<div class="gallery">
-					<ul id="image-gallery" class="cS-hidden">
-						<li data-thumb="images/uploads/hotel4.jpg"> 
-							<img src="/assets/images/uploads/hotel4.jpg" alt="" />
-						</li>
-						<li data-thumb="images/uploads/hotel1.jpg"> 
-							<img src="/assets/images/uploads/hotel1.jpg" alt="" />
-						</li>
-						<li data-thumb="images/uploads/hotel2.jpg"> 
-							<img src="/assets/images/uploads/hotel2.jpg" alt="" />
-						</li>
-						<li data-thumb="images/uploads/hotel5.jpg"> 
-							<img src="/assets/images/uploads/hotel5.jpg" alt="" />
-						</li>
-						<li data-thumb="images/uploads/hotel3.jpg"> 
-							<img src="/assets/images/uploads/hotel3.jpg" alt="" />
-						</li>
-						<li data-thumb="images/uploads/hotel6.jpg"> 
-							<img src="/assets/images/uploads/hotel6.jpg" alt="" />
-						</li>
-					</ul>
-				</div>
-				<!--//gallery-->
-                
-                
-                <!-- hot deals for you -->
-                        <section class="offers_section inner">
-							<div class="wrap">
-								<div class="offers-heading">
-									<h2>The best deals we have to offer you!</h2>
-								</div>							
-										<!--info boxes-->
-										<div class="boxes">
-											<div class="row">
-											<!--column-->
-											<div class="one-third inner-hot">
-												<div class="hovereffect">
-													<img class="img-responsive" src="/assets/images/offers/offer-img-1.png" alt="">
-														<div class="overlay">
-															<a href="#0"><h1>Best ipsum hotel 
-															<span class="stars">
-																<i class="material-icons">&#xE838;</i>
-																<i class="material-icons">&#xE838;</i>
-																<i class="material-icons">&#xE838;</i>
-															</span>
-															</h1></a>
-															<span class="address">Marylebone, London</span>
-															<span class="rating"> 8 /10</span>
-															<p><span class="address">7 Nights / Dec 2016</span>
-															<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
-														</div>
-												</div>
-											</div>
-											<!--//column-->												
-											<!--column-->
-											<div class="one-third inner-hot">
-												<div class="hovereffect">
-													<img class="img-responsive" src="/assets/images/offers/offer-img-3.png" alt="">
-														<div class="overlay">
-															<a href="#0"><h1>Best ipsum hotel 
-															<span class="stars">
-																<i class="material-icons">&#xE838;</i>
-																<i class="material-icons">&#xE838;</i>
-																<i class="material-icons">&#xE838;</i>
-															</span>
-															</h1></a>
-															<span class="address">Marylebone, London</span>
-															<span class="rating"> 8 /10</span>
-															<p><span class="address">7 Nights / Dec 2016</span>
-															<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
-														</div>
-												</div>
-											</div>
-											<!--//column-->
-											<!--column-->
-											<div class="one-third inner-hot">
-												<div class="hovereffect">
-													<img class="img-responsive" src="/assets/images/offers/offer-img-4.png" alt="">
-														<div class="overlay">
-															<a href="#0"><h1>Best ipsum hotel 
-															<span class="stars">
-																<i class="material-icons">&#xE838;</i>
-																<i class="material-icons">&#xE838;</i>
-																<i class="material-icons">&#xE838;</i>
-															</span>
-															</h1></a>
-															<span class="address">Marylebone, London</span>
-															<span class="rating"> 8 /10</span>
-															<p><span class="address">7 Nights / Dec 2016</span>
-															<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
-														</div>
-												</div>
-											</div>
-											<!--//column-->
-											
-										</div>
-									</div>
-										<!--//info boxes-->
-									</div>
-						</section>
-                <!-- hot deal for you end -->
-			
-				<!--inner navigation-->
-				<nav class="inner-nav">
-					<ul>
-						<li class="availability active"><a ng-click="getArticle('availability')" href="javascript:void(0);" title="Availability">Availability</a></li>
-						<li class="description"><a ng-click="getArticle('description')" href="javascript:void(0);" title="Description">Description</a></li>
-						<li class="facilities"><a ng-click="getArticle('facilities')" href="javascript:void(0);" title="Facilities">Facilities</a></li>
-						<li class="location"><a ng-click="getArticle('location')" href="javascript:void(0);" title="Location">Location</a></li>
-						<li class="reviews"><a ng-click="getArticle('reviews')" href="javascript:void(0);" title="Reviews">Reviews</a></li>
-						<li class="things-to-do"><a ng-click="getArticle('things-to-do')" href="javascript:void(0);" title="Things to do">Things to do</a></li>
-					</ul>
-				</nav>
-				<!--//inner navigation-->
-				
-				<!--availability-->
-				<section ng-if="displaySectoin=='availability'" id="availability" class="tab-content">
-					<article>
-						<h2>Overview</h2>
-						<div class="text-wrap">
-							<p> Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet
-					<span id="textarea" style="display: none;">Here is some text that I want added to the HTML file Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet 
-					Here is some text that I want added to the HTML file Lorem ipsum dolor sit ametLorem ipsum dolor sit ametLorem ipsum dolor sit amet </span></p>
-					<a id="seeMore" onclick="toggleSeeMore()" href="javascript:void(0);" style="color:#B1A398;">See More</a>
-							
-							<!-- <p>Available rooms from <span class="date">Thurs 29 Nov 2016</span> to <span class="date">Fri 30 Nov 2016</span>.</p> -->
-						</div>
-						<h2>Availability</h2>
-						<div class="text-wrap">
-							<a href="#" class="gradient-button right" title="Change dates">Change dates</a>
-							<p>Available rooms from <span class="date">{{packageDetails.ValidFrom | date : "MM-dd-yyyy"}}</span> to <span class="date">{{packageDetails.ValidTo | date : "MM-dd-yyyy"}}</span>.</p>
-						</div>
-						<div class="text-wrap">
-						<!-- 
-						 <p><input type="checkbox"> </p> -->
-						 <div class="some-ter">
-							<h2 class="rooms"> Room types </h2>
-							<div class="rights">
-								<p> Hotel Price Per Person </p>
-								<div class="containers" id="containere" onclick="onContainereClick(this)" style="display:inline-block;">
-									
-									  <div class="switch" id="switch">
-									  </div>
-									  <div class="label left">  </div>
-									  <div class="label right"> </div>
-									
-								</div> 
-								<p> Total Hotel Price</p>
-							</div>
-						
-						</div>		
-							
-							
-						</div>
-				 
-						<ul class="room-types">
-							<!--room-->
-							<li>
-								<figure class="left" id="gallery1">
-									<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-										<img src="/assets/images/uploads/room1.jpg" alt="" />
-										<span class="image-overlay"></span>
-									</a>
-								</figure>
-								<div class="meta full-board">
-									<h3>Superior Double Room</h3>
-									<h5>Full Board <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
-								</div>
-								<div class="room-information">
-									<div class="row">
-										<p><strong>Bed Size(s):</strong> 1 Double </p>
-									</div>
-									<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
-								</div>
-								<div class="more-information">
-                                	<p>Prices are per room20 % VAT Included in price</p>
-									<p>Non-refundableFull English breakfast &euro; 24.80 </p>
-									<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
-									<p><strong>Room Facilities:</strong> {{roomDetails.Facilities}}</p>
-                                    <p><strong>Room Size:</strong>  16 square metres</p>
-								</div>
-							</li>
-							<!--//room-->
-							
-							<!--room-->
-							<li>
-								<figure class="left" id="gallery1">
-									<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-										<img src="/assets/images/uploads/room1.jpg" alt="" />
-										<span class="image-overlay"></span>
-									</a>
-								</figure>
-								<div class="meta full-board">
-									<h3>Superior Double Room</h3>
-									<h5>Half Board <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
-								</div>
-								<div class="room-information">
-									<div class="row">
-										<p><strong>Bed Size(s):</strong> 1 Double </p>
-									</div>
-									<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
-								</div>
-								<div class="more-information">
-                                	<p>Prices are per room20 % VAT Included in price</p>
-									<p>Non-refundableFull English breakfast &euro; 24.80 </p>
-									<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
-									<p><strong>Room Facilities:</strong> Safety Deposit Box, Air Conditioning, Desk, Ironing Facilities, Seating Area, Heating, Shower, Bath, Hairdryer, Toilet, Bathroom, Pay-per-view Channels, TV, Telephone</p>
-                                    <p><strong>Room Size:</strong>  16 square metres</p>
-								</div>
-							</li>
-							<!--//room-->
-							
-							<!--room-->
-							<li>
-								<figure class="left" id="gallery1">
-									<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-										<img src="/assets/images/uploads/room1.jpg" alt="" />
-										<span class="image-overlay"></span>
-									</a>
-								</figure>
-								<div class="meta full-board">
-									<h3>Superior Double Room</h3>
-									<h5>All Inclusive <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
-								</div>
-								<div class="room-information">
-									<div class="row">
-										<p><strong>Bed Size(s):</strong> 1 Double </p>
-									</div>
-									<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
-								</div>
-								<div class="more-information">
-                                	<p>Prices are per room20 % VAT Included in price</p>
-									<p>Non-refundableFull English breakfast &euro; 24.80 </p>
-									<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
-									<p><strong>Room Facilities:</strong> Safety Deposit Box, Air Conditioning, Desk, Ironing Facilities, Seating Area, Heating, Shower, Bath, Hairdryer, Toilet, Bathroom, Pay-per-view Channels, TV, Telephone</p>
-                                    <p><strong>Room Size:</strong>  16 square metres</p>
-								</div>
-							</li>
-							<!--//room-->
-							
-							<!--room-->
-							<li>
-								<figure class="left" id="gallery1">
-									<a href="images/uploads/room1.jpg" data-sub-html="<p>Superior Double Room</p>">
-										<img src="/assets/images/uploads/room1.jpg" alt="" />
-										<span class="image-overlay"></span>
-									</a>
-								</figure>
-								<div class="meta full-board">
-									<h3>{{packageDetails.RoomDetails.RoomDescription}}</h3>
-									<h5>Full Board <span><a href="javascript:void(0)" title="more info" class="more-info fas"><i class="fa fa-chevron-down" aria-hidden="true"></i> </a></span></h5>
-								</div>
-								<div class="room-information">
-									<div class="row">
-										<p><strong>Bed Size(s):</strong> 1 Double </p>
-									</div>
-									<a href="booking-step1.html" class="gradient-button" title="Book">&euro; 55 Book Now</a>
-								</div>
-								<div class="more-information">
-                                	<p>Prices are per room20 % VAT Included in price</p>
-									<p>Non-refundableFull English breakfast &euro; 24.80 </p>
-									<p>Stylish and individually designed room featuring a satellite TV, mini bar and a 24-hour room service menu.</p>
-									<p><strong>Room Facilities:</strong> Safety Deposit Box, Air Conditioning, Desk, Ironing Facilities, Seating Area, Heating, Shower, Bath, Hairdryer, Toilet, Bathroom, Pay-per-view Channels, TV, Telephone</p>
-                                    <p><strong>Room Size:</strong>  16 square metres</p>
-								</div>
-							</li>
-							<!--//room-->
-						</ul>
-					</article>
-				</section>
-				<!--//availability-->
-				
-				<!--description-->
-				<section ng-if="displaySectoin=='description'" id="description" class="tab-content">
-					<article>
-						<h2>General</h2>
-						<div class="text-wrap">	
-							<p>{{packageDetails.RoomDetails.RoomLongDescription}}</p>
-						</div>
-						
-						<h2>Check-in</h2>
-						<div class="text-wrap">	
-							<p>From {{roomDetails.Checkin}}</p>
-						</div>
-						
-						<h2>Check-out</h2>
-						<div class="text-wrap">	
-							<p>Untill {{roomDetails.Checkout}}</p>
-						</div>
-						
-						<h2>Cancellation / Prepayment</h2>
-						<div class="text-wrap">	
-							<p>{{roomDetails.Cancellation_prepayment}}</p>
-						</div>
-						
-						<h2>Children and extra beds</h2>
-						<div class="text-wrap">	
-							<p>{{roomDetails.Children_extrabed}}</p>
-						</div>
-						
-						<h2>Pets</h2>
-						<div class="text-wrap">	
-							<p>{{roomDetails.pets}}</p>
-						</div>
-						
-						<h2>Accepted credit cards</h2>
-						<div class="text-wrap">	
-							<p>{{roomDetails.AcceptedCC}}</p>
-						</div>
-					</article>
-				</section>
-				<!--//description-->
-				
-				<!--facilities-->
-				<section ng-if="displaySectoin=='facilities'" id="facilities" class="tab-content">
-					<article>
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>All Inclusive Vacation</title>
+   </head>
+   <body>
+      <!--- loading animation -->
+      <div ng-if="loading" class="loading">
+         <div class="ball"></div>
+         <div class="ball1"></div>
+      </div>
+      <!--- //loading animation -->
+      <!--header-->
+      <header class="header inside-header">
+         <div class="wrap">
+            <!--logo-->
+            <div class="logo inside-logo"><a href="index.html" title=""><img src="/assets/images/txt/logo.png" alt="Book Your Travel" /></a></div>
+            <!--//logo-->
+            <!--ribbon-->
+            <div class="header-nav-buts inside_top-nav">
+               <nav>
+                  <a href="my_account.html" title="My Account">My Account</a>
+                  <a href="#0" title="Login" id="btnlogin">Login</a>
+                  <a href="my_account.html" title="Settings">Settings</a>
+                  </ul>
+               </nav>
+            </div>
+            <!--//ribbon-->
+         </div>
+      </header>
+      <!--//header-->
+      <!--main-->
+      <main class="main">
+         <div class="wrap">
+            <!--breadcrumbs-->
+            <nav class="breadcrumbs">
+               <!--crumbs-->
+               <ul>
+                  <li>Search results</li>
+               </ul>
+               <!--//crumbs-->
+               <!--top right navigation-->
+               <ul class="top-right-nav">
+                  <li><a href="search_results.html" title="Back to results">Back to results</a></li>
+                  <li><a href="#" title="Change search">Change search</a></li>
+               </ul>
+               <!--//top right navigation-->
+            </nav>
+            <!--//breadcrumbs-->
+            <div class="row">
+               <!--hotel three-fourth content-->
+               <section class="three-fourth">
+                  <!--gallery-->
+                  <div class="gallery">
+                     <ul id="image-gallery" class="cS-hidden">
+                        <li data-thumb="images/uploads/hotel4.jpg"> 
+                           <img src="/assets/images/uploads/hotel4.jpg" alt="" />
+                        </li>
+                        <li data-thumb="images/uploads/hotel1.jpg"> 
+                           <img src="/assets/images/uploads/hotel1.jpg" alt="" />
+                        </li>
+                        <li data-thumb="images/uploads/hotel2.jpg"> 
+                           <img src="/assets/images/uploads/hotel2.jpg" alt="" />
+                        </li>
+                        <li data-thumb="images/uploads/hotel5.jpg"> 
+                           <img src="/assets/images/uploads/hotel5.jpg" alt="" />
+                        </li>
+                        <li data-thumb="images/uploads/hotel3.jpg"> 
+                           <img src="/assets/images/uploads/hotel3.jpg" alt="" />
+                        </li>
+                        <li data-thumb="images/uploads/hotel6.jpg"> 
+                           <img src="/assets/images/uploads/hotel6.jpg" alt="" />
+                        </li>
+                     </ul>
+                  </div>
+                  <!--//gallery-->
+                  <!--inner navigation-->
+                  <nav class="inner-nav">
+                     <ul>
+                        <li class="description active"><a ng-click="getArticle('description')" href="javascript:void(0);" title="Description">Package Description</a></li>
+                        <li class="facilities"><a ng-click="getArticle('facilities')" href="javascript:void(0);" title="Facilities">Facilities</a></li>
+                        <li class="location"><a ng-click="getArticle('location')" href="javascript:void(0);" title="Location">Location</a></li>
+                        <li class="reviews"><a ng-click="getArticle('reviews')" href="javascript:void(0);" title="Reviews">Reviews</a></li>
+                        <li class="things-to-do"><a ng-click="getArticle('things-to-do')" href="javascript:void(0);" title="Things to do">Things to do</a></li>
+                     </ul>
+                  </nav>
+                  <!--//inner navigation-->
+                  <!--description-->
+                  <section ng-if="displaySectoin=='description'" id="description" class="tab-content">
+                     <article>
+                        <h2>General</h2>
+                        <div class="text-wrap">
+                           <p>{{packageDetails.PackageName}}</p>
+                           <img ng-src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/Images/{{packageDetails.PackageCode}}.jpg" />
+                        </div>
+                        <div class="deals flights row results">
+                           <!--deal-->
+                           <article class="full-width slice" style="padding: 0px 20px;">
+                                <!-- SINGLE FLIGHT START-->
+                        <div class="details new-design" style="position:relative;">
+                           <div class="depart-wrap">
+                              <h3 style="background-image: url('/assets/images/flight-logos/easyjet.png')"><span>
+                              	{{getDate(packageDetails.FlightDetails.ArrivalDatetime)}}
+                              	<!-- Wednesday 25 January 2017 -->
+                              </span></h3>
+                              <div class="table-flight first frid">
+                                 <div class="f-wrap design">
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.ArrivalDatetime)}}</strong> <br />{{packageDetails.FlightDetails.DepartAirportLocationCode}}</div>
+                                 </div>
+                                 <div class="f-wrap design">
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.DepartDatetime)}}</strong><br />{{packageDetails.FlightDetails.ArrivalAirportLocationCode}}</div>
+                                 </div>
+                                 <div class="f-wrap design">
+                                    <div class="flight-info"><strong>{{packageDetails.FlightDetails.JourneyDuration}}</strong><br />{{packageDetails.FlightDetails.FlightNumber}}</div>
+                                 </div>
+                              </div>
+                              <h3 style="background-image: url('/assets/images/flight-logos/easyjet.png')"><span>{{getDate(packageDetails.FlightDetails.ArrivalDatetime_RET)}}</span></h3>
+                              <div class="table-flight">
+                                 <div class="f-wrap design">
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.ArrivalDatetime_RET)}}</strong> <br />{{packageDetails.FlightDetails.DepartAirportLocationCode_RET}}</div>
+                                 </div>
+                                 <div class="f-wrap design">
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.DepartDatetime_RET)}}</strong><br />{{packageDetails.FlightDetails.ArrivalAirportLocationCode_RET}}</div>
+                                 </div>
+                                 <div class="f-wrap design">
+                                    <div class="flight-info"><strong>{{packageDetails.FlightDetails.JourneyDuration_RET}}</strong><br />{{packageDetails.FlightDetails.FlightNumber_RET}}</div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="depart-button">
+                              <a href="search_results-hotel.html" title="Book now" class="gradient-button book"> {{packageDetails.FlightDetails.TotalFareCurr}} {{packageDetails.FlightDetails.TotalFareAmount}}</a>
+                              <br />
+                              <span>per person inc. taxes</span>
+                           </div>
+                        </div>
+                        <!-- SINGLE FLIGHT END -->		
+                           </article>
+                           <!--//deal-->
+                        </div>
+                        <h2>Hotel Details</h2>
+                        <!--deal-->
+                        <article class="full-width">
+                           <figure><a href="hotel.html" title="">
+                           	<img ng-src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{packageDetails.RoomDetails.HotelImage}}" />
+                           	</a></figure>
+                           <!-- https://mgmpackageslive.azurewebsites.net/mgmpackageslive/Images/1026.jpg -->
+                           <div class="details">
+                              <h3>{{packageDetails.RoomDetails.RoomDescription}} 
+                                 <span class="stars">
+                                 <i ng-if="packageDetails.RoomDetails.StarRating>0" class="material-icons">&#xE838;</i>
+                                 <i ng-if="packageDetails.RoomDetails.StarRating>1" class="material-icons">&#xE838;</i>
+                                 <i ng-if="packageDetails.RoomDetails.StarRating>2" class="material-icons">&#xE838;</i>
+                                 <i ng-if="packageDetails.RoomDetails.StarRating>3" class="material-icons">&#xE838;</i>
+                                 <i ng-if="packageDetails.RoomDetails.StarRating>4" class="material-icons">&#xE838;</i>
+                                 </span>
+                              </h3>
+                              <span class="address">London  •  <a href="#">Show on map</a></span>
+                              <span class="rating"> 8 /10</span>
+                              <span class="price">Price per night from  <em>&euro; {{packageDetails.RoomDetails.RoomRate}}</em> </span>
+                              <div class="description">
+                                 <p>{{packageDetails.RoomDetails.RoomLongDescription}} <a ng-href="{{packageDetails.RoomDetails.HotelURL}}"> More info</a></p>
+                              </div>
+                           </div>
+                        </article>
+                        <!--//deal-->
+                        <article class="widget">
+                           <h4>ADD TRANSFERS </h4>
+                           <p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
+                           <div class="row">
+                              <div class="one-third inner-hot">
+                                 <div class="hovereffect">
+                                    <img class="img-responsive" src="/assets/images/hover-one.png" alt="">
+                                    <h3>  ADD TRANSFERS  </h3>
+                                    <div class="overlay">
+                                       <p>ADD TRANSPORT  <br/> <span>  $ 20.00  </span> <br/></p>
+                                       <div class="proceddbut"><a href="#0" class="proceed">Proceed</a></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </article>
+                     </article>
+                  </section>
+                  <!--//description-->
+                  <!--facilities-->
+                  <section ng-if="displaySectoin=='facilities'" id="facilities" class="tab-content">
+                     <article>
 						<h2>Facilities</h2>
 						<div class="text-wrap">	
-							<!-- <ul class="three-col">
-								<li ng-repeat="">Kitchenette</li>
-							</ul> -->
-							{{roomDetails.Facilities}}
+							<ul class="three-col">
+								<li ng-repeat="item in roomDetails.Facilities.split(',')">{{item}}</li>
+							</ul>
 						</div>
 						
 						<h2>Activities</h2>
@@ -355,142 +204,179 @@
 						
 						<h2>Internet</h2>
 						<div class="text-wrap">	
-							<p><strong>Free!</strong> WiFi is available in all areas and is free of charge. </p>
+							<p>{{roomDetails.Internet}}</p>
 						</div>
 						
 						<h2>Parking</h2>
 						<div class="text-wrap">	
-							<p>Private parking is possible at a location nearby (reservation is not needed) and costs USD 28.80 per day.</p>
+							<p>{{roomDetails.Parking}}</p>
 						</div>
 					</article>
-				</section>
-				<!--//facilities-->
-				
-				<!--location-->
-				<section ng-if="displaySectoin=='location'" id="location" class="tab-content">
-					<article>
-						<!--map-->
-							<!-- <div class="gmap" id="pageDetailMap"></div> -->
-							<div></div>
-							<ng-map center="{{packageDetails.RoomDetails.Latitude}},{{packageDetails.RoomDetails.Longitude}}" zoom="3"></ng-map>
-						<!--//map-->
-					</article>
-				</section>
-				<!--//location-->
-				
-				<!--reviews-->
-				<section ng-if="displaySectoin=='reviews'" id="reviews" class="tab-content">
-					<article>
-						<h2>Hotel Score and Score Breakdown</h2>
-						<div class="score">
-							<span class="achieved">{{packageDetails.RoomDetails.StarRating}}</span>
-							<span> / 10</span>
-							<p class="info">Based on 782 reviews</p>
-							<p class="disclaimer">Guest reviews are written by our customers <strong>after their stay</strong> at Hotel Best Ipsum.</p>
-						</div>
-						
-						<dl class="chart">
-							<dt>Clean</dt>
-							<dd><span id="data-one" style="width:80%;">8</span></dd>
-							<dt>Comfort</dt>
-							<dd><span id="data-two" style="width:60%;">6</span></dd>
-							<dt>Location</dt>
-							<dd><span id="data-three" style="width:80%;">8</span></dd>
-							<dt>Staff</dt>
-							<dd><span id="data-four" style="width:100%;">10</span></dd>
-							<dt>Services</dt>
-							<dd><span id="data-five" style="width:70%;">7</span></dd>
-							<dt>Value for money</dt>
-							<dd><span id="data-six" style="width:90%;">9</span></dd>
-						</dl>
-					</article>
-				</section>
-				<!--//reviews-->
-				
-				<!--things to do-->
-				<section ng-if="displaySectoin=='things-to-do'" id="things-to-do" class="tab-content">
-					<h2>Things to do</h2>
-					<article>
-						{{roomDetails.ThingsTodo}}
-					</article>
-				</section>
-				<!--//things to do-->
-			</section>
-			<!--//hotel content-->
-			
-			<!--sidebar-->
-			<aside class="one-fourth right-sidebar">
-				<!--hotel details-->
-				<article class="hotel-details">
-					<h1>Best ipsum hotel 
-						<span class="stars">
-							<i class="material-icons">&#xE838;</i>
-							<i class="material-icons">&#xE838;</i>
-							<i class="material-icons">&#xE838;</i>
-						</span>
-					</h1>
-					<span class="address">Marylebone, London</span>
-					<span class="rating"> 8 /10</span>
-					<div class="description">
-						<p>The Best Ipsum hotel  features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art. </p>
-					</div>
-				</article>
-				<!--//hotel details-->
-				<!--hotel details-->
-				<article class="hotel-details scrap-but-sec">
-					<a href="#0" class="scrap-but">save to scrapbook</a>
-					<a href="#0" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-					<a href="#0" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-					<a href="#0" class="social"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-					<p>Share with friends</p>
-				</article>
-				<!--//hotel details-->
-				
-				<!--Need Help Booking?-->
-				<article class="widget">
-					<h4>Need Help Booking?</h4>
-					<p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
-					<p class="number">(+44) 845 468 0164</p>
-				</article>
-				<!--//Need Help Booking?-->
-				
-				<!--Why Book with us?-->
-				<article class="widget">
-					<h4>Why Book with us?</h4>
-					<h5>Upto 20% discount</h5>
-					<p>It is arduous to grab the best deals in right time! We always have the right time for you.</p>
-					<h5>24/7 Customer Support</h5>
-					<p>We are pleased to help you all day, all night! We are with you!- 24/7 customer service.</p>
-					<h5>Pay the price +low</h5>
-					<p>Better deals at Super exciting prices guaranteed! Always pay what you can afford!</p>
-				</article>
-				<!--//Why Book with us?-->
-			<!-- 	<article class="widget"> -->
-					<article class="widget">
-						<h4>Near By Hotels</h4>
-							<figure><a href="hotel.html" title=""><img src="/assets/images/uploads/hotel1.jpg" alt=""></a></figure>
-							<div class="details">
-								<h3>Best ipsum hotel 
-									<span class="stars">
-										<i class="material-icons"></i>
-										<i class="material-icons"></i>
-										<i class="material-icons"></i>
-										<i class="material-icons"></i>
-									</span>
-								</h3>
-								<span class="address">London  •  <a href="#">Show on map</a></span>
-								<span class="rating"> 8 /10</span>
-								<span class="price">Price per person from  <em>$ 500</em> </span>
-								<div class="description">
-									<p>4 Nights, Self Catering from London Southend with EasyJet Airlineson 25th January 2016 <a href="hotel.html">More info</a></p>
-								</div>
-								<a href="hotel.html" title="Book now" class="gradient-button">Book now</a>
-							</div>
-						</article>
-				<!-- </article> -->
-			</aside>
-			<!--//sidebar-->
-		</div>
-		<!--//row-->
-	</div>
-</main>
+                  </section>
+                  <!--//facilities-->
+                  <!--location-->
+                  <section ng-if="displaySectoin=='location'" id="location" class="tab-content">
+                     <article>
+                        <!--map-->
+                        <ng-map center="{{packageDetails.RoomDetails.Latitude}},{{packageDetails.RoomDetails.Longitude}}" zoom="3"></ng-map>
+                        <!--//map-->
+                     </article>
+                  </section>
+                  <!--//location-->
+                  <!--reviews-->
+                  <section ng-if="displaySectoin=='reviews'"  id="reviews" class="tab-content">
+                     <article>
+                        <h2>Hotel Score and Score Breakdown</h2>
+                        <div class="score">
+                           <span class="achieved">8 </span>
+                           <span> / 10</span>
+                           <p class="info">Based on 782 reviews</p>
+                           <p class="disclaimer">Guest reviews are written by our customers <strong>after their stay</strong> at Hotel Best Ipsum.</p>
+                        </div>
+                        <dl class="chart">
+                           <dt>Clean</dt>
+                           <dd><span id="data-one" style="width:80%;">8</span></dd>
+                           <dt>Comfort</dt>
+                           <dd><span id="data-two" style="width:60%;">6</span></dd>
+                           <dt>Location</dt>
+                           <dd><span id="data-three" style="width:80%;">8</span></dd>
+                           <dt>Staff</dt>
+                           <dd><span id="data-four" style="width:100%;">10</span></dd>
+                           <dt>Services</dt>
+                           <dd><span id="data-five" style="width:70%;">7</span></dd>
+                           <dt>Value for money</dt>
+                           <dd><span id="data-six" style="width:90%;">9</span></dd>
+                        </dl>
+                     </article>
+                  </section>
+                  <!--//reviews-->
+                  <!--things to do-->
+                  <section ng-if="displaySectoin=='things-to-do'" id="things-to-do" class="tab-content">
+                     <article>
+                        <h2>London</h2>
+                        <figure><img src="/assets/images/uploads/london1.jpg" alt="Things to do - London general" /></figure>
+                        <p><strong>London is a diverse and exciting city with some of the best sights and attractions in the world. </strong></p>
+                        <p>See London from above on the London Eye; meet a celebrity at Madame Tussauds; examine some of the world’s most precious treasures at the British Museum or come face-to-face with the dinosaurs at the Natural History Museum.</p>
+                        <h2>Sports and nature</h2>
+                        <figure><img src="/assets/images/uploads/london2.jpg" alt="Things to do - London Sports and nature" /></figure>
+                        <p><strong>London is one of the greenest capitals in the world, with plenty of green and open spaces. There are more than 3000 open spaces.</strong></p>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci. </p>
+                        <h2>Nightlife</h2>
+                        <figure><img src="/assets/images/uploads/london3.jpg" alt="Things to do - London Nightlife" /></figure>
+                        <p><strong>Looking for nightclubs in London? Take a look at our guide to London clubs. Browse for club ideas, regular club nights and one-off events. </strong></p>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci. </p>
+                        <h2>Culture and history</h2>
+                        <figure><img src="/assets/images/uploads/london4.jpg" alt="Things to do - London general" /></figure>
+                        <p><strong>For a display of British pomp and ceremony, watch the Changing the Guard ceremony outside Buckingham Palace.</strong></p>
+                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.Ut wisi enim ad minim veniam, quis nostrud exerci. </p>
+                        <hr />
+                        <a href="#" class="gradient-button right" title="Read more">Read more</a>
+                     </article>
+                  </section>
+                  <!--//things to do-->
+               </section>
+               <!--//hotel content-->
+               <!--sidebar-->
+               <aside class="one-fourth right-sidebar">
+                  <!--hotel details-->
+                  <article class="hotel-details custom-fix">
+                     <h1>Best ipsum package</h1>
+                     <span class="address">Marylebone, London</span>
+                     <span class="rating"> 8 /10</span>
+                     <div class="description">
+                        <p>The Best Ipsum hotel  features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art. </p>
+                        <div class="row book_pack">
+                           <a href="booking-step1.html" title="Book now" class="gradient-button">&euro; 600 Book now</a>
+                        </div>
+                     </div>
+                  </article>
+                  <!--//hotel details-->
+                  <!--Need Help Booking?-->
+                  <article class="widget">
+                     <h4>Need Help Booking?</h4>
+                     <p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
+                     <p class="number">(+44) 845 468 0164</p>
+                  </article>
+                  <!--//Need Help Booking?-->
+                  <!--Why Book with us?-->
+                  <article class="widget end-aside">
+                     <h4>Why Book with us?</h4>
+                     <h5>Upto 20% discount</h5>
+                     <p>It is arduous to grab the best deals in right time! We always have the right time for you.</p>
+                     <h5>24/7 Customer Support</h5>
+                     <p>We are pleased to help you all day, all night! We are with you!- 24/7 customer service.</p>
+                     <h5>Pay the price +low</h5>
+                     <p>Better deals at Super exciting prices guaranteed! Always pay what you can afford!</p>
+                  </article>
+                  <!--//Why Book with us?-->
+               </aside>
+               <!--//sidebar-->
+            </div>
+            <!--//row-->
+         </div>
+      </main>
+      <!--//main-->
+      
+      <div class="lightbox" id="login">
+         <div class="lb-wrap">
+            <a href="#" class="close">x</a>
+            <div class="lb-content">
+               <form class="row">
+                  <h3>Log in</h3>
+                  <div class="f-item full-width">
+                     <label for="email">E-mail address</label>
+                     <input type="email" id="email" name="email" />
+                  </div>
+                  <div class="f-item full-width">
+                     <label for="password">Password</label>
+                     <input type="password" id="password" name="password" />
+                  </div>
+                  <div class="f-item checkbox full-width">
+                     <input type="checkbox" id="remember_me" name="checkbox" />
+                     <label for="remember_me">Remember me next time</label>
+                  </div>
+                  <div class="f-item full-width">
+                     <p><a href="#" title="Forgot password?">Forgot password?</a><br />
+                        Dont have an account yet? <a href="#0" title="Sign up" id="btnregister">Sign up.</a>
+                     </p>
+                     <input type="submit" id="login" name="login" value="login" class="gradient-button" />
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- register -->
+      <div class="lightbox" id="register">
+         <div class="lb-wrap">
+            <a href="#" class="close">x</a>
+            <div class="lb-content">
+               <form class="row">
+                  <h3>Register</h3>
+                  <div class="f-item full-width">
+                     <label for="f_name">Name and surname</label>
+                     <input type="text" id="ns_name" name="ns_name" />
+                  </div>
+                  <div class="f-item full-width">
+                     <label for="email">E-mail address</label>
+                     <input type="email" id="email" name="email" />
+                  </div>
+                  <div class="f-item full-width">
+                     <label for="password">Password</label>
+                     <input type="password" id="password" name="password" />
+                  </div>
+                  <div class="f-item checkbox full-width">
+                     <input type="checkbox" id="newsletter_s" name="newsletter" />
+                     <label for="newsletter_s">Tell me about inspiring travel news, and exclusive discounts!</label>
+                  </div>
+                  <div class="f-item checkbox full-width">
+                     <p>By clicking "Create Account" you confirm that you accept the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. </p>
+                     <input type="submit" id="register" name="register" value="Create Account" class="gradient-button" />
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript">
+      </script> 
+   </body>
+</html>
