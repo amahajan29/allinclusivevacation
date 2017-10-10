@@ -9,6 +9,8 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     apis.packageDetail(packageObj).then(function(response){
         $scope.loading = false;
         $scope.packageDetails = response;
+        //$scope.getAirLinesName();
+        $scope.getAirPortsName(response.FlightDetails);
         NgMap.getMap().then(function(map) {
             console.log(map.getCenter());
             console.log('markers', map.markers);
@@ -18,6 +20,7 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     }).catch(function(response) {
         console.log("Sorry, there is a problem. Please, contact support.");
     });
+
     var roomObj = {categoryname:"T0I",resort:"FDV"};
     apis.roomDetail(roomObj).then(function(response){
         $scope.roomDetails = Array.isArray(response)?response[0]:response;
@@ -26,7 +29,41 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
         console.log("Sorry, there is a problem. Please, contact support.");
     });
 
-    
+    $scope.getAirPortsName = function(FlightDetails){
+        var ArrivalAirportLocationCode = FlightDetails.ArrivalAirportLocationCode;
+        var ArrivalAirportLocationCode_RET = FlightDetails.ArrivalAirportLocationCode_RET;
+        var DepartAirportLocationCode = FlightDetails.DepartAirportLocationCode;
+        var DepartAirportLocationCode_RET = FlightDetails.DepartAirportLocationCode_RET;
+        apis.airPorts().then(function(airPorts){
+            for(var i in airPorts){
+                if(i == ArrivalAirportLocationCode){
+                    $scope.packageDetails.FlightDetails.ArrivalAirportLocation = airPorts[i][0].LocationName;
+                }
+                if(i == DepartAirportLocationCode){
+                    $scope.packageDetails.FlightDetails.DepartAirportLocation = airPorts[i][0].LocationName;
+                }
+                if(i == ArrivalAirportLocationCode_RET){
+                    $scope.packageDetails.FlightDetails.ArrivalAirportLocation_RET = airPorts[i][0].LocationName;
+                }
+                if(i == DepartAirportLocationCode_RET){
+                    $scope.packageDetails.FlightDetails.DepartAirportLocation_RET = airPorts[i][0].LocationName;
+                }
+            }
+        }).catch(function(response) {
+            console.log("Sorry, there is a problem. Please, contact support.");
+        });
+    }
+
+    /*$scope.getAirLinesName = function(shortcode){
+        apis.airLines().then(function(airLines){
+            console.log("Airlines", airLines);
+            //pos = myArray.map(function(e) { return e.hello; }).indexOf(shortcode);
+            var elem = airLines.findIndex(shortcode);
+            $scope.packageDetails.FlightDetails.ArrivalAirportLocation = elem[0].LocationName;
+        }).catch(function(response) {
+            console.log("Sorry, there is a problem. Please, contact support.");
+        });
+    }*/
 
     /*$scope.packageDetails = "111";
     $scope.testg = "222";
@@ -57,6 +94,11 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
         var hours = dateObj.getHours();
         var minutes = dateObj.getMinutes();
         return hours+":"+minutes;
+    }
+    $scope.minuteToHours = function(minutes) {
+        var hours = parseInt(minutes/60);
+        var minute = minutes%60;
+        return hours+"h "+minute;
     }
     $scope.getArticle = function(article) {
         console.log(article);

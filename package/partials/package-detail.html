@@ -110,25 +110,25 @@
                               </span></h3>
                               <div class="table-flight first frid">
                                  <div class="f-wrap design">
-                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.ArrivalDatetime)}}</strong> <br />{{packageDetails.FlightDetails.DepartAirportLocationCode}}</div>
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.ArrivalDatetime)}}</strong> <br />{{packageDetails.FlightDetails.DepartAirportLocation}}</div>
                                  </div>
                                  <div class="f-wrap design">
-                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.DepartDatetime)}}</strong><br />{{packageDetails.FlightDetails.ArrivalAirportLocationCode}}</div>
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.DepartDatetime)}}</strong><br />{{packageDetails.FlightDetails.ArrivalAirportLocation?packageDetails.FlightDetails.ArrivalAirportLocation:packageDetails.FlightDetails.ArrivalAirportLocationCode}}</div>
                                  </div>
                                  <div class="f-wrap design">
-                                    <div class="flight-info"><strong>{{packageDetails.FlightDetails.JourneyDuration}}</strong><br />{{packageDetails.FlightDetails.FlightNumber}}</div>
+                                    <div class="flight-info"><strong>{{minuteToHours(packageDetails.FlightDetails.JourneyDuration)}}</strong><br />{{packageDetails.FlightDetails.FlightNumber}}</div>
                                  </div>
                               </div>
                               <h3 style="background-image: url('/assets/images/flight-logos/easyjet.png')"><span>{{getDate(packageDetails.FlightDetails.ArrivalDatetime_RET)}}</span></h3>
                               <div class="table-flight">
                                  <div class="f-wrap design">
-                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.ArrivalDatetime_RET)}}</strong> <br />{{packageDetails.FlightDetails.DepartAirportLocationCode_RET}}</div>
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.ArrivalDatetime_RET)}}</strong> <br />{{packageDetails.FlightDetails.DepartAirportLocation_RET}}</div>
                                  </div>
                                  <div class="f-wrap design">
-                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.DepartDatetime_RET)}}</strong><br />{{packageDetails.FlightDetails.ArrivalAirportLocationCode_RET}}</div>
+                                    <div class="flight-info"><strong>{{getTime(packageDetails.FlightDetails.DepartDatetime_RET)}}</strong><br />{{packageDetails.FlightDetails.ArrivalAirportLocation_RET}}</div>
                                  </div>
                                  <div class="f-wrap design">
-                                    <div class="flight-info"><strong>{{packageDetails.FlightDetails.JourneyDuration_RET}}</strong><br />{{packageDetails.FlightDetails.FlightNumber_RET}}</div>
+                                    <div class="flight-info"><strong>{{minuteToHours(packageDetails.FlightDetails.JourneyDuration_RET)}}</strong><br />{{packageDetails.FlightDetails.FlightNumber_RET}}</div>
                                  </div>
                               </div>
                            </div>

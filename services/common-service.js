@@ -104,12 +104,43 @@ app.service('apis', ['$http','$q', function ($http, $q) {
         });
     };
 
+    var airLines = function() {
+        var defer = $q.defer();
+        //?Location=FAO&sFrom=20171010&sTo=20171017&NoOfAdults=1&NoOfChildren=0
+        return $http.get('https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/DataSearch/?sType=Airlines').then(function(response){
+            // Access granted
+            if (response.status == 200 || response.status == 304) {
+                defer.resolve(response.data);
+            } else {
+                // Access not granted
+                defer.reject(false);
+            }
+            return defer.promise;
+        });
+    };
+    var airPorts = function() {
+        var defer = $q.defer();
+        //?Location=FAO&sFrom=20171010&sTo=20171017&NoOfAdults=1&NoOfChildren=0
+        return $http.get('https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/DataSearch/?sType=Airports').then(function(response){
+            // Access granted
+            if (response.status == 200 || response.status == 304) {
+                defer.resolve(response.data);
+            } else {
+                // Access not granted
+                defer.reject(false);
+            }
+            return defer.promise;
+        });
+    };
+
     return {
         flightSearch: flightSearch,
         hotalSearch: hotalSearch,
         airlines: airlines,
         airports: airports,
         packageDetail:packageDetail,
-        roomDetail:roomDetail,
+        roomDetail,
+        airLines,
+        airPorts
     };
 }]);
