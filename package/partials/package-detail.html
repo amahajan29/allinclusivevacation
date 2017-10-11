@@ -46,7 +46,7 @@
                <!--//crumbs-->
                <!--top right navigation-->
                <ul class="top-right-nav">
-                  <li><a href="search_results.html" title="Back to results">Back to results</a></li>
+                  <li><a href="#/" title="Back to results">Back to results</a></li>
                   <li><a href="#" title="Change search">Change search</a></li>
                </ul>
                <!--//top right navigation-->
@@ -159,7 +159,7 @@
                                  <i ng-if="packageDetails.RoomDetails.StarRating>4" class="material-icons">&#xE838;</i>
                                  </span>
                               </h3>
-                              <span class="address">London  •  <a href="#">Show on map</a></span>
+                              <span class="address">London  •  <a ng-click="getArticle('location')" href="javascript:window.scrollTo(500, 0);">Show on map</a></span>
                               <span class="rating"> 8 /10</span>
                               <span class="price">Price per night from  <em>&euro; {{packageDetails.RoomDetails.RoomRate}}</em> </span>
                               <div class="description">
@@ -218,7 +218,9 @@
                   <section ng-if="displaySectoin=='location'" id="location" class="tab-content">
                      <article>
                         <!--map-->
-                        <ng-map center="{{packageDetails.RoomDetails.Latitude}},{{packageDetails.RoomDetails.Longitude}}" zoom="3"></ng-map>
+                        <ng-map center="{{packageDetails.RoomDetails.Latitude}},{{packageDetails.RoomDetails.Longitude}}" zoom="3">
+                           <marker position="{{packageDetails.RoomDetails.Latitude}},{{packageDetails.RoomDetails.Longitude}}" title=""></marker>
+                        </ng-map>
                         <!--//map-->
                      </article>
                   </section>
