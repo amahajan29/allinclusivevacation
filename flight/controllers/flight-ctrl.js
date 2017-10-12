@@ -46,6 +46,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   apis.airports().then(function(response){
     if(response != ''){
       $scope.alliances = response;
+      console.log($scope.alliances);
     }
   }).catch(function(response) {
     console.log("Sorry, there is a problem. Please, contact support.");
@@ -65,6 +66,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       $scope.notFound = true;
     }else{
       $scope.flightList = response;
+      
       for (var i = 0; i < $scope.flightList.length; i++) {
         $scope.airports.push($scope.flightList[i].ArrivalAirportLocationCode);
         $scope.airports.push($scope.flightList[i].DepartAirportLocationCode);
@@ -102,7 +104,8 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
 
       flightList = $scope.flightList;
       $scope.showList = true;
-      setTimeout(function(){  
+      setTimeout(function(){
+        $scope.getMinFare();  
        initializeScript();
       },2000)
     }
@@ -112,8 +115,31 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     console.log("Sorry, there is a problem. Please, contact support.");
   });
 
+  $scope.getMinFare = function (){
+      for(var i in $scope.airlineses){
+        $scope.search.airlines = [$scope.airlineses[i][0].IATACode];
+        var response = $scope.filter(true);
+        if(response.length){
+          $scope.airlineses[i][0].minFare = response[0].TotalFareAmount;
+        }
+        $scope.search.airlines = [];
+        $scope.$digest();
+      }
+      for(var i in $scope.alliances){
+        $scope.search.alliances = [i];
+        var response = $scope.filter(true);
+        if(response.length){
+          $scope.alliances[i][0].minFare = response[0].TotalFareAmount;
+        }
+        $scope.search.airlines = [];
+        $scope.$digest();
+      }
+  }
 
-  $scope.filter = function() {
+
+
+
+  $scope.filter = function(getLowest=null) {
     var newList = [];
     var flag = 1;
     $scope.notFound = false;
@@ -186,6 +212,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     }
 
     if($scope.search.alliances.length > 0){
+      console.log($scope.search.alliances);
       var list = [];
       for (var i = 0; i < $scope.search.alliances.length; i++) {
         var l = $filter('filter')(newList,  function(item) { 
@@ -235,7 +262,11 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     }else if(flag){
       newList = flightList; 
     }
-    
+    if(getLowest != null){
+      $scope.loading = false;
+      $scope.showList = true;
+      return newList;
+    }
     $scope.flightList = newList;
 
     setTimeout(function(){  

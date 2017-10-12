@@ -113,7 +113,7 @@
                         <dd>
                            <div class="checkbox" ng-repeat="airline in airlines">
                               <input type="checkbox" checklist-model="search.airlines" checklist-value="airline" id="ch32" name="airlines" ng-click="filter()" />
-                              <label for="ch32">{{airlineses[airline][0].AirlineName}}</label>
+                              <label for="ch32">{{airlineses[airline][0].AirlineName}} - {{airlineses[airline][0].minFare}}</label>
                            </div>
                         </dd>
                         <!--//Airlines-->
@@ -125,7 +125,7 @@
                         <dd>
                            <div class="checkbox" ng-repeat="airport in airports">
                               <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="airport" name="alliances" ng-click="filter()" />
-                              <label for="ch38">{{alliances[airport][0].LocationName}}</label>
+                              <label for="ch38">{{alliances[airport][0].LocationName}} - {{alliances[airport][0].minFare}}</label>
                            </div>
                         </dd>
                         <!--//Alliances-->
