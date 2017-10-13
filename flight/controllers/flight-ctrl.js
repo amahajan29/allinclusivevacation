@@ -46,7 +46,6 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   apis.airports().then(function(response){
     if(response != ''){
       $scope.alliances = response;
-      console.log($scope.alliances);
     }
   }).catch(function(response) {
     console.log("Sorry, there is a problem. Please, contact support.");
@@ -131,7 +130,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
         if(response.length){
           $scope.alliances[i][0].minFare = response[0].TotalFareAmount;
         }
-        $scope.search.airlines = [];
+        $scope.search.alliances = [];
         $scope.$digest();
       }
   }
