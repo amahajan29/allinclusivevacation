@@ -122,7 +122,6 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
           $scope.airlineses[i][0].minFare = response[0].TotalFareAmount;
         }
         $scope.search.airlines = [];
-        $scope.$digest();
       }
       for(var i in $scope.alliances){
         $scope.search.alliances = [i];
@@ -131,8 +130,8 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
           $scope.alliances[i][0].minFare = response[0].TotalFareAmount;
         }
         $scope.search.alliances = [];
-        $scope.$digest();
       }
+      $scope.$digest();
   }
 
 
@@ -211,7 +210,6 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     }
 
     if($scope.search.alliances.length > 0){
-      console.log($scope.search.alliances);
       var list = [];
       for (var i = 0; i < $scope.search.alliances.length; i++) {
         var l = $filter('filter')(newList,  function(item) { 

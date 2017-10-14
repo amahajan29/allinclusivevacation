@@ -20,6 +20,18 @@
     vertical-align: middle;
     white-space: nowrap;
 }
+.cheapest {
+   width: 100px;
+   height: 25px;
+   background: red;
+   position: absolute;
+   top: 0;
+   right: 0;
+   color: #ffffff;
+   text-transform: uppercase;
+   font-weight: bold;
+   padding-top: 3px;
+}
 </style>
    <!--header-->
    <header class="header inside-header">
@@ -108,24 +120,24 @@
                         <!--Airlines-->
                         <dt>
                            Airlines
-                           <div style="margin-right:25px" class="pull-right badge">{{lowest}}</div>
                         </dt>
                         <dd>
                            <div class="checkbox" ng-repeat="airline in airlines">
                               <input type="checkbox" checklist-model="search.airlines" checklist-value="airline" id="ch32" name="airlines" ng-click="filter()" />
-                              <label for="ch32">{{airlineses[airline][0].AirlineName}} - {{airlineses[airline][0].minFare}}</label>
+                              <label for="ch32">{{airlineses[airline][0].AirlineName}}</label>
+                              <div style="/*margin-right:25px*/" class="pull-right badge">{{airlineses[airline][0].minFare}}</div>
                            </div>
                         </dd>
                         <!--//Airlines-->
                         <!--Alliances-->
                         <dt>
                            Alliances
-                           <div style="margin-right:25px" class="pull-right badge">{{lowest}}</div>
                         </dt>
                         <dd>
                            <div class="checkbox" ng-repeat="airport in airports">
                               <input type="checkbox" id="ch38" checklist-model="search.alliances" checklist-value="airport" name="alliances" ng-click="filter()" />
-                              <label for="ch38">{{alliances[airport][0].LocationName}} - {{alliances[airport][0].minFare}}</label>
+                              <label for="ch38">{{alliances[airport][0].LocationName}}</label>
+                              <div style="/*margin-right:25px/*" class="pull-right badge">{{alliances[airport][0].minFare}}</div>
                            </div>
                         </dd>
                         <!--//Alliances-->
@@ -163,6 +175,7 @@
                         </div>
                         <div class="lazy loaded" id="box-1" ng-if="showList" ng-repeat="flight in flightList">
                            <div class="details new-design" ng-style="$first && {'border-color':'red'}">
+                              <div class="cheapest" ng-if="$first"> cheapest </div>
                               <div class="depart-wrap"> 
                                  <h3>{{airlineses[flight.ValidatingAirlineCode][0].AirlineName}} - <span> {{flight.DepartDatetime | date : 'EEEE,d MMMM'}} </span> </h3> 
                                  <div class="table-flight first frid"> 
