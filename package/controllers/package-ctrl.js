@@ -81,6 +81,12 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     };
     $scope.spicy();
     */
+    $scope.goToResult = function (){
+        window.location = "#/";
+        setTimeout(function(){ 
+          $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
+        },100);
+    }
     $scope.getDate = function (datetime){
         var dateObj = new Date(datetime);
         var day = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dateObj.getDay()];

@@ -23,3 +23,6 @@
    font-size: 17px;
    cursor: pointer;
 }
+.text-danger{
+   color: #d9534f!important;
+}

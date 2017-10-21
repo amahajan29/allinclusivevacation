@@ -248,7 +248,7 @@
                </form>
             </div>
             <div class="form-index" id="3">
-               <form name="frmHotalSearch" ng-submit="flightSubmit()">
+               <form name="frmHotalSearch" ng-submit="isValidForm() && flightSubmit()">
                   <!--form flight-->
                   <div class="form-new row">
                      <!--column--><!-- <h5 class="hotels">  Flight </h5> -->
@@ -311,7 +311,12 @@
                               <label for="datepicker6">Depart</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="flight.StartDate" required="required"/></div>
+                                    <div class="datepicker-wrap">
+                                          <input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="flight.StartDate" />
+                                          <div class="text-danger" ng-if="errors.StartDate">
+                                             {{errors.StartDate}}
+                                          </div>
+                                    </div>
                                  </div>
                                  <div class="f-item one-half">
                                     <select >
@@ -329,7 +334,12 @@
                               <label for="datepicker7">Return</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker7" name="datepicker7" ng-model="flight.ReturnDate" required="required" /></div>
+                                    <div class="datepicker-wrap">
+                                       <input type="text" placeholder="" id="datepicker7" name="datepicker7" ng-model="flight.ReturnDate" />
+                                       <div class="text-danger" ng-if="errors.ReturnDate">
+                                          {{errors.ReturnDate}}
+                                       </div>
+                                    </div>
                                  </div>
                                  <div class="f-item one-half">
                                     <select>
@@ -380,6 +390,9 @@
                                  </p>
                               </div>
                            </div>
+                        </div>
+                        <div class="text-danger" ng-if="errors.Adults">
+                           {{errors.Adults}}
                         </div>
                      </div>
                      <!--//column-->

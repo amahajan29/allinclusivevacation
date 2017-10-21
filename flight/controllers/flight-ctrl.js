@@ -275,6 +275,12 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       $scope.$apply();
     },1000)
   }
+  $scope.goToResult = function (){
+      window.location = "#/";
+      setTimeout(function(){ 
+        $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
+      },100);
+  }
 });
 
 

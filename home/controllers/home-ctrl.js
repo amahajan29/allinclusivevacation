@@ -18,6 +18,8 @@ app.controller('homeController', function homeController($scope, $http, $templat
     Children : 0,
     Infants : 0
   };
+  $scope.errors = {};
+  $scope.error = "";
 
   $scope.hotal = {
     Location : "LON",
@@ -25,7 +27,33 @@ app.controller('homeController', function homeController($scope, $http, $templat
     sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
     NoOfAdults : 0,
     NoOfChildren : 0
-  }
+  };
+  $scope.isValidForm = function(){
+    $scope.errors = {};
+    $scope.error = "";
+    var isvalid = true;
+    if(!$scope.flight.StartDate){
+      isvalid = false;
+      $scope.errors.StartDate = "StartDate is required.";
+    }
+    if(!$scope.flight.ReturnDate){
+      isvalid = false;
+      $scope.errors.ReturnDate = "ReturnDate is required.";
+    }
+    if(isvalid){
+      var StartDate = new Date($scope.flight.StartDate);
+      var ReturnDate = new Date($scope.flight.ReturnDate);
+      if(StartDate.getTime() >= ReturnDate.getTime()){
+        isvalid = false;
+        $scope.errors.ReturnDate = "ReturnDate can't be less than StartDate.";
+      }
+    }
+    if($scope.flight.Adults < 1){
+      isvalid = false;
+      $scope.errors.Adults = "At least one adult is required.";
+    }
+    return isvalid;
+  };
   $scope.flightSubmit = function(){
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
