@@ -76,18 +76,30 @@
                            <div class="f-item full-width datepicker">
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <label for="datepicker9">Depart Date</label>
-                                    <select ng-model="package.depart">
-                                       <option value="">Select time</option>
-                                       <option>Lowest fare</option>
-                                       <option>Morning</option>
-                                       <option>Midday</option>
-                                       <option>Afternoon</option>
-                                       <option>Evening</option>
-                                    </select>
-                                    <div class="text-danger" ng-if="errors.depart">
-                                       {{errors.depart}}
+                                    <label for="datepicker6">Depart date</label>
+                                    <div class="f-item">
+                                       <div class="datepicker-wrap">
+                                             <input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="package.depart" />
+                                             <div class="text-danger" ng-if="errors.StartDate">
+                                                {{errors.depart}}
+                                             </div>
+                                       </div>
+                                        <div class="text-danger" ng-if="errors.depart">
+                                          {{errors.depart}}
+                                       </div>
                                     </div>
+                                    <!-- <div class="f-item one-half">
+                                       <select >
+                                          <option>Select time</option>
+                                          <option>Lowest fare</option>
+                                          <option>Morning</option>
+                                          <option>Midday</option>
+                                          <option>Afternoon</option>
+                                          <option>Evening</option>
+                                       </select>
+                                    </div> -->
+                                    
+                                   
                                  </div>
                                  <div class="f-item one-half">
                                     <label for="datepicker9">Nights</label>

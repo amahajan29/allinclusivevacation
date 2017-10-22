@@ -20,7 +20,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
   };
   $scope.package = {
     destination: "FAO",
-    depart: "",
+    depart: today,
     Adults : 1,
     Children : 0,
     Infants : 0,
@@ -122,7 +122,8 @@ app.controller('homeController', function homeController($scope, $http, $templat
     var countryCode = $scope.package.destination;
     var Adults = $scope.package.Adults;
     var Children = $scope.package.Children;
-    var params = 'LocationCode='+countryCode+'&PackageCode=ALL'+'&NoOfAdults='+Adults+'&NoOfChildren='+Children;
+    var sTo = $scope.package.depart.replace(/\//g,"");
+    var params = 'LocationCode='+countryCode+'&PackageCode=ALL'+'&NoOfAdults='+Adults+'&NoOfChildren='+Children+'&sTo='+sTo;
     console.log(params);
     $scope.url = 'https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/packages?'+params;
     $http({method: 'GET', url: $scope.url, cache: $templateCache}).
