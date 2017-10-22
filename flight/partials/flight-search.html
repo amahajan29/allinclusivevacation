@@ -192,8 +192,8 @@
                            No record found.
                         </div>
                         <div class="lazy loaded" id="box-1" ng-if="showList" ng-repeat="flight in flightList">
-                           <div class="details new-design" ng-style="$first && {'border-color':'red'}">
-                              <div class="cheapest" ng-if="$first"> cheapest </div>
+                           <div class="details new-design" ng-style="((fairOrder=='asc' && $first) || (fairOrder=='desc' && $last)) && {'border-color':'red'}">
+                              <div class="cheapest" ng-if="(fairOrder=='asc' && $first) || (fairOrder=='desc' && $last)"> cheapest </div>
                               <div class="depart-wrap"> 
                                  <h3>{{airlineses[flight.ValidatingAirlineCode][0].AirlineName}} - <span> {{flight.DepartDatetime | date : 'EEEE,d MMMM'}} </span> </h3> 
                                  <div class="table-flight first frid"> 
