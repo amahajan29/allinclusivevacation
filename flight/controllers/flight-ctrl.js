@@ -31,6 +31,8 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.notFound = false;
   $scope.loading = true;
   $scope.showList = false;
+  $scope.fairOrder = "asc";
+  $scope.durationOrder = "";
 
   var flightList = null;
   var obj = {
@@ -113,6 +115,37 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     $scope.loading = false;
     console.log("Sorry, there is a problem. Please, contact support.");
   });
+
+  $scope.toggleFairOrder = function(order){
+    if(order){
+      $scope.durationOrder = "";
+      $("#durationOrder").change();
+      if(order == "asc"){
+        $scope.flightList = $scope.flightList.sort(function(a,b){
+          return a.TotalFareAmount - b.TotalFareAmount;
+        });
+      }else{
+        $scope.flightList = $scope.flightList.sort(function(a,b){
+          return b.TotalFareAmount - a.TotalFareAmount;
+        });
+      }
+    }
+  }
+  $scope.toggleDurationOrder = function(order){
+    if(order){
+      $scope.fairOrder = "";
+      $("#fairOrder").change();
+      if(order == "asc"){
+        $scope.flightList = $scope.flightList.sort(function(a,b){
+          return a.JourneyDuration - b.JourneyDuration;
+        });
+      }else{
+        $scope.flightList = $scope.flightList.sort(function(a,b){
+          return b.JourneyDuration - a.JourneyDuration;
+        });
+      }
+    }
+  }
 
   $scope.getMinFare = function (){
       for(var i in $scope.airlineses){

@@ -32,6 +32,10 @@
    font-weight: bold;
    padding-top: 3px;
 }
+.header-order{
+   padding: 0 10px;
+   margin-top: -8px;
+}
 </style>
    <!--header-->
    <header class="header inside-header">
@@ -65,6 +69,20 @@
                <!--//crumbs-->
                <!--top right navigation-->
                <ul class="top-right-nav">
+                  <li class="header-order">
+                     <select ng-change="toggleFairOrder(fairOrder)" ng-model="fairOrder" id="fairOrder">
+                        <option value="">Order by Fair</option>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                     </select>
+                  </li>
+                  <li class="header-order">
+                     <select ng-change="toggleDurationOrder(durationOrder)" ng-model="durationOrder" id="durationOrder">
+                        <option value="">Order by Duration</option>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                     </select>
+                  </li>
                   <li><a ng-click="goToResult()" href="javascript:void(0);" title="Back to results">Back to results</a></li>
                   <li><a href="#" title="Change search">Change search</a></li>
                </ul>
