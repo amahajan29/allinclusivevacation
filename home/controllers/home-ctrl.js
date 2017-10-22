@@ -18,8 +18,16 @@ app.controller('homeController', function homeController($scope, $http, $templat
     Children : 0,
     Infants : 0
   };
+  $scope.package = {
+    destination: "FAO",
+    depart: "",
+    Adults : 1,
+    Children : 0,
+    Infants : 0,
+  }
   $scope.errors = {};
   $scope.error = "";
+  $scope.loading = false;
 
   $scope.hotal = {
     Location : "LON",
@@ -28,6 +36,27 @@ app.controller('homeController', function homeController($scope, $http, $templat
     NoOfAdults : 0,
     NoOfChildren : 0
   };
+  $scope.isValidPackage = function(){
+      $scope.errors = {};
+      $scope.error = "";
+      var isvalid = true;
+      if(!$scope.package.destination){
+        isvalid = false;
+        $scope.errors.destination = "Destination is required.";
+      }
+      if(!$scope.package.depart){
+        isvalid = false;
+        $scope.errors.depart = "Departure is required.";
+      }
+      if($scope.package.Adults < 1){
+        isvalid = false;
+        $scope.errors.Adults = "At least one adult is required.";
+      }
+      return isvalid;
+  }
+  $scope.packageSubmit = function(){
+      $scope.makeApiCall();
+  }
   $scope.isValidForm = function(){
     $scope.errors = {};
     $scope.error = "";
@@ -87,10 +116,18 @@ app.controller('homeController', function homeController($scope, $http, $templat
 
 
   // $scope.url = 'data.json';
-  $scope.makeApiCall = function(countryCode) {
-    $scope.url = 'https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/packages?LocationCode='+countryCode+'&PackageCode=ALL';
+  $scope.makeApiCall = function() {
+    $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
+    $scope.loading = true;
+    var countryCode = $scope.package.destination;
+    var Adults = $scope.package.Adults;
+    var Children = $scope.package.Children;
+    var params = 'LocationCode='+countryCode+'&PackageCode=ALL'+'&NoOfAdults='+Adults+'&NoOfChildren='+Children;
+    console.log(params);
+    $scope.url = 'https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/packages?'+params;
     $http({method: 'GET', url: $scope.url, cache: $templateCache}).
     then(function(response) {
+      $scope.loading = false;
       $scope.data = response.data;
     }, function(response) {
       console.log('Request failed');
@@ -125,17 +162,17 @@ app.controller('homeController', function homeController($scope, $http, $templat
     return result;
   }
 
-  $("#destination6").on("change", function(){
+  /*$("#destination6").on("change", function(){
     var selected_country = $(this).val();
     $scope.makeApiCall(selected_country);
     console.log(selected_country);
-  });
+  });*/
   
   setTimeout(function(){  
    initializeScript();
-  },2000)
+  },2000);
 
-  $scope.makeApiCall('FAO');
+  $scope.makeApiCall();
 
 });
 

@@ -39,7 +39,7 @@
                <li data-tab="4"><i class="glyph-icon flaticon-modern-hotel"></i> Hotel </li>
             </ul>
             <div class="form-index active-form-indx" id="1">
-               <form>
+               <form ng-submit="isValidPackage() && packageSubmit()">
                   <!--form package-->
                   <div class="form-new row">
                      <!--column--><!-- <h5 class="hotels">  Packages </h5> -->
@@ -49,7 +49,7 @@
                            <div class="f-item full-width">
                               <label for="destination6"> To </label>
                               <!-- <input type="text" placeholder="" id="destination6" name="destination" /> -->
-                              <select class="state" id="destination6" name="destination" >
+                              <select ng-model="package.destination" class="state" id="destination6" name="destination" >
                                  <option value="">City, region, district or specific airport, Packages</option>
                                   <optgroup label="Portugal">
                                       <option value="FAO" selected=""> FAO - Faro</option>
@@ -62,6 +62,9 @@
                                       <option value="LON">LON - London </option>
                                   </optgroup>
                               </select>
+                              <div class="text-danger" ng-if="errors.destination">
+                                 {{errors.destination}}
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -74,14 +77,17 @@
                               <div class="row">
                                  <div class="f-item one-half">
                                     <label for="datepicker9">Depart Date</label>
-                                    <select>
-                                       <option>Select time</option>
+                                    <select ng-model="package.depart">
+                                       <option value="">Select time</option>
                                        <option>Lowest fare</option>
                                        <option>Morning</option>
                                        <option>Midday</option>
                                        <option>Afternoon</option>
                                        <option>Evening</option>
                                     </select>
+                                    <div class="text-danger" ng-if="errors.depart">
+                                       {{errors.depart}}
+                                    </div>
                                  </div>
                                  <div class="f-item one-half">
                                     <label for="datepicker9">Nights</label>
@@ -104,9 +110,10 @@
                            <div class="f-item one-third spinner">
                               <label for="spinner10">Adults</label>
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
-                                    <span class="add" id="add1"> + </span>
+                                 <p>
+                                    <span ng-click="package.Adults = package.Adults>0?package.Adults-1:0" class="minus" id="minus1"> - </span>
+                                    <input ng-model="package.Adults" id="qty1" type="text" value="1" class="qty"/>
+                                    <span ng-click="package.Adults = package.Adults+1" class="add" id="add1"> + </span>
                                  </p>
                               </div>
                               <!-- <input type="text" placeholder="" id="spinner10" name="spinner10" /> -->
@@ -114,9 +121,10 @@
                            <div class="f-item one-third spinner">
                               <label for="spinner11">Children</label>
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
-                                    <span class="add" id="add1"> + </span>
+                                 <p>
+                                    <span ng-click="package.Children = package.Children>0?package.Children-1:0" class="minus" id="minus1"> - </span>
+                                    <input ng-model="package.Children" id="qty1" type="text" value="1" class="qty"/>
+                                    <span ng-click="package.Children = package.Children+1" class="add" id="add1"> + </span>
                                  </p>
                               </div>
                               <!-- <input type="text" placeholder="" id="spinner11" name="spinner11" /> -->
@@ -124,18 +132,22 @@
                            <div class="f-item one-third spinner">
                               <label for="spinner12">Babies</label>
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
-                                    <span class="add" id="add1"> + </span>
+                                 <p>
+                                    <span ng-click="package.Infants = package.Infants>0?package.Infants-1:0" class="minus" id="minus1"> - </span>
+                                    <input ng-model="package.Infants" id="qty1" type="text" value="1" class="qty"/>
+                                    <span ng-click="package.Infants = package.Infants+1" class="add" id="add1"> + </span>
                                  </p>
                               </div>
+                           </div>
+                           <div class="text-danger" ng-if="errors.Adults">
+                              {{errors.Adults}}
                            </div>
                         </div>
                      </div>
                      <!--//column-->
                   </div>
                   <!--//form package-->
-                  <input type="submit" value="Proceed to results" class="gradient-button search-submit" id="search-submit">
+                  <input type="submit" value="Proceed to results1" class="gradient-button search-submit" id="search-submit">
                </form>
             </div>
             <div class="form-index" id="2">
@@ -522,7 +534,8 @@
                      <header class="s-title">
                         <h2>Explore our latest offers</h2>
                      </header>
-                     <div class="offers">
+                     <div class="ball ng-hide" ng-show="loading"></div>
+                     <div class="offers" ng-show="!loading">
                         <div class="row">
                            <!--deal-->
                            <article class="one-fourth" ng-repeat="l in data | limitTo : limit : begin track by $index">
