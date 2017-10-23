@@ -33,6 +33,9 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.showList = false;
   $scope.fairOrder = "asc";
   $scope.durationOrder = "";
+  $scope.bestHotel = {};
+  $scope.bestPackage = {};
+  $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
 
   var flightList = null;
   var obj = {
@@ -44,6 +47,42 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
         Children: $stateParams.Children,
         Infants:$stateParams.Infants
       };
+
+  apis.hotalSearch().then(function(response){
+    if(response != ''){
+      //console.log("hotalSearch");
+      $scope.bestHotel = response[0];
+      $scope.bestHotel.hotelName = $scope.getHotelName($scope.bestHotel.Code);
+      //console.log($scope.bestHotel);
+    }
+  }).catch(function(response) {
+    console.log("Sorry, there is a problem. Please, contact support.");
+  }); 
+
+  $scope.getHotelName = function(code){
+    var dataSearchParam = {sType:"Hotels"};
+    apis.dataSearch(dataSearchParam).then(function(response){
+        $scope.bestHotel.hotelName = "NA";
+        var hotels = response;
+        for(var i in hotels){
+          if(i == code){
+            $scope.bestHotel.hotelName = hotels[i][0].Name;
+          }
+        }
+    }).catch(function(response) {
+      console.log("Sorry, there is a problem. Please, contact support.");
+    }); 
+  }
+  
+
+  /*var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
+  apis.packageDetail(packageObj).then(function(response){
+       console.log("packageDetail");
+      $scope.bestPackage = response;
+      console.log($scope.bestPackage);
+  }).catch(function(response) {
+      console.log("Sorry, there is a problem. Please, contact support.");
+  });*/
   
   apis.airports().then(function(response){
     if(response != ''){
@@ -119,7 +158,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.toggleFairOrder = function(order){
     if(order){
       $scope.durationOrder = "";
-      $("#durationOrder").change();
+      //$("#durationOrder").change();
       if(order == "asc"){
         $scope.flightList = $scope.flightList.sort(function(a,b){
           return a.TotalFareAmount - b.TotalFareAmount;
@@ -134,7 +173,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.toggleDurationOrder = function(order){
     if(order){
       $scope.fairOrder = "";
-      $("#fairOrder").change();
+      //$("#fairOrder").change();
       if(order == "asc"){
         $scope.flightList = $scope.flightList.sort(function(a,b){
           return a.JourneyDuration - b.JourneyDuration;
@@ -167,7 +206,13 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       $scope.$digest();
   }
 
-
+  $scope.changeSearch = function(){
+      window.location = "/#/";
+      setTimeout(function(){ 
+        var activeTab = 2;//3 for flight
+        $(".index-form li").eq(activeTab).trigger("click");
+      },4000);
+  }
 
 
   $scope.filter = function(getLowest=null) {
@@ -309,11 +354,15 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     },1000)
   }
   $scope.goToResult = function (){
-      window.location = "#/";
+      window.location = "/#/";
       setTimeout(function(){ 
         $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
       },100);
   }
+  setTimeout(function(){ 
+    $('select').uniform();
+  },100);
+
 });
 
 

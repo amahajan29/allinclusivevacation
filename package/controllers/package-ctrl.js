@@ -12,11 +12,11 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
         //$scope.getAirLinesName();
         $scope.getAirPortsName(response.FlightDetails);
         NgMap.getMap().then(function(map) {
-            console.log(map.getCenter());
-            console.log('markers', map.markers);
-            console.log('shapes', map.shapes);
+            //console.log(map.getCenter());
+            //console.log('markers', map.markers);
+            //console.log('shapes', map.shapes);
         });
-        console.log("packageDetails", response);
+        //console.log("packageDetails", response);
     }).catch(function(response) {
         console.log("Sorry, there is a problem. Please, contact support.");
     });
@@ -24,7 +24,7 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     var roomObj = {categoryname:"T0I",resort:"FDV"};
     apis.roomDetail(roomObj).then(function(response){
         $scope.roomDetails = Array.isArray(response)?response[0]:response;
-        console.log("roomDetails", response);
+        //console.log("roomDetails", response);
     }).catch(function(response) {
         console.log("Sorry, there is a problem. Please, contact support.");
     });

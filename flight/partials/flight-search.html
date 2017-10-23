@@ -33,8 +33,9 @@
    padding-top: 3px;
 }
 .header-order{
-   padding: 0 10px;
-   margin-top: -8px;
+   float: left;
+   margin-right: 10px;
+   margin-bottom: 5px;
 }
 </style>
    <!--header-->
@@ -84,7 +85,7 @@
                      </select>
                   </li>
                   <li><a ng-click="goToResult()" href="javascript:void(0);" title="Back to results">Back to results</a></li>
-                  <li><a href="#" title="Change search">Change search</a></li>
+                  <li><a ng-click="changeSearch()" href="javascript:void(0);" title="Change search">Change search</a></li>
                </ul>
                <!--//top right navigation-->
             </nav>
@@ -184,10 +185,43 @@
                <!--three-fourth content-->
                <div class="one-half">
                   <div class="deals flights row results">
+                     <div ng-if="showList">
+                        <!-- <ul class="top-right-nav">
+                           <li class="header-order">
+                              <select ng-change="toggleFairOrder(fairOrder)" ng-model="fairOrder" id="fairOrder">
+                                 <option value="">Order by Fair</option>
+                                 <option value="asc">Ascending</option>
+                                 <option value="desc">Descending</option>
+                              </select>
+                           </li>
+                           <li class="header-order">
+                              <select ng-change="toggleDurationOrder(durationOrder)" ng-model="durationOrder" id="durationOrder">
+                                 <option value="">Order by Duration</option>
+                                 <option value="asc">Ascending</option>
+                                 <option value="desc">Descending</option>
+                              </select>
+                           </li>
+                        </ul> -->
+                        <div class="header-order">   
+                           <select ng-change="toggleFairOrder(fairOrder)" ng-model="fairOrder" id="fairOrder">
+                              <option value="">Order by Fair</option>
+                              <option value="asc">Ascending</option>
+                              <option value="desc">Descending</option>
+                           </select>
+                        </div>
+                        <div class="header-order">
+                           <select ng-change="toggleDurationOrder(durationOrder)" ng-model="durationOrder" id="durationOrder">
+                              <option value="">Order by Duration</option>
+                              <option value="asc">Ascending</option>
+                              <option value="desc">Descending</option>
+                           </select>
+                        </div>
+                     </div>
                      <!--deal-->
                      <article class="full-width slice">
                         <!-- single flight load -->
                         <div class="ball" ng-show="loading"></div>
+                        <!-- <div ng-if="showList"> -->
                         <div ng-if="notFound">
                            No record found.
                         </div>
@@ -246,17 +280,22 @@
                <aside class="one-fourth right-sidebar">
                   <!--hotel details-->
                   <article class="hotel-details">
-                     <h1>Best ipsum hotel 
+                     <div>
+                        <img ng-src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{bestHotel.HotelImage}}">
+                     </div>
+                     <h1>{{bestHotel.hotelName}}
                         <span class="stars">
-                        <i class="material-icons">&#xE838;</i>
-                        <i class="material-icons">&#xE838;</i>
-                        <i class="material-icons">&#xE838;</i>
+                           <i ng-if="bestHotel.StarRating>0" class="material-icons">&#xE838;</i>
+                           <i ng-if="bestHotel.StarRating>1" class="material-icons">&#xE838;</i>
+                           <i ng-if="bestHotel.StarRating>2" class="material-icons">&#xE838;</i>
+                           <i ng-if="bestHotel.StarRating>3" class="material-icons">&#xE838;</i>
+                           <i ng-if="bestHotel.StarRating>4" class="material-icons">&#xE838;</i>
                         </span>
                      </h1>
                      <span class="address">Marylebone, London</span>
                      <span class="rating"> 8 /10</span>
                      <div class="description">
-                        <p>The Best Ipsum hotel  features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art. </p>
+                        <p>{{bestHotel.LongDesc}}</p>
                      </div>
                   </article>
                   <!--//hotel details-->
@@ -272,6 +311,10 @@
                   <!--Need Help Booking?-->
                   <article class="widget">
                      <h1>Best Packages </h1>
+                     <div>
+                        <img ng-src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/Images/{{bestPackageCode[0]}}.jpg" />
+                        <img ng-src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/Images/{{bestPackageCode[1]}}.jpg" />
+                     </div>
                      <div class="inner-hot pack">
                         <div class="hovereffect">
                            <img class="img-responsive" src="images/offers/offer-img-1.png" alt="">

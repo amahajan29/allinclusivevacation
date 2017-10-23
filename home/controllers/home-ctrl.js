@@ -56,6 +56,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
   }
   $scope.packageSubmit = function(){
       $scope.makeApiCall();
+      $scope.setOffersAtTop();
   }
   $scope.isValidForm = function(){
     $scope.errors = {};
@@ -114,17 +115,18 @@ app.controller('homeController', function homeController($scope, $http, $templat
       });
   }
 
+  $scope.setOffersAtTop = function(){
+    $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
+  }
 
   // $scope.url = 'data.json';
   $scope.makeApiCall = function() {
-    $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
     $scope.loading = true;
     var countryCode = $scope.package.destination;
     var Adults = $scope.package.Adults;
     var Children = $scope.package.Children;
     var sTo = $scope.package.depart.replace(/\//g,"");
     var params = 'LocationCode='+countryCode+'&PackageCode=ALL'+'&NoOfAdults='+Adults+'&NoOfChildren='+Children+'&sTo='+sTo;
-    console.log(params);
     $scope.url = 'https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/packages?'+params;
     $http({method: 'GET', url: $scope.url, cache: $templateCache}).
     then(function(response) {
