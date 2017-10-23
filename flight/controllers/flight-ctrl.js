@@ -75,14 +75,14 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
   
 
-  /*var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
+  var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
   apis.packageDetail(packageObj).then(function(response){
        console.log("packageDetail");
       $scope.bestPackage = response;
       console.log($scope.bestPackage);
   }).catch(function(response) {
       console.log("Sorry, there is a problem. Please, contact support.");
-  });*/
+  });
   
   apis.airports().then(function(response){
     if(response != ''){
@@ -158,7 +158,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.toggleFairOrder = function(order){
     if(order){
       $scope.durationOrder = "";
-      //$("#durationOrder").change();
+      $("#durationOrder").change();
       if(order == "asc"){
         $scope.flightList = $scope.flightList.sort(function(a,b){
           return a.TotalFareAmount - b.TotalFareAmount;
@@ -173,7 +173,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.toggleDurationOrder = function(order){
     if(order){
       $scope.fairOrder = "";
-      //$("#fairOrder").change();
+      $("#fairOrder").change();
       if(order == "asc"){
         $scope.flightList = $scope.flightList.sort(function(a,b){
           return a.JourneyDuration - b.JourneyDuration;
