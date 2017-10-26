@@ -4,6 +4,8 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
     $scope.roomDetails = {};
     $scope.loading = true;
     $scope.displaySectoin = "description";
+    $scope.bestPackage = {};
+    $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
     var packageObj = {LocationCode:"FAO",PackageCode:$stateParams.PackageCode};
     //var packageObj = {LocationCode:$stateParams.LocationCode,PackageCode:$stateParams.PackageCode};
     apis.packageDetail(packageObj).then(function(response){
@@ -19,6 +21,15 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
         //console.log("packageDetails", response);
     }).catch(function(response) {
         console.log("Sorry, there is a problem. Please, contact support.");
+    });
+
+    var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
+    apis.packageDetail(packageObj).then(function(response){
+       console.log("packageDetail");
+      $scope.bestPackage = response;
+      console.log($scope.bestPackage);
+    }).catch(function(response) {
+      console.log("Sorry, there is a problem. Please, contact support.");
     });
 
     var roomObj = {categoryname:"T0I",resort:"FDV"};
