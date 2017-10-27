@@ -419,12 +419,13 @@
 				<!--three-fourth content-->
 				
 				<section class="one-half" style="background:#fff;" >
-					<div ng-repeat="hotal in hotalList">
-					<h2>{{hotal.Description}} <br/> <span> (Lara, Antalya, Turkey) </span></h2>
 					<!--gallery-->
 					<div class="gallery">
 						<ul id="image-gallery" class="cS-hidden">
-							<li data-thumb="assets/images/uploads/hotel4.jpg"> 
+							<li ng-repeat="hotal in hotalList" data-thumb="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{hotal.RoomImage}}">
+								<img src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{hotal.RoomImage}}" alt="" />
+							</li>
+							<!-- <li data-thumb="assets/images/uploads/hotel4.jpg"> 
 								<img src="assets/images/uploads/hotel4.jpg" alt="" />
 							</li>
 							<li data-thumb="assets/images/uploads/hotel1.jpg"> 
@@ -441,10 +442,12 @@
 							</li>
 							<li data-thumb="assets/images/uploads/hotel6.jpg"> 
 								<img src="assets/images/uploads/hotel6.jpg" alt="" />
-							</li>
+							</li> -->
 						</ul>
 					</div>
 					<!--//gallery-->
+					<div ng-repeat="hotal in hotalList">
+					<h2>{{hotal.Description}} <br/> <span> (Lara, Antalya, Turkey) </span></h2>
                     <!-- hot deals for you -->
                     <section class="offers_section inner">								
 						<div id="" class="tab-content new-hotel">
@@ -610,100 +613,54 @@
 			
 			<!--//main content-->
 		</div>
-		<aside class="one-fourth right-sidebar">
-        	<div class="custom-fix">
-					<!--hotel details-->
-					<article class="hotel-details">
-						<h1>Best ipsum hotel 
-							<span class="stars">
-								<i class="material-icons">&#xE838;</i>
-								<i class="material-icons">&#xE838;</i>
-								<i class="material-icons">&#xE838;</i>
-							</span>
-						</h1>
-						<span class="address">Marylebone, London</span>
-						<span class="rating"> 8 /10</span>
-						<div class="description">
-							<p>The Best Ipsum hotel  features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art. </p>
-						</div>
-					</article>
-					<!--//hotel details-->
-					<!--hotel details-->
-					<article class="hotel-details scrap-but-sec">
-						<a href="#0" class="scrap-but">save to scrapbook</a>
-						<a href="#0" class="social"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-						<a href="#0" class="social"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-						<a href="#0" class="social"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-						<p>Share with friends</p>
-					</article>
-					<!--//hotel details-->
-					</div>
-					<!--Need Help Booking?-->
-					<article class="widget">
-						<h1>Best Packages </h1>
-						<div class="inner-hot pack">
-							<div class="hovereffect">
-								<img class="img-responsive" src="assets/images/offers/offer-img-1.png" alt="">
-									<div class="overlay">
-										<a href="#0"><h1>Best ipsum hotel 
-											<span class="stars">
-												<i class="material-icons">&#xE838;</i>
-												<i class="material-icons">&#xE838;</i>
-												<i class="material-icons">&#xE838;</i>
-								 			</span>
-										</h1></a>
-										<span class="address">Marylebone, London</span>
-										<span class="rating"> 8 /10</span>
-									<p><span class="address">7 Nights / Dec 2016</span>
-									<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
-								</div>
-							</div>
-						</div>
-						<div class="inner-hot pack">
-									<div class="hovereffect">
-										<img class="img-responsive" src="assets/images/offers/offer-img-3.png" alt="">
-										<div class="overlay">
-										<a href="#0"><h1>Best ipsum hotel 
-										<span class="stars">
-											<i class="material-icons">&#xE838;</i>
-											<i class="material-icons">&#xE838;</i>
-											<i class="material-icons">&#xE838;</i>
-										</span>
-										</h1></a>
-										<span class="address">Marylebone, London</span>
-										<span class="rating"> 8 /10</span>
-										<p><span class="address">7 Nights / Dec 2016</span>
-										<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
-									</div>
-								</div>
-						</div>
-						
-							<div class="inner-hot pack end-aside">
-													<div class="hovereffect">
-														<img class="img-responsive" src="assets/images/offers/offer-img-4.png" alt="">
-															<div class="overlay">
-																<a href="#0"><h1>Best ipsum hotel 
-																<span class="stars">
-																	<i class="material-icons">&#xE838;</i>
-																	<i class="material-icons">&#xE838;</i>
-																	<i class="material-icons">&#xE838;</i>
-																</span>
-																</h1></a>
-																<span class="address">Marylebone, London</span>
-																<span class="rating"> 8 /10</span>
-																<p><span class="address">7 Nights / Dec 2016</span>
-																<a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a></p> 
-															</div>
-													</div>
-								</div>
-						<!-- <h4>Need Help Booking?</h4>
-						<p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
-						<p class="number">(+44) 845 468 0164</p> -->
-					</article>
-					
-						
-					<!-- </article> -->
-				</aside>
+		<!--sidebar-->
+               <aside class="one-fourth right-sidebar">
+                  <!--hotel details-->
+                  <article class="widget">
+                     <h1>Best Packages </h1>
+                     <div class="inner-hot pack">
+                        <div class="hovereffect">
+                           <img ng-src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/Images/{{bestPackage.PackageCode}}.jpg" />
+                           <div class="overlay">
+                              <a href="#0">
+                                 <h1>{{bestPackage.PackageName}}
+                                    <span class="stars">
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    <i class="material-icons">&#xE838;</i>
+                                    </span>
+                                 </h1>
+                              </a>
+                              <span class="address">Marylebone, London</span>
+                              <span class="rating" style="top: auto;"> 8 /10</span>
+                              <p><span class="address">7 Nights / Dec 2016</span>
+                                 <a href="flight_and_hotels.html" class="from-book">From &euro; 55 </a>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </article>
+                  <!--//hotel details-->
+                  <!--Need Help Booking?-->
+                  <article class="widget">
+                     <h4>Need Help Booking?</h4>
+                     <p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
+                     <p class="number">(+44) 845 468 0164</p>
+                  </article>
+                  <!--//Need Help Booking?-->
+                  <!--Why Book with us?-->
+                  <article class="widget end-aside">
+                     <h4>Why Book with us?</h4>
+                     <h5>Upto 20% discount</h5>
+                     <p>It is arduous to grab the best deals in right time! We always have the right time for you.</p>
+                     <h5>24/7 Customer Support</h5>
+                     <p>We are pleased to help you all day, all night! We are with you!- 24/7 customer service.</p>
+                     <h5>Pay the price +low</h5>
+                     <p>Better deals at Super exciting prices guaranteed! Always pay what you can afford!</p>
+                  </article>
+                  <!--//Why Book with us?-->
+               </aside>
+               <!--//sidebar-->
 				
 	</main>
 	<!--//main-->

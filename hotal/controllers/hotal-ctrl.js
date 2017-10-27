@@ -1,6 +1,7 @@
 var app = angular.module('hotal',['ui.router','checklist-model','commonServices']);
 app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
-
+  $scope.bestPackage = {};
+  $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
   var obj = {
     Location: $stateParams.Location,
     sFrom: $stateParams.sFrom,
@@ -8,6 +9,15 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     NoOfAdults: $stateParams.NoOfAdults,
     NoOfChildren: $stateParams.NoOfChildren,
   };
+
+  var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
+    apis.packageDetail(packageObj).then(function(response){
+       console.log("packageDetail");
+      $scope.bestPackage = response;
+      console.log($scope.bestPackage);
+    }).catch(function(response) {
+      console.log("Sorry, there is a problem. Please, contact support.");
+    });
 
   $scope.hotalList = null;
   var hotalList = null;
