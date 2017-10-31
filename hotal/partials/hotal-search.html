@@ -457,9 +457,29 @@
 									<p> 
 										{{hotal.LongDesc}}
 									</p>
-									<a id="seeMore" onclick="toggleSeeMore()" href="javascript:void(0);" style="color:#B1A398;">See More</a>
+									<a id="seeMore" ng-click="toggleSeeMore($index)" href="javascript:void(0);" style="color:#B1A398;">See More</a>
 									
 									<!-- <p>Available rooms from <span class="date">Thurs 29 Nov 2016</span> to <span class="date">Fri 30 Nov 2016</span>.</p> -->
+								</div>
+								<div class="hide text-wrap facility_{{$index}}">
+									<div ng-if="hotal.RoomFacility.Facilities">
+										Facilities : {{hotal.RoomFacility.Facilities}}
+									</div>
+									<div ng-if="hotal.RoomFacility.Activities">
+										Activities : {{hotal.RoomFacility.Activities}}
+									</div>
+									<div ng-if="hotal.RoomFacility.Internet">
+										Internet : {{hotal.RoomFacility.Internet}}
+									</div>
+									<div ng-if="hotal.RoomFacility.Parking">
+										Parking : {{hotal.RoomFacility.Parking}}
+									</div>
+									<div ng-if="hotal.RoomFacility.Generalinfo">
+										Generalinfo : {{hotal.RoomFacility.Generalinfo}}
+									</div>
+									<div ng-if="hotal.RoomFacility.ThingsTodo">
+										ThingsTodo : {{hotal.RoomFacility.ThingsTodo}}
+									</div>
 								</div>
 								<h2>Availability</h2>
 								<div class="text-wrap change">

@@ -12,21 +12,39 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
 
   var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
     apis.packageDetail(packageObj).then(function(response){
-       console.log("packageDetail");
       $scope.bestPackage = response;
-      console.log($scope.bestPackage);
     }).catch(function(response) {
       console.log("Sorry, there is a problem. Please, contact support.");
     });
 
   $scope.hotalList = null;
-  var hotalList = null;
+  //var hotalList = null;
   apis.hotalSearch(obj).then(function(response){
     $scope.hotalList = response;
-    hotalList = $scope.hotalList;
+    for(var i in $scope.hotalList){
+      $scope.getRoomDetail(i, {categoryname:$scope.hotalList[i].CategoryCode,resort:$scope.hotalList[i].Code});
+    }
+    //hotalList = $scope.hotalList;
   }).catch(function(response) {
     console.log("Sorry, there is a problem. Please, contact support.");
   });
+
+  
+  $scope.getRoomDetail = function (index,roomObj){
+    apis.roomDetail(roomObj).then(function(response){
+        var roomDetails = Array.isArray(response)?response[0]:response;
+        //console.log(roomDetails);
+        $scope.hotalList[index].RoomFacility = roomDetails;
+    }).catch(function(response) {
+        console.log("Sorry, there is a problem. Please, contact support.");
+    });
+  }
+
+  $scope.toggleSeeMore = function(index){
+    //$().toogleClass("hide");
+    document.querySelector(".facility_"+index).classList.toggle('hide');
+    //console.log(index);
+  }
 
 
   setTimeout(function(){  
@@ -274,7 +292,7 @@ function initializeScript() {
 
 <!-- more and less -->
 
-function toggleSeeMore() {
+/*function toggleSeeMore() {
     if(document.getElementById("textarea").style.display == 'none') {
         document.getElementById("textarea").style.display = 'block';
         document.getElementById("seeMore").innerHTML = 'See less';
@@ -283,5 +301,5 @@ function toggleSeeMore() {
         document.getElementById("textarea").style.display = 'none';
         document.getElementById("seeMore").innerHTML = 'See more';        
     }
-}
+}*/
 }
