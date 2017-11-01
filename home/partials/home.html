@@ -62,8 +62,8 @@
                                       <option value="LON">LON - London </option>
                                   </optgroup>
                               </select>
-                              <div class="text-danger" ng-if="errors.destination">
-                                 {{errors.destination}}
+                              <div class="text-danger" ng-if="errors.pkg_destination">
+                                 {{errors.pkg_destination}}
                               </div>
                            </div>
                         </div>
@@ -80,12 +80,9 @@
                                     <div class="f-item">
                                        <div class="datepicker-wrap">
                                              <input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="package.depart" />
-                                             <div class="text-danger" ng-if="errors.StartDate">
-                                                {{errors.depart}}
-                                             </div>
                                        </div>
-                                        <div class="text-danger" ng-if="errors.depart">
-                                          {{errors.depart}}
+                                       <div class="text-danger" ng-if="errors.pkg_depart">
+                                          {{errors.pkg_depart}}
                                        </div>
                                     </div>
                                     <!-- <div class="f-item one-half">
@@ -151,8 +148,8 @@
                                  </p>
                               </div>
                            </div>
-                           <div class="text-danger" ng-if="errors.Adults">
-                              {{errors.Adults}}
+                           <div class="text-danger" ng-if="errors.pkg_Adults">
+                              {{errors.pkg_Adults}}
                            </div>
                         </div>
                      </div>
@@ -163,7 +160,7 @@
                </form>
             </div>
             <div class="form-index" id="2">
-               <form>
+               <form ng-submit="isValidFH() && FHSubmit()">
                   <!--form flight+hotel-->
                   <div class="form-new row" id="form3">
                      <!--column-->
@@ -173,11 +170,17 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination5"> From </label>
-                              <input type="text" placeholder="City, region, district or specific airport" id="destination5" name="destination" />
+                              <input ng-model="flight_hotel.sFrom" type="text" placeholder="City, region, district or specific airport" id="destination5" name="destination" />
+                              <div class="text-danger" ng-if="errors.FH_sFrom">
+                                 {{errors.FH_sFrom}}
+                              </div>
                            </div>
                            <div class="f-item full-width">
                               <label for="destination6"> To </label>
-                              <input type="text" placeholder="City, region, district or specific airport" id="destination6" name="destination" />
+                              <input ng-model="flight_hotel.sTo" type="text" placeholder="City, region, district or specific airport" id="destination6" name="destination" />
+                              <div class="text-danger" ng-if="errors.FH_sTo">
+                                 {{errors.FH_sTo}}
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -190,7 +193,12 @@
                               <label for="datepicker9">Depart</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker9" name="datepicker9" /></div>
+                                    <div class="datepicker-wrap">
+                                       <input ng-model="flight_hotel.depart" type="text" placeholder="" id="datepicker9" name="datepicker9" />
+                                       <div class="text-danger" ng-if="errors.FH_depart">
+                                          {{errors.FH_depart}}
+                                       </div>
+                                    </div>
                                  </div>
                                  <div class="f-item one-half">
                                     <select>
@@ -208,7 +216,12 @@
                               <label for="datepicker10">Return</label>
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker10" name="datepicker10" /></div>
+                                    <div class="datepicker-wrap">
+                                       <input ng-model="flight_hotel.return" type="text" placeholder="" id="datepicker10" name="datepicker10" />
+                                       <div class="text-danger" ng-if="errors.FH_return">
+                                          {{errors.FH_return}}
+                                       </div>
+                                    </div>
                                  </div>
                                  <div class="f-item one-half">
                                     <select>
@@ -233,9 +246,10 @@
                               <label for="spinner10">Adults</label>
                               <!-- <input type="text" placeholder="" id="spinner10" name="spinner10" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1" class="qty"/>
-                                    <span class="add" id="add1"> + </span>
+                                 <p>
+                                    <span class="minus" ng-click="(flight_hotel.NoOfAdults > 0)?flight_hotel.NoOfAdults = flight_hotel.NoOfAdults - 1:flight_hotel.NoOfAdults = 0"> - </span>
+                                    <input id="qty1" readonly="readonly" ng-model="flight_hotel.NoOfAdults" type="number" de class="qty" required="required" />
+                                    <span class="add" ng-click="flight_hotel.NoOfAdults = flight_hotel.NoOfAdults + 1"> + </span>
                                  </p>
                               </div>
                            </div>
@@ -265,6 +279,9 @@
                            </div>
                         </div>
                      </div>
+                        <div class="text-danger" ng-if="errors.FH_Adults">
+                           {{errors.FH_Adults}}
+                        </div>
                      <!--//column-->
                   </div>
                   <!--//form flight+hotel-->
@@ -272,7 +289,7 @@
                </form>
             </div>
             <div class="form-index" id="3">
-               <form name="frmHotalSearch" ng-submit="isValidForm() && flightSubmit()">
+               <form name="frmHotalSearch" ng-submit="isValidFlight() && flightSubmit()">
                   <!--form flight-->
                   <div class="form-new row">
                      <!--column--><!-- <h5 class="hotels">  Flight </h5> -->
@@ -337,8 +354,8 @@
                                  <div class="f-item one-half">
                                     <div class="datepicker-wrap">
                                           <input type="text" placeholder="" id="datepicker11" name="datepicker11" ng-model="flight.StartDate" />
-                                          <div class="text-danger" ng-if="errors.StartDate">
-                                             {{errors.StartDate}}
+                                          <div class="text-danger" ng-if="errors.F_StartDate">
+                                             {{errors.F_StartDate}}
                                           </div>
                                     </div>
                                  </div>
@@ -360,8 +377,8 @@
                                  <div class="f-item one-half">
                                     <div class="datepicker-wrap">
                                        <input type="text" placeholder="" id="datepicker7" name="datepicker7" ng-model="flight.ReturnDate" />
-                                       <div class="text-danger" ng-if="errors.ReturnDate">
-                                          {{errors.ReturnDate}}
+                                       <div class="text-danger" ng-if="errors.F_ReturnDate">
+                                          {{errors.F_ReturnDate}}
                                        </div>
                                     </div>
                                  </div>
@@ -415,8 +432,8 @@
                               </div>
                            </div>
                         </div>
-                        <div class="text-danger" ng-if="errors.Adults">
-                           {{errors.Adults}}
+                        <div class="text-danger" ng-if="errors.F_Adults">
+                           {{errors.F_Adults}}
                         </div>
                      </div>
                      <!--//column-->
@@ -426,7 +443,7 @@
                </form>
             </div>
             <div class="form-index" id="4">
-               <form ng-submit="hotalSubmit()">
+               <form ng-submit="isValidHotel() && hotalSubmit()">
                   <!--form hotel-->
                   <div class="form-new row">
                      <!--column--><!-- <h5 class="hotels"> Hotel </h5> -->
@@ -464,11 +481,21 @@
                         <div class="row">
                            <div class="f-item one-half datepicker">
                               <label for="datepicker1">Check-in</label>
-                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker1" name="datepicker1" ng-model="hotal.sFrom" required="required" /></div>
+                              <div class="datepicker-wrap">
+                                 <input type="text" placeholder="" id="datepicker1" name="datepicker1" ng-model="hotal.sFrom" />
+                                 <div class="text-danger" ng-if="errors.H_sFrom">
+                                    {{errors.H_sFrom}}
+                                 </div>
+                              </div>
                            </div>
                            <div class="f-item one-half datepicker">
                               <label for="datepicker2">Check-out</label>
-                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker2" name="datepicker2" ng-model="hotal.sTo"  required="required"/></div>
+                              <div class="datepicker-wrap">
+                                 <input type="text" placeholder="" id="datepicker2" name="datepicker2" ng-model="hotal.sTo" />
+                                 <div class="text-danger" ng-if="errors.H_sTo">
+                                    {{errors.H_sTo}}
+                                 </div>
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -506,6 +533,9 @@
                                     <span class="add" ng-click="hotal.NoOfChildren = hotal.NoOfChildren + 1"> + </span>
                                  </p>
                               </div>
+                           </div>
+                           <div class="text-danger" ng-if="errors.H_Adults">
+                              {{errors.H_Adults}}
                            </div>
                         </div>
                      </div>

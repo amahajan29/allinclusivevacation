@@ -36,21 +36,29 @@ app.controller('homeController', function homeController($scope, $http, $templat
     NoOfAdults : 0,
     NoOfChildren : 0
   };
+  $scope.flight_hotel = {
+    sFrom : "",
+    sTo : "",
+    depart : today,
+    "return" : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    NoOfAdults : 0,
+    NoOfChildren : 0
+  };
   $scope.isValidPackage = function(){
       $scope.errors = {};
       $scope.error = "";
       var isvalid = true;
       if(!$scope.package.destination){
         isvalid = false;
-        $scope.errors.destination = "Destination is required.";
+        $scope.errors.pkg_destination = "Destination is required.";
       }
       if(!$scope.package.depart){
         isvalid = false;
-        $scope.errors.depart = "Departure is required.";
+        $scope.errors.pkg_depart = "Departure is required.";
       }
       if($scope.package.Adults < 1){
         isvalid = false;
-        $scope.errors.Adults = "At least one adult is required.";
+        $scope.errors.pkg_Adults = "At least one adult is required.";
       }
       return isvalid;
   }
@@ -58,32 +66,96 @@ app.controller('homeController', function homeController($scope, $http, $templat
       $scope.makeApiCall();
       $scope.setOffersAtTop();
   }
-  $scope.isValidForm = function(){
+  $scope.isValidFlight = function(){
     $scope.errors = {};
     $scope.error = "";
     var isvalid = true;
     if(!$scope.flight.StartDate){
       isvalid = false;
-      $scope.errors.StartDate = "StartDate is required.";
+      $scope.errors.F_StartDate = "StartDate is required.";
     }
     if(!$scope.flight.ReturnDate){
       isvalid = false;
-      $scope.errors.ReturnDate = "ReturnDate is required.";
+      $scope.errors.F_ReturnDate = "ReturnDate is required.";
     }
     if(isvalid){
       var StartDate = new Date($scope.flight.StartDate);
       var ReturnDate = new Date($scope.flight.ReturnDate);
       if(StartDate.getTime() >= ReturnDate.getTime()){
         isvalid = false;
-        $scope.errors.ReturnDate = "ReturnDate can't be less than StartDate.";
+        $scope.errors.F_ReturnDate = "ReturnDate can't be less than StartDate.";
       }
     }
     if($scope.flight.Adults < 1){
       isvalid = false;
-      $scope.errors.Adults = "At least one adult is required.";
+      $scope.errors.F_Adults = "At least one adult is required.";
     }
     return isvalid;
   };
+
+  $scope.isValidHotel = function(){
+    $scope.errors = {};
+    $scope.error = "";
+    var isvalid = true;
+    if(!$scope.hotal.sFrom){
+      isvalid = false;
+      $scope.errors.H_sFrom = "Check-in date is required.";
+    }
+    if(!$scope.hotal.sTo){
+      isvalid = false;
+      $scope.errors.H_sTo = "Check-out date is required.";
+    }
+    if(isvalid){
+      var StartDate = new Date($scope.hotal.sFrom);
+      var ReturnDate = new Date($scope.hotal.sTo);
+      if(StartDate.getTime() >= ReturnDate.getTime()){
+        isvalid = false;
+        $scope.errors.H_sTo = "Check-out date can't be less than check-in.";
+      }
+    }
+    if($scope.hotal.NoOfAdults < 1){
+      isvalid = false;
+      $scope.errors.H_Adults = "At least one adult is required.";
+    }
+    return isvalid;
+  };
+
+  $scope.isValidFH = function(){
+    $scope.errors = {};
+    $scope.error = "";
+    var isvalid = true;
+    if(!$scope.flight_hotel.sFrom){
+      isvalid = false;
+      $scope.errors.FH_sFrom = "From city is required.";
+    }
+    if(!$scope.flight_hotel.sTo){
+      isvalid = false;
+      $scope.errors.FH_sTo = "To city is required.";
+    }
+    if(!$scope.flight_hotel.depart){
+      isvalid = false;
+      $scope.errors.FH_depart = "Departure date is required.";
+    }
+    if(!$scope.flight_hotel["return"]){
+      isvalid = false;
+      $scope.errors.FH_return = "Return date is required.";
+    }
+    if(isvalid){
+      var StartDate = new Date($scope.flight_hotel.depart);
+      var ReturnDate = new Date($scope.flight_hotel["return"]);
+      if(StartDate.getTime() >= ReturnDate.getTime()){
+        isvalid = false;
+        console.log("Departure date can't be less than return.");
+        $scope.errors.FH_return = "Departure date can't be less than return.";
+      }
+    }
+    if($scope.flight_hotel.NoOfAdults < 1){
+      isvalid = false;
+      $scope.errors.FH_Adults = "At least one adult is required.";
+    }
+    return isvalid;
+  };
+
   $scope.flightSubmit = function(){
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
@@ -113,6 +185,10 @@ app.controller('homeController', function homeController($scope, $http, $templat
         NoOfChildren: $scope.hotal.NoOfChildren,
         NoOfAdults: $scope.hotal.NoOfAdults,
       });
+  }
+
+  $scope.FHSubmit = function(){
+    console.log("Flight+Hotel Submitted");
   }
 
   $scope.setOffersAtTop = function(){
