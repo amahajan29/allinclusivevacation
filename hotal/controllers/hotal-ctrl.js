@@ -10,8 +10,21 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     NoOfChildren: $stateParams.NoOfChildren,
   };
 
+  $scope.dateFrom = createDate($stateParams.sFrom);
+  $scope.sTo = createDate($stateParams.sTo);
+
+/*get all hotels list*/
+  var packageObj = {};
+  var allHotels;
+    apis.allHotels(packageObj).then(function(response){
+      allHotels = response;
+    }).catch(function(response) {
+      console.log("Sorry, there is a problem. Please, contact support.");
+    });
+
   var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
     apis.packageDetail(packageObj).then(function(response){
+      debugger
       $scope.bestPackage = response;
     }).catch(function(response) {
       console.log("Sorry, there is a problem. Please, contact support.");
@@ -20,10 +33,27 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
   $scope.hotalList = null;
   //var hotalList = null;
   apis.hotalSearch(obj).then(function(response){
-    $scope.hotalList = response;
+
+    var r = response.reduce(function (obj, room) {
+      obj[room.Code] = obj[room.Code] || [];
+      for (var k in allHotels) {
+          if (allHotels.hasOwnProperty(room.Code)) {
+             room['hoteldetails'] = allHotels[room.Code]
+          }
+      }
+      obj[room.Code].push(room);
+      return obj
+    }, {});
+
+    $scope.hotalList = Object.keys(r).map(function(key) {
+    return r[key];
+    });
+
+    // $scope.hotalList = response;
     for(var i in $scope.hotalList){
-      $scope.getRoomDetail(i, {categoryname:$scope.hotalList[i].CategoryCode,resort:$scope.hotalList[i].Code});
+      $scope.getRoomDetail(i, {categoryname:$scope.hotalList[i][0].CategoryCode,resort:$scope.hotalList[i][0].Code});
     }
+    console.log($scope.hotalList);
     //hotalList = $scope.hotalList;
   }).catch(function(response) {
     console.log("Sorry, there is a problem. Please, contact support.");
@@ -46,11 +76,21 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     //console.log(index);
   }
 
-
   setTimeout(function(){  
    initializeScript();
-  },2000)
+  },2400)
 });
+
+function createDate(dtStr){
+  var str = dtStr;
+  var yr = str.substring(0, 4);
+  var mon = str.substring(4, 6);
+  var dt = str.substring(6, 8);
+  var completeDate = yr+"-"+mon+"-"+dt
+  var res = new Date(completeDate);
+  res = res.getDate()+" "+res.getMonth()+" "+res.getFullYear();
+  return res;  
+}
 
 function initializeScript() {
       
