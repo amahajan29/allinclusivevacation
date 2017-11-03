@@ -24,7 +24,6 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
 
   var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
     apis.packageDetail(packageObj).then(function(response){
-      debugger
       $scope.bestPackage = response;
     }).catch(function(response) {
       console.log("Sorry, there is a problem. Please, contact support.");
@@ -76,9 +75,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     //console.log(index);
   }
 
-  setTimeout(function(){  
-   initializeScript();
-  },2400)
+  
 });
 
 function createDate(dtStr){
@@ -343,3 +340,79 @@ function initializeScript() {
     }
 }*/
 }
+
+app.filter('payfilter', function() {
+   return function( items, types) {
+    var filtered = [];
+    var tmp = [];
+    if (types) {
+      for (var key in types) {
+          if(types[key] == true){
+            tmp.push(key);
+         }
+      }
+    }
+    
+    angular.forEach(items, function(item) {      
+      if (item.RoomFacility) {
+        if (tmp.length>0) {
+          for (var i = 0; i < tmp.length; i++) {
+            if (item.RoomFacility.AcceptedCC.indexOf(tmp[i]) != -1) {
+                filtered.push(item);       
+            }
+          }
+        }else{
+          filtered.push(item);
+        }      
+      }      
+    });
+  
+    return filtered;
+  };
+});
+
+
+
+app.filter('amtfilter', function() {
+   return function( items, types) {
+    var filtered = [];
+    var tmp = [];
+    if (types) {
+      for (var key in types) {
+          if(types[key] == true){
+            tmp.push(key);
+         }
+      }
+    }
+    
+    angular.forEach(items, function(item) {
+      if (item.RoomRate) {
+        if (tmp.length>0) {          
+          for (var i = 0; i < tmp.length; i++) {
+            var minMaxAmt = tmp[i].split('z');
+            if (item.RoomRate >= minMaxAmt[1] && item.RoomRate <= minMaxAmt[1]) {
+                filtered.push(item);       
+            }
+          }
+        }else{
+          filtered.push(item);
+        }      
+      }else{
+          filtered.push(item);
+        }  
+    });
+  
+    return filtered;
+  };
+});
+
+
+app.directive('myPostRepeatDirective', function() {
+  return function(scope, element, attrs) {
+    if (scope.$last){
+        setTimeout(function(){  
+         initializeScript();
+        },1000)   
+    }
+  };
+});
