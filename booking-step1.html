@@ -78,12 +78,11 @@
                 </ul>
             </div>
             <!-- progress step end -->
-			
 			<div class="row">
 				<!--three-fourth content-->
 				<div class="three-fourth">
-					<div class="book-trainer one">
-						<form ng-submit="isValidBooking1() && booking1Submit()" class="static-content booking">
+					<div ng-show="bookStep==1" class="book-trainer one">
+						<form ng-submit="isValidStep1() && gotoStep(2)" class="static-content booking">
 							<fieldset>
 								<h2><span>01 </span>Enter Your Details </h2>
 								<div class="row">
@@ -162,65 +161,85 @@
 							</fieldset>
 						</form>
 					</div>
-					<div class="book-trainer tapping two">
-						<form id="" method="post" action="" class="static-content booking">
+					<div ng-show="bookStep==2" class="book-trainer two">
+						<form ng-submit="isValidStep2() && gotoStep(3)" class="static-content booking">
 							<fieldset>
 									<h2><span>02 </span>Payment</h2>
 									<div class="row">
 										<div class="f-item one-half">
 											<label>Card type</label>
-											<select>
-												<option selected>Select card type</option>
+											<select ng-model="Step2.card">
+												<option value="">Select card type</option>
 												<option>Mastercard</option>
 												<option>Visa</option>
 												<option>American Express</option>
 											</select>
+											<div class="text-danger" ng-if="errors.card">
+			                                	{{errors.card}}
+			                              	</div>
 										</div>
 										<div class="f-item one-half">
 											<label for="card_number">Card number</label>
-											<input type="number" id="card_number" name="card_number" />
+											<input type="number" id="card_number" ng-model="Step2.card_number" />
+											<div class="text-danger" ng-if="errors.card_number">
+			                                	{{errors.card_number}}
+			                              	</div>
 										</div>
 									</div>
 									
 									<div class="row">
 										<div class="f-item one-third">
 											<label for="card_holder">Name on card</label>
-											<input type="text" id="card_holder" name="card_holder" />
+											<input type="text" id="card_holder" ng-model="Step2.card_holder" />
+											<div class="text-danger" ng-if="errors.card_holder">
+			                                	{{errors.card_holder}}
+			                              	</div>
 										</div>
 										<div class="f-item one-third datepicker">
 											<label for="expiration_date">Expiration Date </label>
-											<div class="datepicker-wrap"><input type="text" id="expiration_date" name="expiration_date" /></div>
+											<div class="datepicker-wrap"><input type="text" id="expiration_date" ng-model="Step2.expiration_date" /></div>
+											<div class="text-danger" ng-if="errors.expiration_date">
+			                                	{{errors.expiration_date}}
+			                              	</div>
 										</div>
 										<div class="f-item one-third">
 											<label for="cv2_number">CV2 Number</label>
-											<input type="number" id="cv2_number" name="cv2_number" />
+											<input type="number" id="cv2_number" ng-model="Step2.cv2_number" />
+											<div class="text-danger" ng-if="errors.cv2_number">
+			                                	{{errors.cv2_number}}
+			                              	</div>
 										</div>
 									</div>
 
 									<div class="row">
 										<div class="f-item full-width checkbox">
-											<input type="checkbox" name="check" id="check" value="ch1" />
+											<div style="width: 20px;height: 20px;float: left;margin-right: 20px;">
+												<input ng-model="Step2.agreement" type="checkbox" name="check" id="check" value="ch1">
+											</div>
 											<label>Yes, I have read and I agree to the <a href="#">booking conditions</a>.</label>
+											<div class="text-danger" ng-if="errors.agreement">
+			                                	{{errors.agreement}}
+			                              	</div>
 										</div>
 									</div>
 									
 									<div class="row">
 										<div class="full-width">
-											<input type="" class="gradient-button tap-backtwo" value="Back" id="next-step" />
-											<input type="" class="gradient-button tap-two" value="Submit booking" id="next-step" />
+											<input ng-click="gotoStep(1)" type="button" class="gradient-button tap-backtwo" value="Back" id="next-step" />
+											<input type="submit" class="gradient-button tap-two" value="Submit booking" id="next-step" />
 										</div>
 									</div>
 							</fieldset>
 						</form>
 					</div>
-					<div class="book-trainer tapping three">
+					<div ng-show="bookStep==3" class="book-trainer three">
 						<form id="booking" method="post" action="booking-step2.html" class="static-content booking">
 							<fieldset>
 								<h2><span>03 </span>Confirmation</h2>
 								<div class="text-wrap">
 								
-													<a href="#" class="gradient-button right print" title="Print booking" onclick="printpage()">Print booking</a>
-													<a href="#" class="gradient-button right print tap-backthree" title="Back">Back</a>
+													<a ng-click="printBooking()" href="javascript:void(0);" class="gradient-button right print" title="Print booking">Print booking</a>
+													<a ng-click="gotoStep(2)" href="javascript:void(0);" class="gradient-button right print tap-backthree" title="Back">Back</a>
 									<p>Thank you. Your booking is now confirmed.</p>
 								</div>
 								
