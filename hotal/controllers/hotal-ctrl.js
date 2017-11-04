@@ -386,20 +386,25 @@ app.filter('amtfilter', function() {
     }
     
     angular.forEach(items, function(item) {
-      if (item.RoomRate) {
-        if (tmp.length>0) {          
-          for (var i = 0; i < tmp.length; i++) {
-            var minMaxAmt = tmp[i].split('z');
-            if (item.RoomRate >= minMaxAmt[1] && item.RoomRate <= minMaxAmt[1]) {
-                filtered.push(item);       
-            }
+      if (item.length>0&&tmp.length>0) {   
+      var itemAvailable = false;     
+        for (var i = 0; i < item.length; i++) {
+          if (item[i].hasOwnProperty('RoomRate')) {
+              for (var j = 0; j < tmp.length; j++) {
+                var minMaxAmt = tmp[j].split('z');
+                if (item[i].RoomRate >= minMaxAmt[1] && item[i].RoomRate <= minMaxAmt[2]) {
+                    itemAvailable = true;  
+                     break;     
+                }
+              }            
           }
-        }else{
-          filtered.push(item);
-        }      
+        }
+        if (itemAvailable == true) {
+          filtered.push(item);  
+        }
       }else{
-          filtered.push(item);
-        }  
+        filtered.push(item);
+      }      
     });
   
     return filtered;
