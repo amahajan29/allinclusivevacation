@@ -465,3 +465,17 @@ app.directive('myPostRepeatDirective', function() {
     }
   };
 });
+
+app.directive('lightgallery', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      if (scope.$last) {
+        // ng-repeat is completed
+        $('[data-fancybox]').fancybox({
+          protect: true
+        });
+      }
+    }
+  };
+});
