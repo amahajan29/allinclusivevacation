@@ -66,15 +66,15 @@ app.config(function($stateProvider, $urlRouterProvider){
             },
         }
     })
-    /*.state('booking-step1',{
+    .state('booking-step1',{
         url:'/booking-step1',
         data: {
             pageTitle:'Booking Step 1'
         },
         views: {
-            'package-details': {
+            'booking': {
                 templateUrl: 'booking-step1.html',
-                controller:'homeController',
+                controller:'bookingController',
             },
         }
     })
@@ -84,12 +84,12 @@ app.config(function($stateProvider, $urlRouterProvider){
             pageTitle:'Booking Details'
         },
         views: {
-            'package-details': {
+            'booking': {
                 templateUrl: 'booking-details.html',
-                controller:'homeController',
+                controller:'bookingController',
             },
         }
-    })*/
+    })
     /*.state('package-details',{
         url:'/package-details',
         templateUrl:'package_detail.html',
