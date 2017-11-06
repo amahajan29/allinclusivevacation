@@ -356,9 +356,9 @@ function initializeScript() {
                 }  
             });
       
-      $('#gallery1,#gallery2,#gallery3,#gallery4').lightGallery({
+      /*$('#gallery1,#gallery2,#gallery3,#gallery4').lightGallery({
         download:false
-      });
+      });*/
 
               
     });
