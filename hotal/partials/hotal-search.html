@@ -523,8 +523,8 @@
 								<!--room-->
 								<li lightgallery ng-repeat="(key, rooms) in hotal" my-post-repeat-directive>
 									<figure class="left" id="gallery{{key}}">
-										<a data-fancybox="images"  href="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{rooms.RoomImage}}" data-sub-html="<p>{{rooms.Description}}</p>">
-											<img class="item" src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{rooms.RoomImage}}" alt="" />
+										<a data-fancybox="images"  href="https://mgmpackageslive.azurewebsites.net/mgmpackageslive{{rooms.RoomImage}}" data-sub-html="<p>{{rooms.Description}}</p>">
+											<img class="item" src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive{{rooms.RoomImage}}" alt="" />
 											<span class="image-overlay"></span>
 										</a>
 									</figure>									
