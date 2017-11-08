@@ -1,5 +1,5 @@
 var app = angular.module('booking',['ui.router','checklist-model','commonServices']);
-app.controller('bookingController', function bookingController($scope, $http, $templateCache, $state, $rootScope, $filter) {
+app.controller('bookingController', function bookingController($scope, $http, $templateCache, $state, $rootScope, $filter,$window) {
 	$scope.loading = false;
 	$scope.errors = {};
 	$scope.error = "";
@@ -55,4 +55,9 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 	$scope.printBooking = function(){
 		console.log("printBooking called");
 	}
+	$scope.addExtraInit = function (){
+		var booking = JSON.parse($window.localStorage.getItem("booking"));
+		console.log(booking);
+	}
+	$scope.addExtraInit();
 });

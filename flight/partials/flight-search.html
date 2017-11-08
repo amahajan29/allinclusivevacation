@@ -262,7 +262,7 @@
                                  <div class="arive-stop"> 
                                     <p><strong>{{flight.JourneyDuration/60 | number : 0}}h {{flight.JourneyDuration%60}} / {{flight.NumberofStops}} Stop</strong><br/>EY 12 / 9W 589</p>
                                  </div>
-                                 <a href="search_results-hotel.html" title="Book now" class="gradient-button book"> &euro; {{flight.TotalFareAmount}}</a> 
+                                 <a ng-click="goToExtra($index)" href="javascript:void(0);" title="Book now" class="gradient-button book"> &euro; {{flight.TotalFareAmount}}</a> 
                                  <div class="return-stop"> 
                                     <p><strong>{{flight.JourneyDuration_RET/60 | number : 0}}h {{flight.JourneyDuration_RET%60}} / {{flight.NumberofStops_RET}} Stop</strong><br/>EY 12 / 9W 589</p>
                                  </div>

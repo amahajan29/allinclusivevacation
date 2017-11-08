@@ -1,5 +1,5 @@
 var app = angular.module('hotal',['ui.router','checklist-model','commonServices']);
-app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
+app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$window) {
   $scope.bestPackage = {};
   $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
   var obj = {
@@ -73,6 +73,13 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     //$().toogleClass("hide");
     document.querySelector(".facility_"+index).classList.toggle('hide');
     //console.log(index);
+  }
+
+  $scope.goToExtra = function (index){
+      //console.log($scope.hotalList[0][index]);
+      $window.localStorage.setItem("booking",JSON.stringify($scope.hotalList[0][index]));
+      //console.log($window.localStorage.getItem("booking"));
+      window.location = "/#/add-extra";
   }
 
   
