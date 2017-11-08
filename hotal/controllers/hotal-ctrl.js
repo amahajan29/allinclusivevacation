@@ -10,9 +10,11 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     NoOfChildren: $stateParams.NoOfChildren,
   };
 
-  $scope.dateFrom = createDate($stateParams.sFrom);
-  $scope.sTo = createDate($stateParams.sTo);
-
+  $scope.dateFrom = createDate($stateParams.sFrom).format;  
+  $scope.sTo = createDate($stateParams.sTo).format;  
+  $scope.NoOfAdults = $stateParams.NoOfAdults; 
+  var timeDiff = Math.abs(createDate($stateParams.sFrom).dt.getTime() - createDate($stateParams.sTo).dt.getTime());
+  $scope.diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
 /*get all hotels list*/
   var packageObj = {};
   var allHotels;
@@ -82,18 +84,59 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
       window.location = "/#/add-extra";
   }
 
+  $scope.ShowHideDate = function(actionFor){
+    if (actionFor == "show") {
+      $(".dt-filter").show();
+      // $(".dt-filter-btn2").show();
+      // $(".dt-filter-btn1").hide();
+    }else if(actionFor == "hide"){
+      $(".dt-filter").hide();
+      // $(".dt-filter-btn2").hide();
+      // $(".dt-filter-btn1").hide();
+    }
+  }
+
+$scope.fromDt = $scope.toDt = "";
+  $scope.changeSearchDate = function(){ 
+    var fromDt = $("#datepicker1").val().replace("/","");
+    var toDt = $("#datepicker2").val().replace("/","");
+    var tmp1 = fromDt.replace("/","");
+    var tmp2 = toDt.replace("/","");
+    $state.go('hotal-search',{
+        sFrom: fromDt.replace("/",""),
+        sTo: toDt.replace("/",""),
+        Location: $stateParams.Location,
+        NoOfAdults: $stateParams.NoOfAdults,
+        NoOfChildren: $stateParams.NoOfChildren,
+      });
+  }
+
+
+$scope.onContainereClick = function(){
+    if($("#containere").hasClass('off')) {
+      $("#containere").removeClass('off');
+      $('.day-amt').show();
+      $('.price-per-person-amt').hide();
+    } else {
+      $("#containere").addClass('off');
+      $('.day-amt').hide();
+      $('.price-per-person-amt').show();
+    }
+}
   
 });
 
 function createDate(dtStr){
   var str = dtStr;
+  var resObj = {};
   var yr = str.substring(0, 4);
   var mon = str.substring(4, 6);
   var dt = str.substring(6, 8);
   var completeDate = yr+"-"+mon+"-"+dt
   var res = new Date(completeDate);
-  res = res.getDate()+" "+res.getMonth()+" "+res.getFullYear();
-  return res;  
+  resObj.format = res.getDate()+" "+res.getMonth()+" "+res.getFullYear();
+  resObj.dt =res
+  return resObj;  
 }
 
 function initializeScript() {
@@ -319,9 +362,9 @@ function initializeScript() {
                 }  
             });
       
-      $('#gallery1,#gallery2,#gallery3,#gallery4').lightGallery({
+      /*$('#gallery1,#gallery2,#gallery3,#gallery4').lightGallery({
         download:false
-      });
+      });*/
 
               
     });
@@ -425,6 +468,20 @@ app.directive('myPostRepeatDirective', function() {
         setTimeout(function(){  
          initializeScript();
         },1000)   
+    }
+  };
+});
+
+app.directive('lightgallery', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      if (scope.$last) {
+        // ng-repeat is completed
+        $('[data-fancybox]').fancybox({
+          protect: true
+        });
+      }
     }
   };
 });
