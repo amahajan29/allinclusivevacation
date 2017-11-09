@@ -418,14 +418,18 @@
 			
 				<!--three-fourth content-->
 				
-				<section class="one-half" style="background:#fff;" >
+				<section class="one-half" style="background:#fff;" id="hotelparent">
 					<!--gallery-->
+					
+					<!--//gallery-->
+					<div ng-repeat="hotal in hotalList | payfilter:paymenttype | amtfilter:amounts | starfilter:starfilter.startscore">
+					<h2>{{hotal[0].hoteldetails[0].Name}} <br/> <span> (Lara, Antalya, Turkey) </span></h2>
 					<div class="gallery">
 						<ul id="image-gallery" class="cS-hidden">
-							<li ng-repeat="hotal in hotalList | payfilter:paymenttype | amtfilter:amounts" data-thumb="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{hotal[0].RoomImage}}">
+							<li data-thumb="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{hotal[0].RoomImage}}">
 								<img class="image-gallery" src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{hotal[0].RoomImage}}" alt="" />
 							</li>
-							<!-- <li data-thumb="assets/images/uploads/hotel4.jpg"> 
+							<li data-thumb="assets/images/uploads/hotel4.jpg"> 
 								<img src="assets/images/uploads/hotel4.jpg" alt="" />
 							</li>
 							<li data-thumb="assets/images/uploads/hotel1.jpg"> 
@@ -442,12 +446,9 @@
 							</li>
 							<li data-thumb="assets/images/uploads/hotel6.jpg"> 
 								<img src="assets/images/uploads/hotel6.jpg" alt="" />
-							</li> -->
+							</li>
 						</ul>
 					</div>
-					<!--//gallery-->
-					<div ng-repeat="hotal in hotalList | payfilter:paymenttype | amtfilter:amounts">
-					<h2>{{hotal[0].hoteldetails[0].Name}} <br/> <span> (Lara, Antalya, Turkey) </span></h2>
                     <!-- hot deals for you -->
                     <section class="offers_section inner">								
 						<div id="" class="tab-content new-hotel">

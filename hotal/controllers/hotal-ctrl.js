@@ -1,6 +1,9 @@
 var app = angular.module('hotal',['ui.router','checklist-model','commonServices']);
 app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
   $scope.bestPackage = {};
+   $scope.starfilter = {};
+   $scope.starfilter.startscore = '';
+
   $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
   var obj = {
     Location: $stateParams.Location,
@@ -135,6 +138,18 @@ function createDate(dtStr){
 
 function initializeScript() {
       
+      $('#star').raty({
+        score    : 3,
+        path     : 'assets/images/ico/',
+        starOff  : 'star-rating-off.png',
+        starOn  : 'star-rating-on.png',
+        click: function(score, evt) {
+          var scope = angular.element(document.getElementById("hotelparent")).scope();
+          scope.starfilter.startscore = score;
+          scope.$apply();          
+        }
+      });
+
       //MAIN SEARCH 
       $('.main-search input[name=radio]').change(function() {
         var showForm = $(this).val();
@@ -174,8 +189,9 @@ function initializeScript() {
         showOn: 'button',
         buttonImage: 'assets/images/ico/calendar.png',
         buttonImageOnly: true,
-        dateFormat: "yy/mm/dd"
-      });
+        dateFormat: "yy/mm/dd",
+        setDate: 'today'
+      }).datepicker("setDate", new Date());
       
       $( '#slider' ).slider({
         range: "min",
@@ -386,10 +402,11 @@ function initializeScript() {
 }
 
 app.filter('payfilter', function() {
-   return function( items, types) {
+   return function( items, types) {    
     var filtered = [];
     var tmp = [];
     if (types) {
+      
       for (var key in types) {
           if(types[key] == true){
             tmp.push(key);
@@ -422,6 +439,7 @@ app.filter('amtfilter', function() {
     var filtered = [];
     var tmp = [];
     if (types) {
+      
       for (var key in types) {
           if(types[key] == true){
             tmp.push(key);
@@ -449,8 +467,39 @@ app.filter('amtfilter', function() {
       }else{
         filtered.push(item);
       }      
-    });
-  
+    });        
+    // $('.loading').fadeIn();
+    // $('.loading').fadeOut();
+    return filtered;
+  };
+});
+
+
+app.filter('starfilter', function() {
+   return function( items, types) {
+    var filtered = [];
+    var tmp = [];
+    
+    angular.forEach(items, function(item) {
+      if (types) {   
+      var itemAvailable = false;     
+        for (var i = 0; i < item.length; i++) {
+          if (item[i].hasOwnProperty('StarRating')) {
+              if (item[i].StarRating == types) {              
+                itemAvailable = true;  
+                break;          
+              }
+          }
+        }
+        if (itemAvailable == true) {
+          filtered.push(item);  
+        }
+      }else{
+        filtered.push(item);
+      }      
+    });        
+    // $('.loading').fadeIn();
+    // $('.loading').fadeOut();
     return filtered;
   };
 });
@@ -475,6 +524,7 @@ app.directive('lightgallery', function() {
         $('[data-fancybox]').fancybox({
           protect: true
         });
+        $('.loading').fadeOut();
       }
     }
   };
