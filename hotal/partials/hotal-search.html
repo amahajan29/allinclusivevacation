@@ -537,9 +537,8 @@
 										<div class="row">
 											<p><strong>Bed Size(s):</strong> 1 Double </p>
 										</div>
-										<a href="booking-step1.html" class="gradient-button price-per-person-amt" title="Book" style="display:inline-none;">&euro;  {{(rooms.RoomRate/diffDays)/NoOfAdults | number : 2}}  Book Now</a>
-										<a href="booking-step1.html" class="gradient-button day-amt" title="Book">&euro;  {{rooms.RoomRate/diffDays | number : 2}}  Book Now</a>
-
+										<a ng-click="goToExtra($index)" href="javascript:void(0);" class="gradient-button price-per-person-amt" title="Book" style="display:inline-none;">&euro;  {{(rooms.RoomRate/diffDays)/NoOfAdults | number : 2}}  Book Now</a>
+										<a ng-click="goToExtra($index)" href="javascript:void(0);" class="gradient-button day-amt" title="Book">&euro;  {{rooms.RoomRate/diffDays | number : 2}}  Book Now</a>
 									</div>
 									<div class="more-information">
                                     	<p>{{rooms.RoomDetails}}</p>

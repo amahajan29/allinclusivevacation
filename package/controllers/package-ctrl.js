@@ -25,9 +25,7 @@ app.controller('packageController', function($scope, $http, $templateCache, $sta
 
     var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
     apis.packageDetail(packageObj).then(function(response){
-       console.log("packageDetail");
       $scope.bestPackage = response;
-      console.log($scope.bestPackage);
     }).catch(function(response) {
       console.log("Sorry, there is a problem. Please, contact support.");
     });

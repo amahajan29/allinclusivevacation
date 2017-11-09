@@ -1,5 +1,5 @@
 var app = angular.module('flight',['ui.router','checklist-model','commonServices']);
-app.controller('flightSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
+app.controller('flightSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$window) {
 
   $scope.departureTimes = [
     {key :"4-6", value:"Lowest fare (04:00 - 06:00)"},
@@ -77,9 +77,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
 
   var packageObj = {LocationCode:"FAO",PackageCode:"MGMCPO003"};
   apis.packageDetail(packageObj).then(function(response){
-       console.log("packageDetail");
       $scope.bestPackage = response;
-      console.log($scope.bestPackage);
   }).catch(function(response) {
       console.log("Sorry, there is a problem. Please, contact support.");
   });
@@ -359,6 +357,13 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
         $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
       },100);
   }
+
+  $scope.goToExtra = function (index){
+      $window.localStorage.setItem("booking",$scope.flightList[index]);
+      console.log($window.localStorage.getItem("booking"));
+      //window.location = "/#/add-extra";
+  }
+
   setTimeout(function(){ 
     $('select').uniform();
   },100);

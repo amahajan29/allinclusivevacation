@@ -1,5 +1,5 @@
 var app = angular.module('hotal',['ui.router','checklist-model','commonServices']);
-app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis) {
+app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$window) {
   $scope.bestPackage = {};
    $scope.starfilter = {};
    $scope.starfilter.startscore = '';
@@ -80,6 +80,13 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     //console.log(index);
   }
 
+  $scope.goToExtra = function (index){
+      //console.log($scope.hotalList[0][index]);
+      $window.localStorage.setItem("booking",JSON.stringify($scope.hotalList[0][index]));
+      //console.log($window.localStorage.getItem("booking"));
+      window.location = "/#/add-extra";
+  }
+
   $scope.ShowHideDate = function(actionFor){
     if (actionFor == "show") {
       $(".dt-filter").show();
@@ -119,7 +126,6 @@ $scope.onContainereClick = function(){
       $('.price-per-person-amt').show();
     }
 }
-
   
 });
 
