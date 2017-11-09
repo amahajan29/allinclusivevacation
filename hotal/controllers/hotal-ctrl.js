@@ -513,9 +513,13 @@ app.filter('starfilter', function() {
 
 app.directive('myPostRepeatDirective', function() {
   return function(scope, element, attrs) {
+    if (scope.$first){
+      $('.loading').fadeIn();
+    }
     if (scope.$last){
         setTimeout(function(){  
          initializeScript();
+          $('.loading').fadeOut();
         },1000)   
     }
   };
@@ -529,8 +533,7 @@ app.directive('lightgallery', function() {
         // ng-repeat is completed
         $('[data-fancybox]').fancybox({
           protect: true
-        });
-        $('.loading').fadeOut();
+        });        
       }
     }
   };
