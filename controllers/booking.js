@@ -1,11 +1,12 @@
 var app = angular.module('booking',['ui.router','checklist-model','commonServices']);
-app.controller('bookingController', function bookingController($scope, $http, $templateCache, $state, $rootScope, $filter,$window) {
+app.controller('bookingController', function bookingController($scope, $http, $templateCache, $state, $rootScope, $filter,apis,$window) {
 	$scope.loading = false;
 	$scope.errors = {};
 	$scope.error = "";
 	$scope.Booking1 = {};
 	$scope.Step2 = {};
 	$scope.bookStep = 1;
+	$scope.booking = [];
 	$scope.gotoNext = function (){
 		location.href = "#/booking-step1";
 	}
@@ -46,8 +47,45 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 	    return isvalid;
 	}
 	$scope.booking1Submit = function(){
+		var mp = "MainPassenger";
+		var bookingObj = {
+			MainPassengerFirstName:"Suresh",
+			MainPassengerLastName:"Suresh",
+			MainPassengerEmail:"Suresh",
+			MainPassengerCoutryCode:"",
+			MainPassengerPhoneNumber:"",
+			MainPassengerpassportno:"",
+			MainPassengerpassportexpdate:"",
+			MainPassengercountry:"",
+			MainPassengerseatpref:"",
+			MainPassengermealpref:"",
+			MainPassengerbookingpref:"",
+			FromDate:"",
+			ToDate:"",
+			Adults:"1",
+			Children:"1",
+			Infant:"1",
+			roomsearchid:$scope.booking.RoomSearchID,
+			packagesessionid:"",
+			idflights:"",
+			idflights_RET:"",
+			idrooms:"",
+			transfer:"",
+			total:"",
+			MainPassengerDOB:"",
+			revalidate:"",
+			main_title:"",
+			main_firstname:"",
+		}
+		console.log("booking1Submit");
+		apis.booking(bookingObj).then(function(response){
+	        console.log(roomDetails);
+	    }).catch(function(response) {
+	        console.log("Sorry, there is a problem. Please, contact support.");
+	    });
+
 		//location.href = "#/booking-details";
-		$scope.bookStep = 2;
+		//$scope.bookStep = 2;
 	}
 	$scope.gotoStep = function(step){
 		$scope.bookStep = step;
@@ -56,8 +94,8 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 		console.log("printBooking called");
 	}
 	$scope.addExtraInit = function (){
-		var booking = JSON.parse($window.localStorage.getItem("booking"));
-		console.log(booking);
+		$scope.booking = JSON.parse($window.localStorage.getItem("booking"));
+		console.log($scope.booking);
 	}
 	$scope.addExtraInit();
 });
