@@ -359,9 +359,8 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
 
   $scope.goToExtra = function (index){
-      $window.localStorage.setItem("booking",$scope.flightList[index]);
-      console.log($window.localStorage.getItem("booking"));
-      //window.location = "/#/add-extra";
+      $window.localStorage.setItem("booking",JSON.stringify($scope.flightList[index]));
+      window.location = "/#/add-extra";
   }
 
   setTimeout(function(){ 

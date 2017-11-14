@@ -82,9 +82,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
   }
 
   $scope.goToExtra = function (index){
-      //console.log($scope.hotalList[0][index]);
       $window.localStorage.setItem("booking",JSON.stringify($scope.hotalList[0][index]));
-      //console.log($window.localStorage.getItem("booking"));
       window.location = "/#/add-extra";
   }
 
