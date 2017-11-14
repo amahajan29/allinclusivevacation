@@ -4,6 +4,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
    $scope.starfilter = {};
    $scope.starfilter.startscore = '';
   $('.loading').fadeIn();
+  $('.price-per-person-amt').hide();
   $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
   var obj = {
     Location: $stateParams.Location,
@@ -98,19 +99,54 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     }
   }
 
+
+$scope.changeSearch = function(){
+      window.location = "/#/";
+      setTimeout(function(){ 
+        var activeTab = 2;//3 for flight
+        $(".index-form li").eq(activeTab).trigger("click");
+      },4000);
+  }
+
+$scope.isValidHotel = function(sFrom, sTo){
+    $scope.errors = {};
+    $scope.error = "";
+    var isvalid = true;
+    if(!sFrom){
+      isvalid = false;
+      $scope.errors.H_sFrom = "Check-in date is required.";
+    }
+    if(!sTo){
+      isvalid = false;
+      $scope.errors.H_sTo = "Check-out date is required.";
+    }
+    if(isvalid){
+      var StartDate = new Date(sFrom);
+      var ReturnDate = new Date(sTo);
+      if(StartDate.getTime() >= ReturnDate.getTime()){
+        isvalid = false;
+        $scope.errors.H_sTo = "Check-out date can't be less than check-in.";
+      }
+    }    
+    return isvalid;
+  };  
+
 $scope.fromDt = $scope.toDt = "";
   $scope.changeSearchDate = function(){ 
+
     var fromDt = $("#datepicker1").val().replace("/","");
     var toDt = $("#datepicker2").val().replace("/","");
-    var tmp1 = fromDt.replace("/","");
-    var tmp2 = toDt.replace("/","");
-    $state.go('hotal-search',{
-        sFrom: fromDt.replace("/",""),
-        sTo: toDt.replace("/",""),
-        Location: $stateParams.Location,
-        NoOfAdults: $stateParams.NoOfAdults,
-        NoOfChildren: $stateParams.NoOfChildren,
-      });
+    if ($scope.isValidHotel($("#datepicker1").val(), $("#datepicker2").val())) {      
+      var tmp1 = fromDt.replace("/","");
+      var tmp2 = toDt.replace("/","");
+      $state.go('hotal-search',{
+          sFrom: fromDt.replace("/",""),
+          sTo: toDt.replace("/",""),
+          Location: $stateParams.Location,
+          NoOfAdults: $stateParams.NoOfAdults,
+          NoOfChildren: $stateParams.NoOfChildren,
+        });
+    }
   }
 
 

@@ -32,7 +32,7 @@
 				<!--top right navigation-->
 				<ul class="top-right-nav">
 					<li><a href="#/" title="Back to results">Back to results</a></li>
-					<li><a href="#" title="Change search">Change search</a></li>
+					<li><a href="javascript:void(0);" ng-click="changeSearch()" title="Change search">Change search</a></li>
 				</ul>
 				<!--//top right navigation-->
 			</nav>
@@ -487,8 +487,14 @@
 									<div class="dt-filter" style="display: none;">
 										<label for="datepicker1">Check-in</label>
 			                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker1" name="datepicker1" ng-modal="fromDt" /></div>
+			                              <div class="text-danger" ng-if="errors.H_sFrom">
+		                                    {{errors.H_sFrom}}
+		                                 </div>
 			                              <label for="datepicker2">Check-out</label>
 			                              <div class="datepicker-wrap"><input type="text" placeholder="" id="datepicker2" name="datepicker2" ng-modal="toDt" /></div>
+			                              <div class="text-danger" ng-if="errors.H_sTo">
+		                                    {{errors.H_sTo}}
+		                                 </div>
 										<input type="submit" value="Proceed to results" class="gradient-button search-submit" ng-click="changeSearchDate();">
 										<a href="javascript:void(0); class="gradient-button right dt-filter-btn2" title="Change dates" ng-click="ShowHideDate('hide');">Hide dates</a>
 									</div>									
@@ -536,7 +542,7 @@
 										<div class="row">
 											<p><strong>Bed Size(s):</strong> 1 Double </p>
 										</div>
-										<a ng-click="goToExtra($index)" href="javascript:void(0);" class="gradient-button price-per-person-amt" title="Book" style="display:inline-none;">&euro;  {{(rooms.RoomRate/diffDays)/NoOfAdults | number : 2}}  Book Now</a>
+										<a ng-click="goToExtra($index)" href="javascript:void(0);" class="gradient-button price-per-person-amt" title="Book" >&euro;  {{(rooms.RoomRate/diffDays)/NoOfAdults | number : 2}}  Book Now</a>
 										<a ng-click="goToExtra($index)" href="javascript:void(0);" class="gradient-button day-amt" title="Book">&euro;  {{rooms.RoomRate/diffDays | number : 2}}  Book Now</a>
 									</div>
 									<div class="more-information">
