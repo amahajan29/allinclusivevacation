@@ -3,7 +3,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
   $scope.bestPackage = {};
    $scope.starfilter = {};
    $scope.starfilter.startscore = '';
-
+  $('.loading').fadeIn();
   $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
   var obj = {
     Location: $stateParams.Location,
@@ -57,6 +57,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     for(var i in $scope.hotalList){
       $scope.getRoomDetail(i, {categoryname:$scope.hotalList[i][0].CategoryCode,resort:$scope.hotalList[i][0].Code});
     }
+    $('.loading').fadeIn();
     console.log($scope.hotalList);
     //hotalList = $scope.hotalList;
   }).catch(function(response) {

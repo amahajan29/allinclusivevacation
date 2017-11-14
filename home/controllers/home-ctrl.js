@@ -33,7 +33,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
     Location : "LON",
     sFrom : today,
     sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
-    NoOfAdults : 0,
+    NoOfAdults : 1,
     NoOfChildren : 0
   };
   $scope.flight_hotel = {
