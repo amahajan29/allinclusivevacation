@@ -2,6 +2,52 @@ var app = angular.module('hotal',['ui.router','checklist-model','commonServices'
 app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$window) {
   $scope.bestPackage = {};
    $scope.starfilter = {};
+   $scope.hotelImage = [
+                        {id:1,label:'hotel4.jpg'},
+                        {id:2,label:'hotel1.jpg'},
+                        {id:3,label:'hotel2.jpg'},
+                        {id:4,label:'hotel5.jpg'},
+                        {id:5,label:'hotel3.jpg'},
+                        {id:6,label:'hotel6.jpg'},
+                        {id:7,label:'hotel6.jpg'},
+                        {id:8,label:'hotel5.jpg'},
+                        {id:9,label:'hotel2.jpg'},
+                        {id:10,label:'hotel5.jpg'},
+                        {id:11,label:'hotel4.jpg'},
+                        {id:12,label:'hotel1.jpg'},
+                        {id:13,label:'hotel4.jpg'},
+                        {id:14,label:'hotel5.jpg'},
+                        {id:15,label:'hotel5.jpg'}
+                        ];
+   /* API will provide data for activity id*/
+   $scope.roomFacilityFilterList = [
+                        {id:1,label:'Bathroom'},
+                        {id:2,label:'Cable Tv'},
+                        {id:3,label:'Air conditioning'},
+                        {id:4,label:'Mini bar'},
+                        {id:5,label:'Wi-Fi'},
+                        {id:6,label:'Wheelchair-friendly room'},
+                        {id:7,label:'Play Tv'},
+                        {id:8,label:'Desk'},
+                        {id:9,label:'Room Safe'}                        
+                        ];
+    /* API will provide data for facility id*/                  
+    $scope.hotelFacilityFilterList = [
+                        {id:1,label:'Wi-Fi'},
+                        {id:2,label:'Parking'},
+                        {id:3,label:'Airport Shuttle'},
+                        {id:4,label:'Meeting / Banquet Facilities'},
+                        {id:5,label:'Swimming pool'},
+                        {id:6,label:'Restaurant'},
+                        {id:7,label:'Fitness Centre'},
+                        {id:8,label:'SPA & Wellness Centre'},
+                        {id:9,label:'Pets allowed'},
+                        {id:10,label:'Lift'},
+                        {id:11,label:'Air condition'},
+                        {id:12,label:'Family rooms'},
+                        {id:13,label:'Non - smoking rooms'},
+                        {id:14,label:'Rooms/facilities for disabled guests'}
+                        ];                        
    $scope.starfilter.startscore = '';
   $('.loading').fadeIn();
   $('.price-per-person-amt').hide();
@@ -13,6 +59,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     NoOfAdults: $stateParams.NoOfAdults,
     NoOfChildren: $stateParams.NoOfChildren,
   };
+
 
   $scope.dateFrom = createDate($stateParams.sFrom).format;  
   $scope.sTo = createDate($stateParams.sTo).format;  
@@ -69,7 +116,19 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
   $scope.getRoomDetail = function (index,roomObj){
     apis.roomDetail(roomObj).then(function(response){
         var roomDetails = Array.isArray(response)?response[0]:response;
-        //console.log(roomDetails);
+        var facIdArr = roomDetails.FacilitiesID.split(',').map(Number);
+        var ActIdArr = roomDetails.ActivitiesID.split(',').map(Number);
+        for (var i = 0; i < $scope.roomFacilityFilterList.length; i++) {
+            if(ActIdArr.indexOf($scope.roomFacilityFilterList[i].id) > -1 && $scope.roomFacilityFilterList[i].isvisible == undefined){
+              $scope.roomFacilityFilterList[i].isvisible = true;
+             }
+          }          
+        for (var i = 0; i < $scope.hotelFacilityFilterList.length; i++) {
+          if(facIdArr.indexOf($scope.hotelFacilityFilterList[i].id) > -1 && $scope.hotelFacilityFilterList[i].isvisible == undefined){
+            $scope.hotelFacilityFilterList[i].isvisible = true;
+           }
+        }
+       
         $scope.hotalList[index].RoomFacility = roomDetails;
     }).catch(function(response) {
         console.log("Sorry, there is a problem. Please, contact support.");
@@ -161,6 +220,8 @@ $scope.onContainereClick = function(){
       $('.price-per-person-amt').show();
     }
 }
+
+    
   
 });
 
@@ -515,6 +576,69 @@ app.filter('amtfilter', function() {
   };
 });
 
+/*filter for hotal facility*/
+app.filter('hotelfilter', function() {
+   return function( items, types) {    
+    var filtered = [];
+    var tmp = [];
+    if (types) {
+      for (var i = 0; i < types.length; i++) {
+        if(types[i].IsIncluded == true){
+            tmp.push(types[i].id);
+        }
+      }      
+    }
+
+    angular.forEach(items, function(item) {      
+      if (item.RoomFacility) {
+        if (tmp.length>0) {
+          for (var i = 0; i < tmp.length; i++) {
+            var facIdArr = item.RoomFacility.FacilitiesID.split(',').map(Number);
+            if (facIdArr.indexOf(tmp[i]) != -1) {
+                filtered.push(item);       
+            }
+          }
+        }else{
+          filtered.push(item);
+        }      
+      }      
+    });
+  
+    return filtered;
+  };
+});
+
+/*filter for room facility*/
+app.filter('roomfilter', function() {
+   return function( items, types) {    
+    var filtered = [];
+    var tmp = [];
+    if (types) {
+      for (var i = 0; i < types.length; i++) {
+        if(types[i].IsIncluded == true){
+            tmp.push(types[i].id);
+        }
+      }      
+    }
+
+    angular.forEach(items, function(item) {      
+      if (item.RoomFacility) {
+        if (tmp.length>0) {
+          for (var i = 0; i < tmp.length; i++) {
+            var facIdArr = item.RoomFacility.ActivitiesID.split(',').map(Number);
+            if (facIdArr.indexOf(tmp[i]) != -1) {
+                filtered.push(item);       
+            }
+          }
+        }else{
+          filtered.push(item);
+        }      
+      }      
+    });
+  
+    return filtered;
+  };
+});
 
 app.filter('starfilter', function() {
    return function( items, types) {
@@ -573,3 +697,5 @@ app.directive('lightgallery', function() {
     }
   };
 });
+
+

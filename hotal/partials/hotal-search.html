@@ -153,61 +153,11 @@
 							<!--Hotel facilities-->
 							<dt>Hotel facilities</dt>
 							<dd>
-								<div class="checkbox">
-									<input type="checkbox" id="ch35" name="facilities" />
-									<label for="ch35">Wi-Fi</label>
+								<div ng-repeat="fac in hotelFacilityFilterList">
+								<div class="checkbox" ng-if="fac.isvisible">
+									<input type="checkbox" data-ng-model='fac.IsIncluded' data-ng-checked='fac.IsIncluded' id="ch{{fac.IsIncluded}}" name="room-facilities" />
+									<label for="ch{{fac.id}}">{{fac.label}}</label>
 								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch36" name="facilities" />
-									<label for="ch36">Parking</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch37" name="facilities" />
-									<label for="ch37">Airport Shuttle</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch38" name="facilities" />
-									<label for="ch38">Meeting / Banquet Facilities</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch39" name="facilities" />
-									<label for="ch39">Swimming pool</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch40" name="facilities" />
-									<label for="ch40">Restaurant</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch41" name="facilities" />
-									<label for="ch41">Fitness Centre</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch42" name="facilities" />
-									<label for="ch42">SPA &amp; Wellness Centre</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch43" name="facilities" />
-									<label for="ch43">Pets allowed</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch44" name="facilities" />
-									<label for="ch44">Lift</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch45" name="facilities" />
-									<label for="ch45">Air condition</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch46" name="facilities" />
-									<label for="ch46">Family rooms</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch47" name="facilities" />
-									<label for="ch47">Non - smoking rooms</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch48" name="facilities" />
-									<label for="ch48">Rooms/facilities for disabled guests</label>
 								</div>
 							</dd>
 							<!--//Hotel facilities-->
@@ -215,41 +165,11 @@
 							<!--Room facilites-->
 							<dt>Room facilites</dt>
 							<dd>
-								<div class="checkbox">
-									<input type="checkbox" id="ch49" name="room-facilities" />
-									<label for="ch49">Bathroom</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch50" name="room-facilities" />
-									<label for="ch50">Cable TV</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch51" name="room-facilities" />
-									<label for="ch51">Air conditioning</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch52" name="room-facilities" />
-									<label for="ch52">Mini bar</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch53" name="room-facilities" />
-									<label for="ch53">Wi - Fi</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch54" name="room-facilities" />
-									<label for="ch54">Wheelchair - friendly room</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch55" name="room-facilities" />
-									<label for="ch55">Pay TV</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch56" name="room-facilities" />
-									<label for="ch56">Desk</label>
-								</div>
-								<div class="checkbox">
-									<input type="checkbox" id="ch57" name="room-facilities" />
-									<label for="ch57">Room safe</label>
+								<div ng-repeat="activity in roomFacilityFilterList">
+								<div class="checkbox" ng-if="activity.isvisible">
+									<input type="checkbox" id="ch{{activity.id}}" name="room-facilities" data-ng-model='activity.IsIncluded' data-ng-checked='activity.IsIncluded' />
+									<label for="ch{{activity.id}}">{{activity.label}}</label>
+								</div>																
 								</div>
 							</dd>
 							<!--//Room facilites-->
@@ -421,7 +341,7 @@
 				<section class="one-half" style="background:#fff;" id="hotelparent">
 					<!--gallery-->					
 					<!--//gallery-->
-					<div ng-repeat="hotal in hotalList | payfilter:paymenttype | amtfilter:amounts | starfilter:starfilter.startscore">
+					<div ng-repeat="hotal in hotalList | payfilter:paymenttype | amtfilter:amounts | starfilter:starfilter.startscore | hotelfilter:hotelFacilityFilterList:this | roomfilter:roomFacilityFilterList ">
 					<h2>{{hotal[0].hoteldetails[0].Name}} <br/> <span> (Lara, Antalya, Turkey) </span></h2>
 					<div class="gallery">
 						<ul id="image-gallery" class="cS-hidden">

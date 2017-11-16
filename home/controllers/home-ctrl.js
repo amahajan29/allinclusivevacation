@@ -277,6 +277,9 @@ function initializeScript() {
         $(this).parent().addClass("active");
       }); 
       
+     
+
+
       //SEARCH WIDGET
       //$('.refine-search-results dt').each(function() {
 //      var tis = $(this), state = false, answer = tis.next('.refine-search-results dd').hide().css('height','auto').slideUp();
