@@ -11,6 +11,7 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 		location.href = "#/booking-step1";
 	}
 	$scope.isValidStep1 = function(){
+		// $scope.booking1Submit();
 		$scope.errors = {};
 	    $scope.error = "";
 	    var isvalid = true;
@@ -49,33 +50,34 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 	$scope.booking1Submit = function(){
 		var mp = "MainPassenger";
 		var bookingObj = {
-			MainPassengerFirstName:"Suresh",
-			MainPassengerLastName:"Suresh",
-			MainPassengerEmail:"Suresh",
-			MainPassengerCoutryCode:"",
-			MainPassengerPhoneNumber:"",
+			MainPassengerTitle:"Mr",
+			MainPassengerFirstName:"Ankit",
+			MainPassengerLastName:"Kumar",
+			MainPassengerEmail:"ankit@gmail.com",
+			MainPassengerCoutryCode:"+44",
+			MainPassengerPhoneNumber:"7867554433",
 			MainPassengerpassportno:"",
 			MainPassengerpassportexpdate:"",
 			MainPassengercountry:"",
 			MainPassengerseatpref:"",
 			MainPassengermealpref:"",
 			MainPassengerbookingpref:"",
-			FromDate:"",
-			ToDate:"",
+			FromDate:"2017-12-01",
+			ToDate:"2017-12-10",
 			Adults:"1",
 			Children:"1",
-			Infant:"1",
+			Infant:"0",
 			roomsearchid:$scope.booking.RoomSearchID,
 			packagesessionid:"",
-			idflights:"",
+			idflights:"2002",
 			idflights_RET:"",
 			idrooms:"",
-			transfer:"",
-			total:"",
-			MainPassengerDOB:"",
-			revalidate:"",
-			main_title:"",
-			main_firstname:"",
+			transfer:false,
+			total:"208",
+			MainPassengerDOB:"02/12/2003",
+			revalidate:false,
+			main_title:false,
+			main_firstname:false,
 		}
 		console.log("booking1Submit");
 		apis.booking(bookingObj).then(function(response){

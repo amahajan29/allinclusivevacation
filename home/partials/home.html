@@ -580,7 +580,7 @@
                      <div class="offers" ng-show="!loading">
                         <div class="row">
                            <!--deal-->
-                           <article class="one-fourth" ng-repeat="l in data | limitTo : limit : begin track by $index">
+                           <article class="one-fourth itemlist" ng-repeat="l in data.slice(begin, limit) track by $index">
                               <figure><a href="hotel.html" title=""><img src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{l.PictureFileName}}" alt="{{l.PackageName}}" /></a></figure>
                               <div class="details">
                                  <h3 title="{{l.PackageName}}">{{l.PackageName  | limitTo:20}}...
@@ -604,8 +604,8 @@
                            <article class="text-centre but-section" ng-if="data.length>4">
 
                               <a ng-show="packagebtn" ng-click="ViewAllPackages();" title="More info" class="gradient-button">View All Packages</a>
-                              <a ng-hide="packagebtn" ng-click="PaginatePackages('prev');" title="Previous" class="gradient-button"><<</a>
-                              <a ng-hide="packagebtn" ng-click="PaginatePackages('next');" title="More info" class="gradient-button">>></a>
+                              <a ng-hide="packagebtn" ng-if="data.length>8" ng-click="PaginatePackages('prev');" title="Previous" class="gradient-button"><<</a>
+                              <a ng-hide="packagebtn" ng-if="data.length>8" ng-click="PaginatePackages('next');" title="More info" class="gradient-button">>></a>
                            </article>
                         </div>
                      </div>

@@ -215,14 +215,16 @@ app.controller('homeController', function homeController($scope, $http, $templat
   
   $scope.ViewAllPackages = function () {
     $scope.packagebtn = false;
-    $scope.limit = 8;
+    $scope.limit = 8;    
   };
 
   $scope.PaginatePackages = function (where) {
     var total = $scope.data.length;
     if(where==='next'){
         if(($scope.begin + $scope.limit)<total){
-            $scope.begin = $scope.begin + $scope.limit;
+            $scope.begin = ($scope.begin == 0) ? 
+                          $scope.limit - 1 
+                        : $scope.begin + $scope.limit;
         }
     }
     else{
