@@ -2,6 +2,7 @@ var app = angular.module('hotal',['ui.router','checklist-model','commonServices'
 app.controller('hotalSearchController', function($scope, $http, $templateCache, $state, $stateParams, $filter, apis,$window) {
   $scope.bestPackage = {};
    $scope.starfilter = {};
+
    $scope.hotelImage = [
                         {id:1,label:'hotel4.jpg'},
                         {id:2,label:'hotel1.jpg'},
@@ -19,6 +20,29 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
                         {id:14,label:'hotel5.jpg'},
                         {id:15,label:'hotel5.jpg'}
                         ];
+    $scope.hotelFacilityFilterList = [];                            
+   var dataSearchParam = {sType:"hotelfacilities"};
+    apis.filterList(dataSearchParam).then(function(response){
+      for(var p in response)
+      {        
+        $scope.hotelFacilityFilterList.push({id:p,label:response[p].HDescription});        
+      }
+    }).catch(function(response) {
+      console.log("Sorry, there is a problem. Please, contact support.");
+    });
+        
+    $scope.roomFacilityFilterList = [];    
+    var dataListParam = {sType:"roomfacilities"};
+    apis.filterList(dataListParam).then(function(res){
+        for(var p in res)
+        {        
+          $scope.roomFacilityFilterList.push({id:p,label:res[p].RDescription});        
+        }                
+    }).catch(function(response) {
+      console.log("Sorry, there is a problem. Please, contact support.");
+    });
+
+
    /* API will provide data for activity id*/
    $scope.roomFacilityFilterList = [
                         {id:1,label:'Bathroom'},
