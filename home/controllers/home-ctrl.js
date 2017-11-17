@@ -6,13 +6,15 @@ app.controller('homeController', function homeController($scope, $http, $templat
   $scope.begin = 0;
   $scope.packagebtn = true;
   date = new Date();
+  date = new Date();
   var today = $filter('date')(date, 'yyyy/MM/dd');
   $scope.flight = {
     FlightFrom : "LON",
     FlightTo : "FAO",
     StartDate :today,
     //depart: "",
-    ReturnDate : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    // ReturnDate : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    ReturnDate : today,
     //return : "",
     Adults : 1,
     Children : 0,
@@ -32,7 +34,8 @@ app.controller('homeController', function homeController($scope, $http, $templat
   $scope.hotal = {
     Location : "LON",
     sFrom : today,
-    sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    // sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    sTo : today,
     NoOfAdults : 1,
     NoOfChildren : 0
   };
@@ -40,7 +43,8 @@ app.controller('homeController', function homeController($scope, $http, $templat
     sFrom : "",
     sTo : "",
     depart : today,
-    "return" : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    // "return" : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    "return" : today,
     NoOfAdults : 0,
     NoOfChildren : 0
   };
@@ -248,6 +252,10 @@ app.controller('homeController', function homeController($scope, $http, $templat
     $scope.makeApiCall(selected_country);
     console.log(selected_country);
   });*/
+  $(".index-form li").click(function(){
+        console.log('tttttttttttt')
+        $("#destination5, #destination6").change()
+      }); 
   
   setTimeout(function(){  
    initializeScript();
@@ -364,9 +372,12 @@ function initializeScript() {
         initialize();
       });
 
+      
+
       var hash = $.trim( window.location.hash );
       if (hash) $('.inner-nav a[href$="'+hash+'"]').trigger('click');
       
+
       
       //ROOM TYPES MORE BUTTON
       $('.more-information').slideUp();

@@ -71,15 +71,17 @@
                <!--top right navigation-->
                <ul class="top-right-nav">
                   <li class="header-order">
+                     <span>Order by Fare</span>
                      <select ng-change="toggleFairOrder(fairOrder)" ng-model="fairOrder" id="fairOrder">
-                        <option value="">Order by Fair</option>
+                        <option value="">Select</option>
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                      </select>
                   </li>
                   <li class="header-order">
+                     <span>Order by Duration</span>
                      <select ng-change="toggleDurationOrder(durationOrder)" ng-model="durationOrder" id="durationOrder">
-                        <option value="">Order by Duration</option>
+                        <option value="">Select</option>
                         <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                      </select>
@@ -93,15 +95,15 @@
             <!-- progress step -->
             <div class="process-steps">
                <ul class="book-step-intigator">
-                  <li class="active-intigator">
+                  <li style="min-width:40%" class="active-intigator">
                      <a href="search_results_flights.html"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
                      <p>Book Your Flight</p>
                   </li>
-                  <li>
+                  <!-- <li>
                      <a href="search_results-hotel.html"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
                      <p>Choose Your Hotel</p>
-                  </li>
-                  <li>
+                  </li> -->
+                  <li style="min-width:33.3%">
                      <a href="add_extras.html"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
                      <p>Choose Youe Extras</p>
                   </li>

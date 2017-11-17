@@ -167,7 +167,7 @@ app.service('apis', ['$http','$q', function ($http, $q) {
 
     var booking = function(object) {
         var defer = $q.defer();
-        return $http.get('https://mgmpackages/API/Booking/',{
+        return $http.post('https://mgmpackages.azurewebsites.net/mgmpackages/API/booking',{
             params : object
         }).then(function(response){
             // Access granted

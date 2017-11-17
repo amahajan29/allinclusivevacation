@@ -170,14 +170,50 @@
                         <div class="row">
                            <div class="f-item full-width">
                               <label for="destination5"> From </label>
-                              <input ng-model="flight_hotel.sFrom" type="text" placeholder="City, region, district or specific airport" id="destination5" name="destination" />
+                              <select id="destination5" ng-model="flight_hotel.sFrom" required="required" class="form-control inputbox">
+                                 <optgroup label="Portugal">
+                                    <option value="FAO"> FAO - Faro</option>
+                                    <option value="FNC">FNC - Funchal </option>
+                                 </optgroup>
+                                 <optgroup label="Spain">
+                                    <option value="TFS">TFS - Tenerife South </option>
+                                 </optgroup>
+                                 <optgroup label="England">
+                                    <option value="LON">LON - London </option>
+                                 </optgroup>
+                                 <optgroup label="Scotland">
+                                    <option value="GLA">GLA - Glasgow</option>
+                                 </optgroup>
+                                 <optgroup label="Cuba">
+                                    <option value="MUCC">MUCC - Jardines del Rey</option>
+                                 </optgroup>
+                              </select>
+                              <!-- <input ng-model="flight_hotel.sFrom" type="text" placeholder="City, region, district or specific airport" id="destination5" name="destination" /> -->
                               <div class="text-danger" ng-if="errors.FH_sFrom">
                                  {{errors.FH_sFrom}}
                               </div>
                            </div>
                            <div class="f-item full-width">
                               <label for="destination6"> To </label>
-                              <input ng-model="flight_hotel.sTo" type="text" placeholder="City, region, district or specific airport" id="destination6" name="destination" />
+                              <select id="destination6" ng-model="flight_hotel.sTo" required="required" class="form-control inputbox">
+                                 <optgroup label="Portugal">
+                                   <option selected="" value="FAO"> FAO - Faro</option>
+                                  <option value="FNC">FNC - Funchal </option>
+                                 </optgroup>
+                                 <optgroup label="Spain">
+                                   <option value="TFS">TFS - Tenerife South </option>
+                                 </optgroup>
+                                 <optgroup label="England">
+                                   <option value="LON">LON - London </option>
+                                 </optgroup>
+                                 <optgroup label="Scotland">
+                                    <option value="GLA">GLA - Glasgow</option>
+                                 </optgroup>
+                                 <optgroup label="Cuba">
+                                    <option value="MUCC">MUCC - Jardines del Rey</option>
+                                 </optgroup>
+                              </select>
+                              <!-- <input ng-model="flight_hotel.sTo" type="text" placeholder="City, region, district or specific airport" id="destination6" name="destination" /> -->
                               <div class="text-danger" ng-if="errors.FH_sTo">
                                  {{errors.FH_sTo}}
                               </div>

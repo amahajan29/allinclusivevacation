@@ -11,7 +11,7 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 		location.href = "#/booking-step1";
 	}
 	$scope.isValidStep1 = function(){
-		// $scope.booking1Submit();
+		$scope.booking1Submit();
 		$scope.errors = {};
 	    $scope.error = "";
 	    var isvalid = true;
