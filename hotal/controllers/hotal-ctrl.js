@@ -29,9 +29,30 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
       $scope.twotab = "";
       $scope.twotab1 = "";
     }
+  var dt = new Date();
+  var to_day = $filter('date')(dt, 'yyyy/MM/dd');
+    $scope.hotal = {
+      Location : "LON",
+      sFrom : to_day,
+      // sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+      sTo : to_day,
+      NoOfAdults : 1,
+      NoOfChildren : 0
+  };
 
-    
-
+  $scope.hotalSubmit = function(){
+    $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
+    $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
+    $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
+    $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
+    $state.go('hotal-search',{
+        sFrom: $scope.hotal.sFrom,
+        sTo: $scope.hotal.sTo,
+        Location: $scope.hotal.Location,
+        NoOfChildren: $scope.hotal.NoOfChildren,
+        NoOfAdults: $scope.hotal.NoOfAdults,
+      });
+  }
 
    var dataSearchParam = {sType:"hotelfacilities"};
     apis.filterList(dataSearchParam).then(function(response){
@@ -196,28 +217,31 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
 
 
 $scope.changeSearch = function(){
-      window.location = "/#/";
+  $( "#frmHotalsSearch" ).toggle( "slow", function() {
+      // Animation complete.
+    });
+    /*  window.location = "/#/";
       setTimeout(function(){ 
         var activeTab = 2;//3 for flight
         $(".index-form li").eq(activeTab).trigger("click");
-      },4000);
+      },4000);*/
   }
 
 $scope.isValidHotel = function(sFrom, sTo){
     $scope.errors = {};
     $scope.error = "";
     var isvalid = true;
-    if(!sFrom){
+    if(!$scope.hotal.sFrom){
       isvalid = false;
       $scope.errors.H_sFrom = "Check-in date is required.";
     }
-    if(!sTo){
+    if(!$scope.hotal.sTo){
       isvalid = false;
       $scope.errors.H_sTo = "Check-out date is required.";
     }
     if(isvalid){
-      var StartDate = new Date(sFrom);
-      var ReturnDate = new Date(sTo);
+      var StartDate = new Date($scope.hotal.sFrom);
+      var ReturnDate = new Date($scope.hotal.sTo);
       if(StartDate.getTime() >= ReturnDate.getTime()){
         isvalid = false;
         $scope.errors.H_sTo = "Check-out date can't be less than check-in.";
