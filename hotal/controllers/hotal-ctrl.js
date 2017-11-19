@@ -20,7 +20,18 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
                         {id:14,label:'hotel5.jpg'},
                         {id:15,label:'hotel5.jpg'}
                         ];
-    $scope.hotelFacilityFilterList = [];                            
+    $scope.hotelFacilityFilterList = [];    
+
+    $scope.isHotelFlight = false;
+    $scope.twotab = "min-width:42%";
+    $scope.twotab1 = "min-width:33.3%";
+    if (localStorage.getItem('fh-hotel')) {
+      $scope.isHotelFlight = true;
+      $scope.twotab = "";
+      $scope.twotab1 = "";
+    }
+
+
    var dataSearchParam = {sType:"hotelfacilities"};
     apis.filterList(dataSearchParam).then(function(response){
       for(var p in response)
@@ -166,7 +177,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
   }
 
   $scope.goToExtra = function (index){
-      $window.localStorage.setItem("booking",JSON.stringify($scope.hotalList[0][index]));
+      $window.localStorage.setItem("booking_hotel",JSON.stringify($scope.hotalList[0][index]));
       window.location = "/#/add-extra";
   }
 

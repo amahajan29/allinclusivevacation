@@ -95,15 +95,15 @@
             <!-- progress step -->
             <div class="process-steps">
                <ul class="book-step-intigator">
-                  <li style="min-width:40%" class="active-intigator">
+                  <li style="{{twotab}}" class="active-intigator">
                      <a href="search_results_flights.html"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
                      <p>Book Your Flight</p>
                   </li>
-                  <!-- <li>
+                  <li ng-if="isHotelFlight">
                      <a href="search_results-hotel.html"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
                      <p>Choose Your Hotel</p>
-                  </li> -->
-                  <li style="min-width:33.3%">
+                  </li>
+                  <li style="{{twotab}}">
                      <a href="add_extras.html"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
                      <p>Choose Youe Extras</p>
                   </li>

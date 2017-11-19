@@ -1,5 +1,5 @@
 var app = angular.module('home',['ui.router']);
-app.controller('homeController', function homeController($scope, $http, $templateCache, $state, $rootScope, $filter) {
+app.controller('homeController', function homeController($scope, $http, $templateCache, $state, $rootScope, $filter, $window) {
 
   $rootScope.isHome = true;
   $scope.limit = 4;
@@ -20,6 +20,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
     Children : 0,
     Infants : 0
   };
+
   $scope.package = {
     destination: "FAO",
     depart: today,
@@ -40,13 +41,15 @@ app.controller('homeController', function homeController($scope, $http, $templat
     NoOfChildren : 0
   };
   $scope.flight_hotel = {
-    sFrom : "",
-    sTo : "",
+    FlightFrom : "LON",
+    FlightTo : "FAO",
     depart : today,
     // "return" : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
     "return" : today,
     NoOfAdults : 0,
-    NoOfChildren : 0
+    NoOfChildren : 0,
+    Children : 0,
+    Infants : 0
   };
   $scope.isValidPackage = function(){
       $scope.errors = {};
@@ -161,6 +164,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
   };
 
   $scope.flightSubmit = function(){
+    localStorage.removeItem('fh-hotel');
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
     $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
@@ -178,6 +182,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
   }
 
   $scope.hotalSubmit = function(){
+    localStorage.removeItem('fh-hotel');
     $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
     $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
     $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
@@ -192,7 +197,65 @@ app.controller('homeController', function homeController($scope, $http, $templat
   }
 
   $scope.FHSubmit = function(){
-    console.log("Flight+Hotel Submitted");
+    localStorage.removeItem('fh-hotel');
+    $scope.errors = {};
+    $scope.error = "";
+    var isvalid = true;
+    
+    if(!$scope.flight_hotel.depart){
+      isvalid = false;
+      $scope.errors.FH_depart = "Departure date is required.";
+    }
+    if(!$scope.flight_hotel["return"]){
+      isvalid = false;
+      $scope.errors.FH_return = "Return date is required.";
+    }
+    if(isvalid){
+      var StartDate = new Date($scope.flight_hotel.depart);
+      var ReturnDate = new Date($scope.flight_hotel["return"]);
+      if(StartDate.getTime() >= ReturnDate.getTime()){
+        isvalid = false;
+        console.log("Departure date can't be less than return.");
+        $scope.errors.FH_return = "Departure date can't be less than return.";
+      }
+    }
+    if($scope.flight_hotel.NoOfAdults < 1){
+      isvalid = false;
+      $scope.errors.FH_Adults = "At least one adult is required.";
+    }
+    if (!isvalid) {
+      return false;
+    }
+    $scope.flight_hotel.sFrom = $scope.flight_hotel.depart.replace("/","");
+    $scope.flight_hotel.sFrom = $scope.flight_hotel.depart.replace("/","");
+    $scope.flight_hotel.sTo = $scope.flight_hotel.return.replace("/","");
+    $scope.flight_hotel.sTo = $scope.flight_hotel.return.replace("/","");
+
+    var FHhotelObj = {
+      sFrom: $scope.flight_hotel.sFrom,
+      sTo : $scope.flight_hotel.sTo,
+      Location : $scope.flight_hotel.FlightTo,
+      NoOfChildren : $scope.flight_hotel.NoOfChildren,
+      NoOfAdults : $scope.flight_hotel.NoOfAdults
+    };
+
+    $window.localStorage.setItem("fh-hotel",JSON.stringify(FHhotelObj));
+
+    $scope.flight_hotel.depart = $scope.flight_hotel.depart.replace("/","");
+    $scope.flight_hotel.depart = $scope.flight_hotel.depart.replace("/","");
+    $scope.flight_hotel.return = $scope.flight_hotel.return.replace("/","");
+    $scope.flight_hotel.return = $scope.flight_hotel.return.replace("/","");
+    //console.log($scope.flight)
+    $state.go('flight-search',{
+        FlightFrom: $scope.flight_hotel.FlightFrom,
+        FlightTo: $scope.flight_hotel.FlightTo,
+        StartDate: $scope.flight_hotel.depart,
+        ReturnDate: $scope.flight_hotel.return,
+        Adults: $scope.flight_hotel.NoOfAdults,
+        Children: $scope.flight_hotel.Children,
+        Infants:$scope.flight_hotel.Infants
+      });
+    
   }
 
   $scope.setOffersAtTop = function(){
@@ -256,7 +319,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
         console.log('tttttttttttt')
         $("#destination5, #destination6").change()
       }); 
-  
+
   setTimeout(function(){  
    initializeScript();
   },2000);

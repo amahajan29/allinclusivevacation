@@ -6,7 +6,8 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 	$scope.Booking1 = {};
 	$scope.Step2 = {};
 	$scope.bookStep = 1;
-	$scope.booking = [];
+	$scope.booking_hotel = [];
+	$scope.booking_flight = [];
 	$scope.gotoNext = function (){
 		location.href = "#/booking-step1";
 	}
@@ -96,7 +97,8 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 		console.log("printBooking called");
 	}
 	$scope.addExtraInit = function (){
-		$scope.booking = JSON.parse($window.localStorage.getItem("booking"));
+		$scope.booking_hotel = JSON.parse($window.localStorage.getItem("booking_hotel"));
+		$scope.booking_flight = JSON.parse($window.localStorage.getItem("booking_flight"));
 		console.log($scope.booking);
 	}
 	$scope.addExtraInit();

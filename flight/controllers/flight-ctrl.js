@@ -37,6 +37,13 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   $scope.bestPackage = {};
   $scope.bestPackageCode = ["MGMCPO003","MGMCPO004"];
 
+  $scope.isHotelFlight = false;
+  $scope.twotab = "min-width:40%";
+  if (localStorage.getItem('fh-hotel')) {
+    $scope.isHotelFlight = true;
+    $scope.twotab = "";
+  }
+
   var flightList = null;
   var obj = {
         FlightFrom: $stateParams.FlightFrom,
@@ -359,8 +366,25 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
 
   $scope.goToExtra = function (index){
-      $window.localStorage.setItem("booking",JSON.stringify($scope.flightList[index]));
-      window.location = "/#/add-extra";
+      if (localStorage.getItem('fh-hotel')) {
+        var json = localStorage.getItem('fh-hotel');
+        var tmp = JSON.parse(json);
+        var sFrom = tmp.sFrom.replace("/","");
+        sFrom = tmp.sFrom.replace("/","");
+        var sTo = tmp.sTo.replace("/","");
+        sTo = tmp.sTo.replace("/","");
+        $window.localStorage.setItem("booking_flight",JSON.stringify($scope.flightList[index]));
+        $state.go('hotal-search',{
+            sFrom: sFrom,
+            sTo: sTo,
+            Location: tmp.Location,
+            NoOfChildren: tmp.NoOfChildren,
+            NoOfAdults: tmp.NoOfAdults,
+          });
+      }else{  
+        $window.localStorage.setItem("booking_flight",JSON.stringify($scope.flightList[index]));
+        window.location = "/#/add-extra";
+      }
   }
 
   setTimeout(function(){ 
