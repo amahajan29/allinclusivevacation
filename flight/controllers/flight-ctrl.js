@@ -39,9 +39,12 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
 
   $scope.isHotelFlight = false;
   $scope.twotab = "min-width:40%";
+    $scope.twotab1 = "min-width:33.3%";
+
   if (localStorage.getItem('fh-hotel')) {
     $scope.isHotelFlight = true;
     $scope.twotab = "";
+    $scope.twotab1 = "";
   }
 
   var flightList = null;
@@ -212,13 +215,55 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
 
   $scope.changeSearch = function(){
-      window.location = "/#/";
-      setTimeout(function(){ 
+       $( "#frmHotalSearch" ).toggle( "slow", function() {
+      // Animation complete.
+    });
+      // window.location = "/#/";
+      /*setTimeout(function(){ 
         var activeTab = 2;//3 for flight
         $(".index-form li").eq(activeTab).trigger("click");
-      },4000);
+      },4000);*/
   }
-
+  date = new Date();
+  var today = $filter('date')(date, 'yyyy/MM/dd');
+$scope.flight = {
+    FlightFrom : "LON",
+    FlightTo : "FAO",
+    StartDate :today,
+    //depart: "",
+    // ReturnDate : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
+    ReturnDate : today,
+    //return : "",
+    Adults : 1,
+    Children : 0,
+    Infants : 0
+  };
+$scope.isValidFlight = function(){
+    $scope.errors = {};
+    $scope.error = "";
+    var isvalid = true;
+    if(!$scope.flight.StartDate){
+      isvalid = false;
+      $scope.errors.F_StartDate = "StartDate is required.";
+    }
+    if(!$scope.flight.ReturnDate){
+      isvalid = false;
+      $scope.errors.F_ReturnDate = "ReturnDate is required.";
+    }
+    if(isvalid){
+      var StartDate = new Date($scope.flight.StartDate);
+      var ReturnDate = new Date($scope.flight.ReturnDate);
+      if(StartDate.getTime() >= ReturnDate.getTime()){
+        isvalid = false;
+        $scope.errors.F_ReturnDate = "ReturnDate can't be less than StartDate.";
+      }
+    }
+    if($scope.flight.Adults < 1){
+      isvalid = false;
+      $scope.errors.F_Adults = "At least one adult is required.";
+    }
+    return isvalid;
+  };
 
   $scope.filter = function(getLowest=null) {
     var newList = [];
@@ -363,6 +408,23 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
       setTimeout(function(){ 
         $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
       },100);
+  }
+
+  $scope.flightSubmit = function(){
+    $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
+    $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
+    $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
+    $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
+    //console.log($scope.flight)
+    $state.go('flight-search',{
+        FlightFrom: $scope.flight.FlightFrom,
+        FlightTo: $scope.flight.FlightTo,
+        StartDate: $scope.flight.StartDate,
+        ReturnDate: $scope.flight.ReturnDate,
+        Adults: $scope.flight.Adults,
+        Children: $scope.flight.Children,
+        Infants:$scope.flight.Infants
+      });
   }
 
   $scope.goToExtra = function (index){

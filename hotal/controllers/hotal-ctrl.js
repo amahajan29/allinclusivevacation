@@ -24,12 +24,13 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
 
     $scope.isHotelFlight = false;
     $scope.twotab = "min-width:42%";
-    $scope.twotab1 = "min-width:33.3%";
     if (localStorage.getItem('fh-hotel')) {
       $scope.isHotelFlight = true;
       $scope.twotab = "";
       $scope.twotab1 = "";
     }
+
+    
 
 
    var dataSearchParam = {sType:"hotelfacilities"};

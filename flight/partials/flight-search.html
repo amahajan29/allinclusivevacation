@@ -103,7 +103,7 @@
                      <a href="search_results-hotel.html"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
                      <p>Choose Your Hotel</p>
                   </li>
-                  <li style="{{twotab}}">
+                  <li style="{{twotab1}}">
                      <a href="add_extras.html"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
                      <p>Choose Youe Extras</p>
                   </li>
@@ -113,6 +113,158 @@
                   </li>
                </ul>
             </div>
+               <form style="height: 222px;display: none;" name="frmHotalSearch" id="frmHotalSearch" ng-submit="isValidFlight() && flightSubmit()">
+                  <!--form flight-->
+                  <div class="form-new row">
+                     <!--column--><!-- <h5 class="hotels">  Flight </h5> -->
+                     <!--column-->
+                     <div class="column one-third">
+                        <!-- <h5><span>02</span> Where?</h5> -->
+                        <div class="row">
+                           <div class="f-item full-width">
+                              <label for="destination3"> From</label>
+                              <select id="destinationto" ng-model="flight.FlightFrom" required="required" class="form-control inputbox">
+                                 <optgroup label="Portugal">
+                                    <option value="FAO"> FAO - Faro</option>
+                                    <option value="FNC">FNC - Funchal </option>
+                                 </optgroup>
+                                 <optgroup label="Spain">
+                                    <option value="TFS">TFS - Tenerife South </option>
+                                 </optgroup>
+                                 <optgroup label="England">
+                                    <option value="LON">LON - London </option>
+                                 </optgroup>
+                                 <optgroup label="Scotland">
+                                    <option value="GLA">GLA - Glasgow</option>
+                                 </optgroup>
+                                 <optgroup label="Cuba">
+                                    <option value="MUCC">MUCC - Jardines del Rey</option>
+                                 </optgroup>
+                              </select>
+                              <!-- <input type="text"  id="destination3" name="destination"   /> -->
+                           </div>
+                           <div class="f-item full-width">
+                              <label for="destination4"> To</label>
+                              <select id="destinationto" ng-model="flight.FlightTo" required="required" class="form-control inputbox">
+                                 <optgroup label="Portugal">
+                                   <option selected="" value="FAO"> FAO - Faro</option>
+                                  <option value="FNC">FNC - Funchal </option>
+                                 </optgroup>
+                                 <optgroup label="Spain">
+                                   <option value="TFS">TFS - Tenerife South </option>
+                                 </optgroup>
+                                 <optgroup label="England">
+                                   <option value="LON">LON - London </option>
+                                 </optgroup>
+                                 <optgroup label="Scotland">
+                                    <option value="GLA">GLA - Glasgow</option>
+                                 </optgroup>
+                                 <optgroup label="Cuba">
+                                    <option value="MUCC">MUCC - Jardines del Rey</option>
+                                 </optgroup>
+                              </select>
+                              <!-- <input type="text" placeholder="City, region, district or specific airport" id="destination4" name="destination" ng-model="flight.FlightTo" required="required" /> -->
+                           </div>
+                        </div>
+                     </div>
+                     <!--//column-->
+                     <!--column-->
+                     <div class="column one-third">
+                        <!-- <h5><span>03</span> When?</h5> -->
+                        <div class="row">
+                           <div class="f-item full-width datepicker">
+                              <label for="datepicker11">Depart</label>
+                              <div class="row">
+                                 <div class="f-item one-half">
+                                    <div class="datepicker-wrap">
+                                          <input type="text" placeholder="" id="datepicker11" name="datepicker11" ng-model="flight.StartDate" />
+                                          <div class="text-danger" ng-if="errors.F_StartDate">
+                                             {{errors.F_StartDate}}
+                                          </div>
+                                    </div>
+                                 </div>
+                                 <div class="f-item one-half">
+                                    <select >
+                                       <option>Select time</option>
+                                       <option>Lowest fare</option>
+                                       <option>Morning</option>
+                                       <option>Midday</option>
+                                       <option>Afternoon</option>
+                                       <option>Evening</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="f-item full-width datepicker">
+                              <label for="datepicker7">Return</label>
+                              <div class="row">
+                                 <div class="f-item one-half">
+                                    <div class="datepicker-wrap">
+                                       <input type="text" placeholder="" id="datepicker7" name="datepicker7" ng-model="flight.ReturnDate" />
+                                       <div class="text-danger" ng-if="errors.F_ReturnDate">
+                                          {{errors.F_ReturnDate}}
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="f-item one-half">
+                                    <select>
+                                       <option>Select time</option>
+                                       <option>Lowest fare</option>
+                                       <option>Morning</option>
+                                       <option>Midday</option>
+                                       <option>Afternoon</option>
+                                       <option>Evening</option>
+                                    </select>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!--//column-->
+                     <!--column-->
+                     <div class="column one-third">
+                        <!-- <h5><span>04</span> Who?</h5> -->
+                        <div class="row">
+                           <div class="f-item one-third spinner">
+                              <label for="spinner6">Adults</label>
+                              <div class="overs">
+                                 <p><span class="minus" ng-click="(flight.Adults > 0)?flight.Adults = flight.Adults - 1:flight.Adults = 0"> - </span>
+                                    <input id="qty1" type="number" readonly="readonly" class="qty" ng-model="flight.Adults" required="required"/>
+                                    <span class="add" ng-click="flight.Adults = flight.Adults + 1"> + </span>
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="f-item one-third spinner">
+                              <label for="spinner7">Children</label>
+                              <!-- <input type="text" placeholder="" id="spinner7" name="spinner7" /> -->
+                              <div class="overs">
+                                 <p><span class="minus" ng-click="(flight.Children > 0)?flight.Children = flight.Children - 1:flight.Children = 0"> - </span>
+
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Children" required="required"/>
+                                    <span class="add" ng-click="flight.Children = flight.Children + 1"> + </span>
+                                 </p>
+                              </div>
+                           </div>
+                           <div class="f-item one-third spinner">
+                              <label for="spinner8">Babies</label>
+                              <!-- <input type="text" placeholder="" id="spinner8" name="spinner8" /> -->
+                              <div class="overs">
+                                 <p><span class="minus" ng-click="(flight.Infants > 0)?flight.Infants = flight.Infants - 1:flight.Infants = 0"> - </span>
+                                    <input id="qty1" type="number" value="1" readonly="readonly" class="qty" ng-model="flight.Infants" required="required"/>
+                                    <span class="add" ng-click="flight.Infants = flight.Infants + 1"> + </span>
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="text-danger" ng-if="errors.F_Adults">
+                           {{errors.F_Adults}}
+                        </div>
+                     </div>
+                     <!--//column-->
+                  </div>
+                  <!--//form flight-->
+                  <input type="submit" value="Proceed to results" class="gradient-button">
+               </form>
             <!-- progress step end -->
             <div class="row">
                <!--sidebar-->
