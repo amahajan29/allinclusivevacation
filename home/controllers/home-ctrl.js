@@ -8,13 +8,14 @@ app.controller('homeController', function homeController($scope, $http, $templat
   date = new Date();
   date = new Date();
   var today = $filter('date')(date, 'yyyy/MM/dd');
+  var afterSeven = $filter('date')(addDays(date,7), 'yyyy/MM/dd');
+
   $scope.flight = {
     FlightFrom : "LON",
     FlightTo : "FAO",
     StartDate :today,
     //depart: "",
-    // ReturnDate : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
-    ReturnDate : today,
+    // ReturnDate : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),    
     //return : "",
     Adults : 1,
     Children : 0,
@@ -36,7 +37,8 @@ app.controller('homeController', function homeController($scope, $http, $templat
     Location : "LON",
     sFrom : today,
     // sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
-    sTo : today,
+    // sTo : today,
+    Rooms : 1,
     NoOfAdults : 1,
     NoOfChildren : 0
   };
@@ -45,12 +47,21 @@ app.controller('homeController', function homeController($scope, $http, $templat
     FlightTo : "FAO",
     depart : today,
     // "return" : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
-    "return" : today,
+    // "return" : today,
     NoOfAdults : 0,
     NoOfChildren : 0,
+    Rooms : 0,
     Children : 0,
     Infants : 0
   };
+
+  setTimeout(function(){
+    
+    $scope.hotal.sTo = afterSeven;
+    $scope.flight_hotel.return = afterSeven;
+    $scope.flight.ReturnDate = afterSeven;
+  },1000);
+
   $scope.isValidPackage = function(){
       $scope.errors = {};
       $scope.error = "";
@@ -79,18 +90,18 @@ app.controller('homeController', function homeController($scope, $http, $templat
     var isvalid = true;
     if(!$scope.flight.StartDate){
       isvalid = false;
-      $scope.errors.F_StartDate = "StartDate is required.";
+      $scope.errors.F_StartDate = "Depart Date is required.";
     }
     if(!$scope.flight.ReturnDate){
       isvalid = false;
-      $scope.errors.F_ReturnDate = "ReturnDate is required.";
+      $scope.errors.F_ReturnDate = "Return Date is required.";
     }
     if(isvalid){
       var StartDate = new Date($scope.flight.StartDate);
       var ReturnDate = new Date($scope.flight.ReturnDate);
       if(StartDate.getTime() >= ReturnDate.getTime()){
         isvalid = false;
-        $scope.errors.F_ReturnDate = "ReturnDate can't be less than StartDate.";
+        $scope.errors.F_ReturnDate = "ReturnDate should be greater than Depart date.";
       }
     }
     if($scope.flight.Adults < 1){

@@ -163,7 +163,7 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
     console.log("Sorry, there is a problem. Please, contact support.");
   });
 
-  $scope.toggleFairOrder = function(order){
+  $scope.toggleFairOrder = function(order){    
     if(order){
       $scope.durationOrder = "";
       $("#durationOrder").change();
@@ -215,6 +215,10 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
   }
 
   $scope.changeSearch = function(){
+    var today = $filter('date')(date, 'yyyy/MM/dd');
+    var afterSeven = $filter('date')(addDays(date,7), 'yyyy/MM/dd');
+    $("#datepicker7").val(afterSeven).change();
+    $scope.flight.ReturnDate = afterSeven; 
        $( "#frmHotalSearch" ).toggle( "slow", function() {
       // Animation complete.
     });
@@ -232,30 +236,30 @@ $scope.flight = {
     StartDate :today,
     //depart: "",
     // ReturnDate : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
-    ReturnDate : today,
     //return : "",
     Adults : 1,
     Children : 0,
     Infants : 0
   };
+  
 $scope.isValidFlight = function(){
     $scope.errors = {};
     $scope.error = "";
     var isvalid = true;
     if(!$scope.flight.StartDate){
       isvalid = false;
-      $scope.errors.F_StartDate = "StartDate is required.";
+      $scope.errors.F_StartDate = "Depart Date is required.";
     }
     if(!$scope.flight.ReturnDate){
       isvalid = false;
-      $scope.errors.F_ReturnDate = "ReturnDate is required.";
+      $scope.errors.F_ReturnDate = "Return Date is required.";
     }
     if(isvalid){
       var StartDate = new Date($scope.flight.StartDate);
       var ReturnDate = new Date($scope.flight.ReturnDate);
       if(StartDate.getTime() >= ReturnDate.getTime()){
         isvalid = false;
-        $scope.errors.F_ReturnDate = "ReturnDate can't be less than StartDate.";
+        $scope.errors.F_ReturnDate = "ReturnDate should be greater than Depart date.";
       }
     }
     if($scope.flight.Adults < 1){
@@ -650,3 +654,8 @@ function initializeScript() {
         }
       });
 }
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }

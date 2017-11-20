@@ -307,10 +307,9 @@
                                  <label for="spinner12">Rooms</label>
                                  <!-- <input type="text" placeholder="" id="spinner12" name="spinner12" /> -->
                                  <div class="overs">
-                                    <p><span class="minus" id="minus1"> - </span>
-                                       <input id="qty1" type="text" value="1" class="qty"/>
-                                       <span class="add" id="add1"> + </span>
-                                    </p>
+                                   <p><span class="minus" ng-click="(flight_hotel.Rooms > 0)?flight_hotel.Rooms = flight_hotel.Rooms - 1:flight_hotel.Rooms = 0"> - </span>
+                                    <input id="qty1" readonly="readonly" ng-model="flight_hotel.Rooms" type="number" class="qty" required="required"/>
+                              <span class="add" ng-click="flight_hotel.Rooms = flight_hotel.Rooms + 1"> + </span>
                                  </div>
                               </div>
                            </div>
@@ -545,9 +544,9 @@
                               <label for="spinner1">Rooms</label>
                               <!-- <input type="text" placeholder="" id="spinner1" name="spinner1" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1"  class="qty"/>
-                                    <span class="add" > + </span>
+                                <p><span class="minus" ng-click="(hotal.Rooms > 0)?hotal.Rooms = hotal.Rooms - 1:hotal.Rooms = 0"> - </span>
+                                    <input id="qty1" readonly="readonly" ng-model="hotal.Rooms" type="number" de class="qty" required="required" />
+                                    <span class="add" ng-click="hotal.Rooms = hotal.Rooms + 1"> + </span>
                                  </p>
                               </div>
                            </div>

@@ -35,10 +35,12 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
       Location : "LON",
       sFrom : to_day,
       // sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
-      sTo : to_day,
+      // sTo : to_day,
       NoOfAdults : 1,
       NoOfChildren : 0
   };
+
+
 
   $scope.hotalSubmit = function(){
     $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
@@ -217,6 +219,11 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
 
 
 $scope.changeSearch = function(){
+   var date = new Date();
+  var today = $filter('date')(date, 'yyyy/MM/dd');
+  var afterSeven = $filter('date')(addDays(date,7), 'yyyy/MM/dd');
+  $("#datepicker2").val(afterSeven).change();
+  $scope.hotal.sTo = afterSeven;   
   $( "#frmHotalsSearch" ).toggle( "slow", function() {
       // Animation complete.
     });
@@ -759,3 +766,9 @@ app.directive('lightgallery', function() {
 });
 
 
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
