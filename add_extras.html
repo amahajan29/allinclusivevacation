@@ -59,21 +59,40 @@
 			<!--//breadcrumbs-->
             <!-- progress step -->
 			<div class="process-steps">
-                <ul class="book-step-intigator">
+                <ul class="book-step-intigator" ng-if="isHotelFlight">
                     <li class="active-intigator">
-                        <a href="search_results_flights.html"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);" ng-click="goToFlightSearch();"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
                         <p>Book Your Flight</p>
                     </li>
                     <li class="active-intigator">
-                        <a href="search_results-hotel.html"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);" ng-click="goToHotelSearch();"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
                         <p>Choose Your Hotel</p>
                     </li>
                     <li class="active-intigator">
-                        <a href="add_extras.html"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
                         <p>Choose Your Extras</p>
                     </li>
                     <li>
-                        <a href="booking-step1.html"><b><i class="fa fa-ticket" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);"><b><i class="fa fa-ticket" aria-hidden="true"></i></b></a>
+                        <p>Complete Your Booking</p>
+                    </li>
+                </ul>
+
+                <ul class="book-step-intigator" ng-if="!isHotelFlight">
+                    <li class="active-intigator" style="{{twotab}}" ng-if="isFlight">
+                        <a href="javascript:void(0);"  ng-click="goToFlightSearch();"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
+                        <p>Book Your Flight</p>
+                    </li>
+                    <li class="active-intigator" ng-if="isHotel" style="{{twotab}}">
+                        <a href="javascript:void(0);"  ng-click="goToHotelSearch();"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
+                        <p>Choose Your Hotel</p>
+                    </li>
+                    <li class="active-intigator">
+                        <a href="javascript:void(0);"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
+                        <p>Choose Your Extras</p>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><b><i class="fa fa-ticket" aria-hidden="true"></i></b></a>
                         <p>Complete Your Booking</p>
                     </li>
                 </ul>

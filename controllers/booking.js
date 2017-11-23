@@ -101,5 +101,39 @@ app.controller('bookingController', function bookingController($scope, $http, $t
 		$scope.booking_flight = JSON.parse($window.localStorage.getItem("booking_flight"));
 		console.log($scope.booking);
 	}
+$scope.goToFlightSearch = function (){	
+	var dateObj = localStorage.getItem('fltdateObj');
+	var tmpObj = JSON.parse(dateObj);
+	setTimeout(function(){		
+		$state.go('flight-search',tmpObj);
+	},800);
+}
+$scope.goToHotelSearch = function (){	
+	var dateObj = localStorage.getItem('htdateObj');
+	var tmpObj = JSON.parse(dateObj);
+	setTimeout(function(){		
+		$state.go('hotal-search',tmpObj);
+	},800);
+}
+$scope.isHotelFlight = false;
+if (localStorage.getItem('fh-hotel')) {
+  $scope.isHotelFlight = true;
+  $scope.twotab = "";
+  $scope.twotab1 = "";
+}
+$scope.twotab = "";
+$scope.isHotel = false;
+if (localStorage.getItem('booking_hotel')) {
+  $scope.isHotel = true;
+  $scope.twotab = "width:44%;";
+  $scope.twotab1 = "";
+}
+$scope.isFlight = false;
+if (localStorage.getItem('booking_flight')) {
+  $scope.isFlight = true;
+  $scope.twotab = "width:44%;";
+  $scope.twotab1 = "";
+}
+
 	$scope.addExtraInit();
 });

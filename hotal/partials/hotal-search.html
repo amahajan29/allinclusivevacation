@@ -41,19 +41,19 @@
 			<div class="process-steps">
                 <ul class="book-step-intigator">
                     <li class="active-intigator"  ng-if="isHotelFlight">
-                        <a href="search_results_flights.html"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);"><b><i class="fa fa-plane" aria-hidden="true"></i></b></a>
                         <p>Book Your Flight</p>
                     </li>
                     <li class="active-intigator" style="{{twotab}}">
-                        <a href="search_results-hotel.html"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);"><b><i class="fa fa-bed" aria-hidden="true"></i></b></a>
                         <p>Choose Your Hotel</p>
                     </li>
                     <li style="{{twotab1}}">
-                        <a href="add_extras.html"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);"><b><i class="fa fa-bus" aria-hidden="true"></i></b></a>
                         <p>Choose Your Extras</p>
                     </li>
                     <li>
-                        <a href="booking-step1.html"><b><i class="fa fa-ticket" aria-hidden="true"></i></b></a>
+                        <a href="javascript:void(0);"><b><i class="fa fa-ticket" aria-hidden="true"></i></b></a>
                         <p>Complete Your Booking</p>
                     </li>
                 </ul>
@@ -124,9 +124,9 @@
                               <label for="spinner1">Rooms</label>
                               <!-- <input type="text" placeholder="" id="spinner1" name="spinner1" /> -->
                               <div class="overs">
-                                 <p><span class="minus" id="minus1"> - </span>
-                                    <input id="qty1" type="text" value="1"  class="qty"/>
-                                    <span class="add" > + </span>
+                                 <p><span class="minus" ng-click="(hotal.Rooms > 0)?hotal.Rooms = hotal.Rooms - 1:hotal.Rooms = 0"> - </span>
+                                    <input id="qty1" readonly="readonly" ng-model="hotal.Rooms" type="number" de class="qty" required="required" />
+                                    <span class="add" ng-click="hotal.Rooms = hotal.Rooms + 1"> + </span>
                                  </p>
                               </div>
                            </div>

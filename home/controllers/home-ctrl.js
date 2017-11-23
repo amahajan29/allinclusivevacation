@@ -56,7 +56,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
   };
 
   setTimeout(function(){
-    
+
     $scope.hotal.sTo = afterSeven;
     $scope.flight_hotel.return = afterSeven;
     $scope.flight.ReturnDate = afterSeven;
@@ -389,12 +389,13 @@ function initializeScript() {
       
       //UI FORM ELEMENTS
       var spinner = $('.spinner input').spinner({ min: 0 });
-      
+      var dateToday = new Date();
       $('.datepicker-wrap input').datepicker({
         showOn: 'button',
         buttonImage: 'assets/images/ico/calendar.png',
         buttonImageOnly: true,
-        dateFormat: "yy/mm/dd"
+        dateFormat: "yy/mm/dd",
+        minDate: dateToday
       });
       
       $( '#slider' ).slider({

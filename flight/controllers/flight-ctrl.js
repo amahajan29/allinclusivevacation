@@ -58,6 +58,9 @@ app.controller('flightSearchController', function($scope, $http, $templateCache,
         Infants:$stateParams.Infants
       };
 
+     
+    $window.localStorage.setItem("fltdateObj",JSON.stringify(obj));
+
   apis.hotalSearch().then(function(response){
     if(response != ''){
       //console.log("hotalSearch");
@@ -419,8 +422,8 @@ $scope.isValidFlight = function(){
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
     $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
     $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
-    //console.log($scope.flight)
-    $state.go('flight-search',{
+
+    var flightObj = {
         FlightFrom: $scope.flight.FlightFrom,
         FlightTo: $scope.flight.FlightTo,
         StartDate: $scope.flight.StartDate,
@@ -428,7 +431,11 @@ $scope.isValidFlight = function(){
         Adults: $scope.flight.Adults,
         Children: $scope.flight.Children,
         Infants:$scope.flight.Infants
-      });
+      };
+    $window.localStorage.setItem("fltdateObj",JSON.stringify(flightObj));
+
+    //console.log($scope.flight)
+    $state.go('flight-search',flightObj);
   }
 
   $scope.goToExtra = function (index){
@@ -440,6 +447,7 @@ $scope.isValidFlight = function(){
         var sTo = tmp.sTo.replace("/","");
         sTo = tmp.sTo.replace("/","");
         $window.localStorage.setItem("booking_flight",JSON.stringify($scope.flightList[index]));
+
         $state.go('hotal-search',{
             sFrom: sFrom,
             sTo: sTo,
@@ -447,7 +455,7 @@ $scope.isValidFlight = function(){
             NoOfChildren: tmp.NoOfChildren,
             NoOfAdults: tmp.NoOfAdults,
           });
-      }else{  
+      }else{          
         $window.localStorage.setItem("booking_flight",JSON.stringify($scope.flightList[index]));
         window.location = "/#/add-extra";
       }
@@ -456,6 +464,16 @@ $scope.isValidFlight = function(){
   setTimeout(function(){ 
     $('select').uniform();
   },100);
+
+  var dateToday = new Date();
+      
+       $('.datepicker-wrap input').datepicker({
+        showOn: 'button',
+        buttonImage: 'assets/images/ico/calendar.png',
+        buttonImageOnly: true,
+        dateFormat: "yy/mm/dd",
+        minDate: dateToday
+      });
 
 });
 
@@ -498,13 +516,7 @@ function initializeScript() {
       //UI FORM ELEMENTS
       var spinner = $('.spinner input').spinner({ min: 0 });
       
-      $('.datepicker-wrap input').datepicker({
-        showOn: 'button',
-        buttonImage: 'assets/images/ico/calendar.png',
-        buttonImageOnly: true,
-        dateFormat: "yyyy/mm/dd"
-      });
-      
+
       $( '#slider' ).slider({
         range: "min",
         value:1,

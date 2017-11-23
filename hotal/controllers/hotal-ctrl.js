@@ -34,6 +34,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     $scope.hotal = {
       Location : "LON",
       sFrom : to_day,
+      Rooms : 1,
       // sTo : $filter('date')(addDays(date,7), 'yyyy/MM/dd'),
       // sTo : to_day,
       NoOfAdults : 1,
@@ -47,13 +48,17 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
     $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
     $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
-    $state.go('hotal-search',{
+
+    var hotelObj = {
         sFrom: $scope.hotal.sFrom,
         sTo: $scope.hotal.sTo,
         Location: $scope.hotal.Location,
         NoOfChildren: $scope.hotal.NoOfChildren,
         NoOfAdults: $scope.hotal.NoOfAdults,
-      });
+      };
+    $window.localStorage.setItem("htdateObj",JSON.stringify(hotelObj));
+
+    $state.go('hotal-search',hotelObj);
   }
 
    var dataSearchParam = {sType:"hotelfacilities"};
@@ -119,6 +124,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     NoOfChildren: $stateParams.NoOfChildren,
   };
 
+  $window.localStorage.setItem("htdateObj",JSON.stringify(obj));
 
   $scope.dateFrom = createDate($stateParams.sFrom).format;  
   $scope.sTo = createDate($stateParams.sTo).format;  
@@ -200,7 +206,7 @@ app.controller('hotalSearchController', function($scope, $http, $templateCache, 
     //console.log(index);
   }
 
-  $scope.goToExtra = function (index){
+  $scope.goToExtra = function (index){      
       $window.localStorage.setItem("booking_hotel",JSON.stringify($scope.hotalList[0][index]));
       window.location = "/#/add-extra";
   }
@@ -265,6 +271,8 @@ $scope.fromDt = $scope.toDt = "";
     if ($scope.isValidHotel($("#datepicker1").val(), $("#datepicker2").val())) {      
       var tmp1 = fromDt.replace("/","");
       var tmp2 = toDt.replace("/","");
+      $scope.hotal.sFrom = tmp1;
+      $scope.hotal.sTo = tmp2;
       $state.go('hotal-search',{
           sFrom: fromDt.replace("/",""),
           sTo: toDt.replace("/",""),
@@ -353,13 +361,15 @@ function initializeScript() {
       
       //UI FORM ELEMENTS
       var spinner = $('.spinner input').spinner({ min: 0 });
-      
+      var dateToday = new Date();
+
       $('.datepicker-wrap input').datepicker({
         showOn: 'button',
         buttonImage: 'assets/images/ico/calendar.png',
         buttonImageOnly: true,
         dateFormat: "yy/mm/dd",
-        setDate: 'today'
+        setDate: 'today',
+        minDate: dateToday
       }).datepicker("setDate", new Date());
       
       $( '#slider' ).slider({
