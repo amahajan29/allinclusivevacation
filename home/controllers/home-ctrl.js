@@ -175,7 +175,9 @@ app.controller('homeController', function homeController($scope, $http, $templat
   };
 
   $scope.flightSubmit = function(){
-    localStorage.removeItem('fh-hotel');
+    localStorage.removeItem('fh-hotel');    
+    localStorage.removeItem('booking_hotel');
+    localStorage.removeItem('booking_flight');
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
     $scope.flight.StartDate = $scope.flight.StartDate.replace("/","");
     $scope.flight.ReturnDate = $scope.flight.ReturnDate.replace("/","");
@@ -194,6 +196,8 @@ app.controller('homeController', function homeController($scope, $http, $templat
 
   $scope.hotalSubmit = function(){
     localStorage.removeItem('fh-hotel');
+    localStorage.removeItem('booking_hotel');
+    localStorage.removeItem('booking_flight');
     $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
     $scope.hotal.sFrom = $scope.hotal.sFrom.replace("/","");
     $scope.hotal.sTo = $scope.hotal.sTo.replace("/","");
@@ -208,6 +212,8 @@ app.controller('homeController', function homeController($scope, $http, $templat
   }
 
   $scope.FHSubmit = function(){
+    localStorage.removeItem('booking_hotel');
+    localStorage.removeItem('booking_flight');
     localStorage.removeItem('fh-hotel');
     $scope.errors = {};
     $scope.error = "";
