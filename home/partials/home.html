@@ -70,6 +70,11 @@
                      </div>
                      <!--//column-->
                      <!--column-->
+                     <style type="text/css">
+                            .datepicker-wraps{position: relative;
+    display: inline-block;
+    width: 100%;}
+                     </style>
                      <div class="column one-third">
                         <!-- <h5><span>03</span> When?</h5> -->
                         <div class="row">
@@ -78,7 +83,7 @@
                                  <div class="f-item one-half">
                                     <label for="datepicker6">Depart date</label>
                                     <div class="f-item">
-                                       <div class="datepicker-wrap">
+                                       <div class="datepicker-wraps">
                                              <input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="package.depart" />
                                        </div>
                                        <div class="text-danger" ng-if="errors.pkg_depart">
@@ -147,12 +152,20 @@
                                     <span ng-click="package.Infants = package.Infants+1" class="add" id="add1"> + </span>
                                  </p>
                               </div>
-                           </div>
+                           </div>                           
                            <div class="text-danger" ng-if="errors.pkg_Adults">
                               {{errors.pkg_Adults}}
                            </div>
                         </div>
                      </div>
+                     <div class="f-item one-third spinner">
+                         <label for="anypck"> Packages </label>                         
+                         <select id="anypck" >
+                            <option>Packages</option>
+                            <option selected>Any Package</option>
+                         </select>    
+                         </div>    
+                      </div>
                      <!--//column-->
                   </div>
                   <!--//form package-->

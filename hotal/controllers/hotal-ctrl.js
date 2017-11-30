@@ -371,6 +371,23 @@ function initializeScript() {
         setDate: 'today',
         minDate: dateToday
       }).datepicker("setDate", new Date());
+
+      // only for home page packages 
+      $('.datepicker-wraps input').datepicker({
+        showOn: 'button',
+        buttonImage: 'assets/images/ico/calendar.png',
+        buttonImageOnly: true,
+        dateFormat: "yy/mm/dd",
+        setDate: 'today',
+        minDate: dateToday,
+        beforeShowDay: function(date) {
+            var day = date.getDay();
+            if(day == 5)
+                return [5, ''];
+            else
+                return ['', ''];
+        }
+      }).datepicker("setDate", new Date());
       
       $( '#slider' ).slider({
         range: "min",
