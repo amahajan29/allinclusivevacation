@@ -9,7 +9,9 @@ app.controller('homeController', function homeController($scope, $http, $templat
   date = new Date();
   var today = $filter('date')(date, 'yyyy/MM/dd');
   var afterSeven = $filter('date')(addDays(date,7), 'yyyy/MM/dd');
-
+  var nxtFriday = getNextDayOfWeek(date,5)
+  // var formatFriday = $filter('date')(nxtFriday, 'yyyy/MM/dd');
+  console.log('nxtFriday', nxtFriday);
   $scope.flight = {
     FlightFrom : "LON",
     FlightTo : "FAO",
@@ -24,7 +26,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
 
   $scope.package = {
     destination: "FAO",
-    depart: today,
+    // depart: formatFriday,
     Adults : 1,
     Children : 0,
     Infants : 0,
@@ -60,6 +62,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
     $scope.hotal.sTo = afterSeven;
     $scope.flight_hotel.return = afterSeven;
     $scope.flight.ReturnDate = afterSeven;
+    $scope.package.depart= nxtFriday;
   },1000);
 
   $scope.isValidPackage = function(){
@@ -571,4 +574,14 @@ function initializeScript() {
         //     }
         // });
          
+}
+
+function getNextDayOfWeek(date, dayOfWeek) {
+    // Code to check that date and dayOfWeek are valid left as an exercise ;)
+
+    var resultDate = new Date(date.getTime());
+
+    resultDate.setDate(date.getDate() + (7 + dayOfWeek - date.getDay()) % 7);
+
+    return resultDate;
 }
