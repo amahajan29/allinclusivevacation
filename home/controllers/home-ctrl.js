@@ -288,13 +288,45 @@ app.controller('homeController', function homeController($scope, $http, $templat
     var countryCode = $scope.package.destination;
     var Adults = $scope.package.Adults;
     var Children = $scope.package.Children;
+    if (!$scope.package.depart) {
+      var nxtFriday = getNextDayOfWeek(date,5);
+      var formatFriday = $filter('date')(nxtFriday, 'yyyy/MM/dd');
+      $scope.package.depart = formatFriday;
+    }
     var sTo = $scope.package.depart.replace(/\//g,"");
     var params = 'LocationCode='+countryCode+'&PackageCode=ALL'+'&NoOfAdults='+Adults+'&NoOfChildren='+Children+'&sTo='+sTo;
     $scope.url = 'https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/packages?'+params;
     $http({method: 'GET', url: $scope.url, cache: $templateCache}).
     then(function(response) {
       $scope.loading = false;
+      var tmparr = [];
+      for (var i = 0; i < response.data.length; i++) {
+        var formatdt = $filter('date')(response.data[i].ValidFrom, 'dd-MM-yyyy');
+        tmparr.push(formatdt);
+      }
       $scope.data = response.data;
+
+      $('.datepicker-wraps input').datepicker({
+          showOn: 'button',
+          buttonImage: 'assets/images/ico/calendar.png',
+          buttonImageOnly: true,
+          dateFormat: "yy/mm/dd",
+          setDate: 'today',
+          minDate: new Date(),
+          beforeShowDay: function(d) {
+            var dmy = "";
+            dmy += ("00" + d.getDate()).slice(-2) + "-";
+            dmy += ("00" + (d.getMonth() + 1)).slice(-2) + "-";
+            dmy += d.getFullYear();
+            return [$.inArray(dmy, tmparr) >= 0 ? true : false, ""];
+              /*var day = date.getDay();
+              if(day == 5)
+                  return [5, ''];
+              else
+                  return ['', ''];*/
+          }
+      }).datepicker("setDate", new Date());
+
     }, function(response) {
       console.log('Request failed');
     });
@@ -368,8 +400,8 @@ function initializeScript() {
         $(this).parent().addClass("active");
       }); 
       
-     
-
+ // only for home page packages 
+      
 
       //SEARCH WIDGET
       //$('.refine-search-results dt').each(function() {
