@@ -300,10 +300,15 @@ app.controller('homeController', function homeController($scope, $http, $templat
     then(function(response) {
       $scope.loading = false;
       var tmparr = [];
+      var mintmparr = [];
       for (var i = 0; i < response.data.length; i++) {
         var formatdt = $filter('date')(response.data[i].ValidFrom, 'dd-MM-yyyy');
         tmparr.push(formatdt);
+        mintmparr.push(new Date(response.data[i].ValidFrom));
       }
+      var minDate=new Date(Math.min.apply(null,mintmparr));
+      var minformatDT = $filter('date')(minDate, 'yyyy/MM/dd');
+      $scope.package.depart = minformatDT;
       $scope.data = response.data;
 
       $('.datepicker-wraps input').datepicker({
