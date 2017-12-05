@@ -62,7 +62,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
     $scope.hotal.sTo = afterSeven;
     $scope.flight_hotel.return = afterSeven;
     $scope.flight.ReturnDate = afterSeven;
-    $scope.package.depart= nxtFriday;
+    // $scope.package.depart= nxtFriday;
   },1000);
 
   $scope.isValidPackage = function(){
@@ -288,17 +288,16 @@ app.controller('homeController', function homeController($scope, $http, $templat
     var countryCode = $scope.package.destination;
     var Adults = $scope.package.Adults;
     var Children = $scope.package.Children;
-    if (!$scope.package.depart) {
-      var nxtFriday = getNextDayOfWeek(date,5);
-      var formatFriday = $filter('date')(nxtFriday, 'yyyy/MM/dd');
-      $scope.package.depart = formatFriday;
+    var sTo = '';
+    if ($scope.package.depart) {      
+      sTo = $scope.package.depart.replace(/\//g,"");
     }
-    var sTo = $scope.package.depart.replace(/\//g,"");
     var params = 'LocationCode='+countryCode+'&PackageCode=ALL'+'&NoOfAdults='+Adults+'&NoOfChildren='+Children+'&sTo='+sTo;
     $scope.url = 'https://mgmpackageslive.azurewebsites.net/mgmpackageslive/API/packages?'+params;
     $http({method: 'GET', url: $scope.url, cache: $templateCache}).
     then(function(response) {
       $scope.loading = false;
+     
       var tmparr = [];
       var mintmparr = [];
       for (var i = 0; i < response.data.length; i++) {

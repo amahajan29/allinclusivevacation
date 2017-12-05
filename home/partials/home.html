@@ -55,12 +55,46 @@
                                       <option value="FAO" selected=""> FAO - Faro</option>
                                      <option value="FNC">FNC - Funchal </option>
                                   </optgroup>
-                                  <optgroup label="Spain">
-                                      <option value="TFS">TFS - Tenerife South </option>
-                                  </optgroup>
                                   <optgroup label="England">
-                                      <option value="LON">LON - London </option>
-                                  </optgroup>
+                                            <option value="ABZ">ABZ - Aberdeen Dyce </option>
+                                            <option value="BFS">BFS - Belfast International </option>
+                                            <option value="BHD">BHD - George Best Belfast City </option>
+                                            <option value="BHX">BHX - Birmingham International</option>
+                                            <option value="BRS">BRS - Bristol International</option>
+                                            <option value="EDI">EDI - Edinburgh </option>
+                                            <option value="GLA">GLA - Glasgow International</option>
+                                            <option value="PIK">PIK - Glasgow Prestwick</option>
+                                            <option value="LBA">LBA - Leeds Bradford </option>
+                                            <option value="LPL">LPL - Liverpool John Lennon </option>
+                                            <option value="LON" selected="">LON - London - All Airports </option>
+                                            <option value="LCY">LCY - London City </option>
+                                            <option value="LGW">LGW - London Gatwick </option>
+                                            <option value="LHR">LHR - London Heathrow</option>
+                                            <option value="LTN">LTN - London Luton </option>
+                                            <option value="SEN">SEN - London Southend</option>
+                                            <option value="STN">STN - London Stansted </option>
+                                            <option value="MAN">MAN - Manchester </option>
+                                            <option value="NCL">NCL - Newcastle </option>
+                                            <option value="EMA">EMA - East Midlands,Nottingham</option>
+                                            <option value="JER">JER - Jersey </option>
+                                            <option value="SOU">SOU - Southampton </option>
+                                        </optgroup>
+                                        <optgroup label="France">
+                                            <option value="BVA">BVA - Beauvais, Paris </option>
+                                            <option value="CDG">CDG - Charles de Gaulle, Paris </option>
+                                            <option value="ORY">ORY - Orly, Paris </option>
+                                        </optgroup>
+                                        <optgroup label="Ireland">
+                                            <option value="DUB">DUB - Dublin </option>
+                                            <option value="ORK">ORK - Cork </option>
+                                            <option value="SNN">SNN - Shannon, Clare </option>
+                                        </optgroup>
+                                        <optgroup label="Netherlands">
+                                            <option value="AMS">AMS - Amsterdam </option>
+                                        </optgroup>
+                                        <optgroup label="Spain">
+                                            <option value="MAD">MAD - Madrid </option>
+                                        </optgroup>
                               </select>
                               <div class="text-danger" ng-if="errors.pkg_destination">
                                  {{errors.pkg_destination}}
@@ -627,6 +661,7 @@
                      <div class="ball ng-hide" ng-show="loading"></div>
                      <div class="offers" ng-show="!loading">
                         <div class="row">
+                           <label ng-if="!data.length">No result found.</label>
                            <!--deal-->
                            <article class="one-fourth itemlist" ng-repeat="l in data.slice(begin, limit) track by $index">
                               <figure><a href="hotel.html" title=""><img src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{l.PictureFileName}}" alt="{{l.PackageName}}" /></a></figure>
