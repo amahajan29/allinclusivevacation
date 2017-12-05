@@ -115,10 +115,10 @@
                            <div class="f-item full-width datepicker">
                               <div class="row">
                                  <div class="f-item one-half">
-                                    <label for="datepicker6">Depart date</label>
+                                    <label for="datepicker66">Depart date</label>
                                     <div class="f-item">
                                        <div class="datepicker-wraps">
-                                             <input type="text" placeholder="" id="datepicker6" name="datepicker6" ng-model="package.depart" />
+                                             <input type="text" placeholder="" id="datepicker66" name="datepicker6" ng-model="package.depart" />
                                        </div>
                                        <div class="text-danger" ng-if="errors.pkg_depart">
                                           {{errors.pkg_depart}}
@@ -661,7 +661,7 @@
                      <div class="ball ng-hide" ng-show="loading"></div>
                      <div class="offers" ng-show="!loading">
                         <div class="row">
-                           <label ng-if="!data.length">No result found.</label>
+                           <label ng-if="!data.length">No package available.</label>
                            <!--deal-->
                            <article class="one-fourth itemlist" ng-repeat="l in data.slice(begin, limit) track by $index">
                               <figure><a href="hotel.html" title=""><img src="https://mgmpackageslive.azurewebsites.net/mgmpackageslive/{{l.PictureFileName}}" alt="{{l.PackageName}}" /></a></figure>

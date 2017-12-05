@@ -281,7 +281,7 @@ app.controller('homeController', function homeController($scope, $http, $templat
   $scope.setOffersAtTop = function(){
     $('html, body').animate({scrollTop:$('.s-title').offset().top}, 'fast');
   }
-
+var tmpdt = "";
   // $scope.url = 'data.json';
   $scope.makeApiCall = function() {
     $scope.loading = true;
@@ -297,40 +297,48 @@ app.controller('homeController', function homeController($scope, $http, $templat
     $http({method: 'GET', url: $scope.url, cache: $templateCache}).
     then(function(response) {
       $scope.loading = false;
-     
-      var tmparr = [];
-      var mintmparr = [];
-      for (var i = 0; i < response.data.length; i++) {
-        var formatdt = $filter('date')(response.data[i].ValidFrom, 'dd-MM-yyyy');
-        tmparr.push(formatdt);
-        mintmparr.push(new Date(response.data[i].ValidFrom));
-      }
-      var minDate=new Date(Math.min.apply(null,mintmparr));
-      var minformatDT = $filter('date')(minDate, 'yyyy/MM/dd');
-      $scope.package.depart = minformatDT;
-      $scope.data = response.data;
 
-      $('.datepicker-wraps input').datepicker({
-          showOn: 'button',
-          buttonImage: 'assets/images/ico/calendar.png',
-          buttonImageOnly: true,
-          dateFormat: "yy/mm/dd",
-          setDate: 'today',
-          minDate: new Date(),
-          beforeShowDay: function(d) {
-            var dmy = "";
-            dmy += ("00" + d.getDate()).slice(-2) + "-";
-            dmy += ("00" + (d.getMonth() + 1)).slice(-2) + "-";
-            dmy += d.getFullYear();
-            return [$.inArray(dmy, tmparr) >= 0 ? true : false, ""];
-              /*var day = date.getDay();
-              if(day == 5)
-                  return [5, ''];
-              else
-                  return ['', ''];*/
-          }
-      }).datepicker("setDate", new Date());
+     if (response.data.length > 0) {
+        var tmparr = [];
+        var mintmparr = [];
+        for (var i = 0; i < response.data.length; i++) {
+          var formatdt = $filter('date')(response.data[i].ValidFrom, 'dd-MM-yyyy');
+          tmparr.push(formatdt);
+          mintmparr.push(new Date(response.data[i].ValidFrom));
+        }
+        var minDate=new Date(Math.min.apply(null,mintmparr));
+        var minformatDT = $filter('date')(minDate, 'yyyy/MM/dd');
+        $scope.package.depart = minformatDT;
+        tmpdt = minformatDT;
+        
 
+        $('.datepicker-wraps input').datepicker({
+            showOn: 'button',
+            buttonImage: 'assets/images/ico/calendar.png',
+            buttonImageOnly: true,
+            dateFormat: "yy/mm/dd",
+            // setDate: 'today',
+            minDate: new Date(),
+            beforeShowDay: function(d) {
+              var dmy = "";
+              dmy += ("00" + d.getDate()).slice(-2) + "-";
+              dmy += ("00" + (d.getMonth() + 1)).slice(-2) + "-";
+              dmy += d.getFullYear();
+              return [$.inArray(dmy, tmparr) >= 0 ? true : false, ""];
+                /*var day = date.getDay();
+                if(day == 5)
+                    return [5, ''];
+                else
+                    return ['', ''];*/
+            }
+        }).datepicker("setDate", new Date());
+     }
+     $scope.data = response.data;
+     setTimeout(function(){
+      $scope.package.depart = tmpdt;
+      $("#datepicker66").val(tmpdt).change();
+    },2000);
+      
     }, function(response) {
       console.log('Request failed');
     });
